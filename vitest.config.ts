@@ -4,7 +4,7 @@ export default defineConfig({
   test: {
     environment: "node",
     include: ["tests/**/*.test.ts"],
-    exclude: ["tests/live/**"],
+    exclude: ["tests/live/**", "tests/cctp/**"],
     testTimeout: 20_000,
     hookTimeout: 20_000,
     fileParallelism: false,

@@ -10,11 +10,15 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "test:report": "vitest run --reporter=verbose --reporter=junit --outputFile=./reports/junit.xml",
-    "test:testnet": "vitest run --config vitest.testnet.config.ts"
+    "test:testnet": "vitest run --config vitest.testnet.config.ts",
+    "test:cctp": "vitest run --config vitest.cctp.config.ts",
+    "test:cctp:return": "vitest run --config vitest.cctp-return.config.ts",
+    "wallet:testnet": "node --experimental-strip-types tests/cctp/create-wallet.ts"
   },
   "devDependencies": {
     "@stellar/stellar-sdk": "17.2.1",
     "@types/node": "22.20.5",
+    "ethers": "6.17.0",
     "typescript": "5.9.3",
     "vitest": "5.0.4"
   }

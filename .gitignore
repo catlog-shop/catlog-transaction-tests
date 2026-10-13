@@ -3,3 +3,4 @@ reports/
 .vitest/
 .env
 .env.*
+*wallet*.json

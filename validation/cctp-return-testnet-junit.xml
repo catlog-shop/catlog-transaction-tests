@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites name="vitest tests" tests="1" failures="0" errors="0" time="9.245246875">
+    <testsuite name="tests/cctp/stellar-arc.test.ts" timestamp="2026-10-13T13:12:19.036Z" tests="1" failures="0" errors="0" skipped="0" time="9.245246875">
+        <testcase classname="tests/cctp/stellar-arc.test.ts" name="bridges 0.5 USDC from Stellar testnet back to the Arc testnet wallet" time="9.244362958">
+            <system-out>
+Verified CCTP Stellar -&gt; Arc testnet: https://explorer.testnet.arc.io/tx/0x992b77b18f97135afb393fc3685602b8bb7653d1ff2b02c6403f2cbe02d04be3
+
+            </system-out>
+        </testcase>
+    </testsuite>
+</testsuites>
