@@ -45,8 +45,3 @@ SAVED RESULTS
 validation/cctp-testnet.json and validation/cctp-testnet-junit.xml
 validation/cctp-return-testnet.json and validation/cctp-return-testnet-junit.xml
 The JSON files contain public transaction IDs, messages, attestations and balances.
-
-SCOPE
-These tests cover direct CCTP transfers and same-envelope Stellar replay.
-Catlog's backend, merchant ledger and application idempotency were not tested.
-Reusing a CCTP message in a fresh transaction was not tested.
