@@ -1,0 +1,35 @@
+name: Catlog shared transaction layer tests
+
+on:
+  pull_request:
+  push:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - run: npm run typecheck
+      # Add the isolated database/service setup and migrations required by Catlog
+      # here. Implement tests/catlog.integration.ts before expecting a passing run.
+      - name: Record run metadata
+        run: |
+          mkdir -p reports
+          node --input-type=module -e 'import { writeFileSync } from "node:fs"; writeFileSync("reports/run.json", JSON.stringify({ commit: process.env.GITHUB_SHA, runId: process.env.GITHUB_RUN_ID, utc: new Date().toISOString(), intendedScope: "Catlog transaction services and test database with a simulated provider. Live Stellar connectivity is tested separately." }, null, 2));'
+      - run: npm run test:report
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: catlog-test-results
+          path: reports/
+          if-no-files-found: warn
