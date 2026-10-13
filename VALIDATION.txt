@@ -1,0 +1,21 @@
+Catlog test validation — 13 October 2026
+
+Runtime: Node 24.21.0
+TypeScript: 5.9.3
+Vitest: 5.0.4
+Stellar SDK: 17.2.1
+
+TypeScript check: PASSED.
+Live Stellar testnet payment and same-envelope replay: PASSED.
+Asset: XLM; payment amount: 1.0000000.
+Transaction: df02d774ff8c81ef5438764ceeaa76e5e36476bc44db221f797525dc84e05127
+Ledger: 5173370
+Explorer: https://stellar.expert/explorer/testnet/tx/df02d774ff8c81ef5438764ceeaa76e5e36476bc44db221f797525dc84e05127
+
+The live test verified payment details, exact balance changes and no additional
+transfer or fee on replay. Test wallet keys were kept only in memory.
+
+The separate Catlog service suite contains 17 cases and requires the backend
+connection in tests/catlog.integration.ts. Its missing-setup guard was verified
+previously. No Catlog backend, merchant ledger, USDC or cross-chain route was
+exercised by the live XLM test.
