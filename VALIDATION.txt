@@ -1,21 +1,52 @@
-Catlog test validation — 13 October 2026
+Catlog shared transaction layer — test validation
+Date: 13 October 2026
 
-Runtime: Node 24.21.0
-TypeScript: 5.9.3
-Vitest: 5.0.4
-Stellar SDK: 17.2.1
-
+RESULTS
 TypeScript check: PASSED.
-Live Stellar testnet payment and same-envelope replay: PASSED.
-Asset: XLM; payment amount: 1.0000000.
-Transaction: df02d774ff8c81ef5438764ceeaa76e5e36476bc44db221f797525dc84e05127
-Ledger: 5173370
-Explorer: https://stellar.expert/explorer/testnet/tx/df02d774ff8c81ef5438764ceeaa76e5e36476bc44db221f797525dc84e05127
+Arc -> Stellar CCTP test: PASSED (1 test, 0 failures).
+Stellar -> Arc CCTP test: PASSED (1 test, 0 failures).
+Both final runs resumed confirmed burns and verified the destination transfers.
 
-The live test verified payment details, exact balance changes and no additional
-transfer or fee on replay. Test wallet keys were kept only in memory.
+TEST WALLETS AND ASSETS
+Arc testnet (chain 5042002, CCTP domain 26):
+0x0ef2fC3Ff23bF5fc0f81daD50d8Ab71a38eAd24f
+Stellar testnet (CCTP domain 27):
+GCJKXIYN5W3NRYGI27VA623MWW4LCVE5MPI7QQKYFI5KTDCIE2DUOPEQ
+Arc USDC: 0x3600000000000000000000000000000000000000
+Stellar USDC issuer: GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5
 
-The separate Catlog service suite contains 17 cases and requires the backend
-connection in tests/catlog.integration.ts. Its missing-setup guard was verified
-previously. No Catlog backend, merchant ledger, USDC or cross-chain route was
-exercised by the live XLM test.
+ARC -> STELLAR
+Gross burn: 1.000000 USDC; CCTP fee: 0 USDC.
+Credited to Stellar: 1.0000000 USDC.
+Arc burn (block 66993320):
+https://explorer.testnet.arc.io/tx/0xaebbbee9a33e66114d321d679ca75eb3fd889f2ac45fd57755348d0070d90771
+Stellar mint and forward (ledger 5174687):
+https://stellar.expert/explorer/testnet/tx/9c2db8346761d7672956fab6bf2e081a104caec59aec4771ebbd505905cb2909
+Arc gas, approval plus burn: 0.00449205 USDC.
+Stellar mint network fee: 0.0137746 XLM.
+Verified the source burn, Circle attestation, asset, recipient, amount and Stellar
+credit. Replaying the same signed Stellar envelope returned the original hash and
+ledger without another credit, fee or sequence change.
+
+STELLAR -> ARC
+Gross burn: 0.5000000 USDC; CCTP fee: 0 USDC.
+Minted to Arc: 0.5 USDC.
+Stellar burn (ledger 5174692):
+https://stellar.expert/explorer/testnet/tx/0b75a1077b5e9a0c5b0e3fd664a955068813f283e376fbadbae8174392b202bc
+Arc mint (block 66993936):
+https://explorer.testnet.arc.io/tx/0x992b77b18f97135afb393fc3685602b8bb7653d1ff2b02c6403f2cbe02d04be3
+Stellar approval plus burn network fees: 0.004079 XLM.
+Arc mint gas: 0.003475714 USDC.
+Arc net balance increase after mint gas: 0.496524286 USDC.
+Verified Stellar debit, raw attested route/asset/amount/fee, successful Arc mint,
+USDC mint event, nonce changing from unused to used, and gas-adjusted balance.
+
+SAVED RESULTS
+validation/cctp-testnet.json and validation/cctp-testnet-junit.xml
+validation/cctp-return-testnet.json and validation/cctp-return-testnet-junit.xml
+The JSON files contain public transaction IDs, messages, attestations and balances.
+
+SCOPE
+These tests cover direct CCTP transfers and same-envelope Stellar replay.
+Catlog's backend, merchant ledger and application idempotency were not tested.
+Reusing a CCTP message in a fresh transaction was not tested.
