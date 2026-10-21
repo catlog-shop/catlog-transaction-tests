@@ -4,3 +4,12 @@ reports/
 .env
 .env.*
 *wallet*.json
+.DS_Store
+*.log
+coverage/
+*.pem
+*.key
+*.p12
+*.pfx
+credentials*.json
+secrets*.json

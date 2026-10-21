@@ -1,8 +1,15 @@
 Catlog shared transaction layer — test validation
-Date: 13 October 2026
+Updated: 19 October 2026
 
 RESULTS
-TypeScript check: PASSED.
+TypeScript check: PASSED (19 October 2026).
+Queue, reconciliation and support endpoint coverage: 54 acceptance cases added
+across CCTP Arc -> Stellar, CCTP Stellar -> Arc and NEAR -> Stellar.
+Backend execution: BLOCKED until the operations harness is connected to Catlog.
+All 54 cases correctly stopped at the missing-connection guard; application
+behavior has not been validated. See validation/operations-setup-check.json.
+
+LIVE CCTP RESULTS — 13 October 2026
 Arc -> Stellar CCTP test: PASSED (1 test, 0 failures).
 Stellar -> Arc CCTP test: PASSED (1 test, 0 failures).
 Both final runs resumed confirmed burns and verified the destination transfers.

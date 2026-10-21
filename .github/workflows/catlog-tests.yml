@@ -21,7 +21,8 @@ jobs:
       - run: npm ci
       - run: npm run typecheck
       # Add the isolated database/service setup and migrations required by Catlog
-      # here. Implement tests/catlog.integration.ts before expecting a passing run.
+      # here. Implement tests/catlog.integration.ts and
+      # tests/operations/catlog.integration.ts before expecting a passing run.
       - name: Record run metadata
         run: |
           mkdir -p reports

@@ -10,6 +10,9 @@ TypeScript tests for Catlog's shared transaction layer, built with Vitest.
 - Merchant isolation, ledger credits, balances and Stellar transaction references.
 - Duplicate settlement events and recovery after a lost provider response.
 - Deposit feature-flag enforcement.
+- Durable retry queues, bounded backoff, worker restarts and lease recovery.
+- Reconciliation across both CCTP directions and the NEAR-to-Stellar route.
+- Internal support view data, status filters, external IDs and access controls.
 
 ## Setup
 
@@ -23,8 +26,11 @@ Implement `createHarness()` in `tests/catlog.integration.ts` using the interface
 `tests/harness.ts`. Connect it to Catlog's transaction services, workers and database
 queries. Create a fresh fixture for each test and simulate only the external provider.
 
-Until this connection is implemented, tests fail with `CATLOG_SETUP_REQUIRED`.
-The separate live Stellar test below runs without the Catlog backend connection.
+The operations suite has a separate connection in
+`tests/operations/catlog.integration.ts` for the durable queue, reconciliation services
+and authenticated support endpoints. Both suites require real backend connections;
+unconfigured suites fail with an explicit setup error. The live Stellar and CCTP
+tests below run separately.
 
 ## Run tests
 
@@ -40,6 +46,38 @@ npm run test:report
 ```
 
 The report is written to `reports/junit.xml`.
+
+## Retry queues, reconciliation and support view
+
+```sh
+npm run test:operations
+```
+
+This focused suite contains 54 acceptance cases. It is also included in `npm test`.
+It checks durable retries and backoff, exhaustion without incorrectly failing a
+payment, worker restart and lease recovery, missed webhooks, concurrent settlement,
+and recovery of accepted transfers without a second source payment.
+
+Required routes are declared in `tests/operations/harness.ts`:
+
+- CCTP: Arc testnet → Stellar testnet.
+- CCTP: Stellar testnet → Arc testnet.
+- NEAR execution provider: the configured source network → Stellar testnet.
+
+Every fixture must provide all three routes. NEAR identifies the provider; configure
+the actual source network and assets in the backend fixture. One scanner test covers
+all routes together, in addition to the cases repeated for each route.
+
+Support endpoint tests cover pending, completed, failed and recoverable transactions,
+external IDs, status/route filters, ID search, pagination, authorized retry and access
+restrictions. Recoverable transactions remain financially pending. A confirmed final
+failure cannot be retried as if it were a temporary error.
+
+See [the binding guide](tests/operations/README.md) for the required backend contract.
+Results are written to `reports/operations-junit.xml`. These tests simulate only the
+external provider. They do not implement a queue or support screen in this repository,
+test browser rendering, or prove a live NEAR transfer. They cannot pass until Catlog's
+backend is connected.
 
 ## Real Stellar testnet payment
 
@@ -121,6 +159,7 @@ without other transactions from the same wallets during a run.
 - Idempotency keys are scoped to each merchant.
 - Statuses are normalized to `PENDING`, `COMPLETED` and `FAILED`.
 - Completed transactions and confirmed failures are terminal; unknown outcomes remain pending.
+  Recovery is tracked separately and can appear as `RECOVERABLE` in the support view.
 - Catlog service amounts use integer `bigint` values at seven decimal places.
   CCTP messages use six decimals; the live tests convert explicitly for Stellar.
 - The Catlog service tests use simulated provider results and transaction hashes.

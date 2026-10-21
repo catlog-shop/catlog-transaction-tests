@@ -13,7 +13,8 @@
     "test:testnet": "vitest run --config vitest.testnet.config.ts",
     "test:cctp": "vitest run --config vitest.cctp.config.ts",
     "test:cctp:return": "vitest run --config vitest.cctp-return.config.ts",
-    "wallet:testnet": "node --experimental-strip-types tests/cctp/create-wallet.ts"
+    "wallet:testnet": "node --experimental-strip-types tests/cctp/create-wallet.ts",
+    "test:operations": "vitest run --config vitest.operations.config.ts"
   },
   "devDependencies": {
     "@stellar/stellar-sdk": "17.2.1",
