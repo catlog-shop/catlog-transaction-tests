@@ -1,7 +1,0 @@
-{
-  "service": "catlog test",
-  "mode": "base",
-  "base": true,
-  "backend": true,
-  "url": "https://catlog-transaction-test.throbbing-cloud-0f8e.workers.dev"
-}

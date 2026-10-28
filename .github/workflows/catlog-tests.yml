@@ -1,4 +1,4 @@
-name: Catlog backend acceptance tests (private adapter required)
+name: Catlog backend acceptance tests
 
 on:
   workflow_dispatch:
@@ -23,18 +23,19 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run typecheck
-      # Add the isolated database/service setup and migrations required by Catlog
-      # here. Set CATLOG_BACKEND_ADAPTER to developer-owned backend bindings.
+
       - name: Record run metadata
         run: |
           mkdir -p reports
           node --input-type=module -e 'import { writeFileSync } from "node:fs"; writeFileSync("reports/run.json", JSON.stringify({ commit: process.env.GITHUB_SHA, runId: process.env.GITHUB_RUN_ID, utc: new Date().toISOString(), intendedScope: "Catlog transaction services and test database." }, null, 2));'
-      - run: npm run test:backend:report
+      - run: npm test
+        env:
+          CATLOG_API_KEY: ${{ secrets.CATLOG_API_KEY }}
       - uses: actions/upload-artifact@v4
         if: ${{ always() && github.event_name == 'workflow_dispatch' && inputs.upload_reports }}
         with:
           name: catlog-test-results
           path: |
-            reports/junit.xml
+            reports/catlog-*/
             reports/run.json
           if-no-files-found: warn
