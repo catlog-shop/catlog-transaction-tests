@@ -4,7 +4,7 @@ TypeScript tests for Catlog's shared transaction layer, built with Vitest.
 
 ## Quick start
 
-Use Node.js 24. Copy the privately supplied `.env.reviewer` file into the
+Use Node.js 24. Place the privately supplied `.env.catlog` file in this
 repository root, then run:
 
 ```sh
@@ -12,34 +12,89 @@ npm ci
 npm test
 ```
 
-The default command connects to
-[backend staging API](https://catlog-transaction-test.throbbing-cloud-0f8e.workers.dev/)
-and runs 30 backend API tests. A reviewer API key is required; no local backend
-checkout or Cloudflare account is needed. Internet access and an available Worker
-are required. The `.env.reviewer` file contains `CATLOG_TEST_API_KEY=<provided-key>`
-and is ignored by Git. You can also set that environment variable directly.
+This runs all 71 original acceptance cases against the private Catlog backend on
+Cloudflare using a restricted API key. No backend source, local backend,
+Cloudflare account, admin key, signing key or funded wallet is needed. The test
+repository contains only tests and an HTTP adapter. Each case creates its own
+isolated, durable server-side session. Controlled external-provider responses
+exercise the backend's actual API, SQLite ledger, job queue, retries, recovery,
+reconciliation and support permissions. Worker restart tests evict a real server
+instance and verify that durable records survive.
 
-The reviewer key creates isolated sessions; each test receives its own temporary
-session credential automatically. The reviewer key cannot read or change other
-sessions. Share it privately and keep it out of commits and reports.
-The suite covers synthetic success, failure, retry, expiry and duplicate-event
-paths for the Arc-to-Stellar, Stellar-to-Arc and NEAR-to-Stellar route labels.
-It also checks idempotency, ledger credits, input validation and session isolation.
-These results validate the hosted Worker backend, not live transfers.
+The automated suite does not send blockchain funds. CCTP testnet and NEAR mainnet
+live sessions are separate API options described below.
 
-Runs print transaction status changes, retries and external IDs. JSON results,
-JUnit and a summary are saved under a new `reports/base-.../` directory.
-`npm run test:report` and `npm run test:base` run the same hosted suite.
+The console shows individual assertions and changes read from server transaction
+records, explicitly labelled CONTROLLED. Each run saves `summary.json`,
+`results.json` and `junit.xml` under a fresh `reports/catlog-.../` folder, including
+the backend revision and whether the full 71-case suite ran. To select cases:
 
-The URL is configured in [config/base.json](config/base.json).
-Set `BASE_URL` only when targeting another compatible backend. Sessions
-expire after 24 hours and are deleted by the tests when they finish. A busy API
-can return a rate-limit error; retry the run after a minute.
+```sh
+npm test -- tests/operations/retry-queue.test.ts
+npm test -- -t "lost submit response"
+```
+
+Subset reports are labelled as subsets. Set `CATLOG_TRANSACTION_LOGS=false` to
+hide transaction traces. The restricted key is provided privately as
+`CATLOG_API_KEY`; the configured backend origin is `CATLOG_BACKEND_URL`.
+Session credentials are generated automatically, scoped to one session and expire
+after at most 24 hours. The key cannot use production admin APIs. Key expiry,
+network outages or quota exhaustion produce explicit errors and fail the run.
+
+## Optional live funding sessions
+
+These use the same API key and the hosted API, and are not part of `npm test`.
+The API returns public funding instructions and transaction status. Signing keys
+are never returned. Real NEAR mainnet deposits are sent from your own wallet.
+
+- NEAR on Ethereum: Ethereum USDC → Stellar mainnet USDC; pay ETH gas separately.
+- NEAR on Base: Base USDC → Stellar mainnet USDC; pay ETH gas on Base separately.
+- NEAR on Tron: Tron USDT → Stellar mainnet USDC; pay TRX network costs separately.
+- CCTP: fresh Arc testnet USDC wallet → Stellar testnet USDC. A Stellar testnet
+  destination is generated automatically unless an existing address is supplied.
+
+Examples (use your own public refund and receiving addresses):
+
+```sh
+npm run live:create -- near ethereum --refund-address 0xYOUR_ADDRESS --stellar-recipient GYOUR_MAINNET_ADDRESS --amount 1
+npm run live:create -- near base --refund-address 0xYOUR_BASE_ADDRESS --stellar-recipient GYOUR_MAINNET_ADDRESS --amount 1
+npm run live:create -- near tron --refund-address TYOUR_ADDRESS --stellar-recipient GYOUR_MAINNET_ADDRESS --amount 105 --max-source 120
+npm run live:create -- cctp arc --amount 1
+npm run live:status -- SESSION_ID
+```
+
+As checked on October 28, 2026, 1Click reports a temporary **$100 minimum for
+Tron swaps**. The example requests 105 output USDC with a 120 USDT source cap;
+it only prepares a quote. Review the exact amount and fund it only if you choose
+to run that mainnet test. Smaller requests return the provider's minimum-amount
+message. Ethereum and Base support small test quotes.
+
+For NEAR, the Stellar mainnet receiving account must already exist and have the
+canonical USDC trustline. The refund address must match the wallet funding the
+deposit. The service provides a 1Click-generated deposit address with the exact
+source amount and quote expiry. Send the indicated token on the indicated network
+before that expiry. No mainnet funds are sent by this test package or the backend.
+
+For CCTP, use Circle's Arc Testnet faucet to fund the generated Arc address. The
+instructions include an additional 2 test USDC reserve for source-network gas;
+only the requested bridge amount is burned. Test wallet keys are encrypted and
+retained privately by the backend. Do not send mainnet tokens to these wallets.
+
+The CLI saves private session credentials in ignored `.catlog-sessions/` files.
+Keep the session file and reuse `live:status` after funding. Use the same
+`--idempotency-key` to resume a creation request without generating another deposit.
+
+## Catlog live API reference
+
+See the [Catlog deposit and payment status API](docs/CATLOG_API.md) for the
+complete API guide, including copyable requests for Ethereum USDC, Base USDC, Tron USDT and
+Arc testnet USDC deposit addresses; authentication; payment status polling;
+response fields; errors; expiry; and limits. No backend access is required.
 
 ## Backend acceptance suite
 
-The separate 71-case suite requires Catlog's actual backend and an isolated test
-database. Its checks include:
+`npm test` runs the original 71 cases against Catlog's hosted backend. The API
+creates an isolated database session for each case. Its checks include:
 
 - Merchant-scoped idempotency and conflicting payment details.
 - Transaction status transitions and stale provider updates.
@@ -50,27 +105,22 @@ database. Its checks include:
 - Reconciliation across both CCTP directions and the NEAR route.
 - Support endpoint filters, external IDs and access controls.
 
-Supply `createHarness()` and `createOperationsHarness()` through
-`CATLOG_BACKEND_ADAPTER`. Both factories must connect to the real application
-services, workers and database. These commands fail with an explicit setup error
-until that connection exists:
+The runner loads the included `catlog/adapter.mjs` HTTP adapter automatically.
+The supplied API key and backend URL are enough to run the suite. Each run saves
+`summary.json`, `results.json` and `junit.xml` under `reports/catlog-.../`.
 
-```sh
-npm run test:backend
-npm run test:backend:report
-```
-
-The backend JUnit report is written to `reports/junit.xml`. For the full private
-run with backend revision metadata and a shareable summary, use
-`npm run test:private`. `npm run test:handoff` checks packaging utilities only.
+The [binding guide](tests/operations/README.md) describes the optional integration
+contract for connecting a different backend. It is not required for the hosted
+API run. `npm run test:handoff` checks adapter-loading and reporting utilities
+locally; those checks are separate from the 71 backend cases.
 
 ## Retry queues, reconciliation and support view
 
 ```sh
-npm run test:operations
+npm test -- tests/operations
 ```
 
-This focused suite contains 54 acceptance cases. It is also included in `npm run test:backend`.
+This focused suite contains 54 acceptance cases. All are also included in `npm test`.
 It checks durable retries and backoff, exhaustion without incorrectly failing a
 payment, worker restart and lease recovery, missed webhooks, concurrent settlement,
 and recovery of accepted transfers without a second source payment.
@@ -81,20 +131,20 @@ Required routes are declared in `tests/operations/harness.ts`:
 - CCTP: Stellar testnet → Arc testnet.
 - NEAR execution provider: the configured source network → Stellar testnet.
 
-Every fixture must provide all three routes. NEAR identifies the provider; configure
-the actual source network and assets in the backend fixture. One scanner test covers
-all routes together, in addition to the cases repeated for each route.
+The hosted test API supplies all three controlled-provider fixture routes. These
+fixture network names describe the automated fault scenarios; live NEAR funding
+sessions use mainnet as described above. One scanner test covers all routes
+together, in addition to the cases repeated for each route.
 
 Support endpoint tests cover pending, completed, failed and recoverable transactions,
 external IDs, status/route filters, ID search, pagination, authorized retry and access
 restrictions. Recoverable transactions remain financially pending. A confirmed final
 failure cannot be retried as if it were a temporary error.
 
-See [the binding guide](tests/operations/README.md) for the required backend contract.
-Results are written to `reports/operations-junit.xml`. These tests use controlled
-external-provider fixtures. They do not implement a queue or support screen in this repository,
-test browser rendering, or prove a live NEAR transfer. They cannot pass until Catlog's
-backend is connected.
+The focused run uses the same API key and saves reports under `reports/catlog-.../`,
+labelled as a subset. These tests use controlled external-provider fixtures and
+exercise the hosted backend's queue, recovery and support APIs. Browser rendering
+and live NEAR transfers are outside this suite.
 
 ## Real Stellar testnet payment
 
@@ -112,8 +162,8 @@ or real funds are needed. Public transaction details and the result are saved to
 `reports/stellar-testnet.json`; the test report is `reports/stellar-testnet-junit.xml`.
 
 This checks the direct Stellar payment path and same-transaction replay. The CCTP
-tests below cover USDC across chains. Catlog transaction records and merchant credits
-still require the backend connection. Friendbot or network problems fail the live
+tests below cover USDC across chains. The hosted API suite checks Catlog transaction
+records and merchant credits. Friendbot or network problems fail the live
 test. Testnet records may be reset, so each run creates a fresh transaction.
 
 ## USDC over CCTP: Arc testnet ↔ Stellar testnet
@@ -185,16 +235,26 @@ without other transactions from the same wallets during a run.
 
 ## Continuous integration
 
-The **Catlog base tests** workflow runs type checks, logging checks and
-`npm test` on pushes, pull requests and manual requests. Configure the repository
-secret `CATLOG_TEST_API_KEY` with the reviewer key. The workflow uploads a summary
-identified as backend results. Forks and other checkouts do not inherit this
-secret; testers must obtain the key privately.
+GitHub Actions runs the workflows below in GitHub's hosted environment. The two
+Catlog workflows use the deployed Cloudflare backend through its API. They do not
+need backend source, a private adapter, database access or a Cloudflare account.
 
-The **Catlog backend acceptance tests (private adapter required)** workflow runs
-only on manual request. Configure the private adapter, test database, migrations
-and services before its backend test step. It cannot pass without those bindings.
-Its standard JUnit upload is opt-in; private-run reports stay local.
+- **Catlog backend API tests** (`.github/workflows/backend-tests.yml`) runs on
+  pushes, pull requests and manual requests. It installs dependencies, checks
+  TypeScript types and runs all 71 acceptance cases with `npm test`. It uploads
+  `summary.json`, `results.json` and `junit.xml` as the `catlog-test-reports`
+  artifact, including available reports when a test fails.
+- **Catlog backend acceptance tests** (`.github/workflows/catlog-tests.yml`) runs
+  only when started manually. It performs the same type checks and 71-case API
+  suite, and records the Git commit, run ID and time. Enable `upload_reports`
+  when starting it to upload structured reports. Console output remains available
+  in the Actions log regardless of that option.
+- **Stellar testnet payment** (`.github/workflows/stellar-testnet.yml`) runs
+  manually. It makes a real Stellar testnet payment and uploads the public
+  transaction details and test report. This is separate from the 71-case API
+  suite, which uses controlled external-provider responses.
 
-The **Stellar testnet payment** workflow runs manually and uploads its public
-transaction details and test report.
+Configure the repository secret `CATLOG_API_KEY` with the supplied API key for
+both Catlog workflows; it is already configured in this repository. The key
+allows access to the hosted test API. Forks must configure their own secret.
+For local runs, load the privately supplied key through `.env.catlog` instead.

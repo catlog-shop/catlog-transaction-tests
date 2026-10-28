@@ -6,7 +6,13 @@
     "strict": true,
     "noEmit": true,
     "skipLibCheck": true,
-    "types": ["node"]
+    "types": [
+      "node"
+    ]
   },
-  "include": ["tests/**/*.ts", "handoff-tests/**/*.ts", "base-tests/**/*.ts", "vitest*.config.ts"]
+  "include": [
+    "tests/**/*.ts",
+    "handoff-tests/**/*.ts",
+    "vitest*.config.ts"
+  ]
 }
