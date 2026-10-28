@@ -6,13 +6,13 @@ This report combines the 28 October 2026 automated test results with blockchain 
 
 ## Verified blockchain transactions
 
-**12 mainnet transfers from the supplied wallet and 1 CCTP testnet transfer verified. All 13 destination amounts matched their provider output or CCTP net amount.**
+**23 mainnet transfers and 1 CCTP testnet transfer verified. All 24 destination amounts matched their provider output or CCTP net amount.**
 
-Checked on 28 October 2026 at 21:12:47 UTC (22:12:47 WAT).
+Stellar-bound evidence checked on 28 October 2026 at 21:12:47 UTC (22:12:47 WAT). The Polygon → Base receipt was additionally checked at 21:46:47 UTC (22:46:47 WAT).
 
-Source wallet: [`0xBeA94bAA9B17De76a1dA7B9070aa2A86c4706117`](https://etherscan.io/address/0xBeA94bAA9B17De76a1dA7B9070aa2A86c4706117) — [Ethereum token history](https://etherscan.io/tokentxns?a=0xBeA94bAA9B17De76a1dA7B9070aa2A86c4706117) · [Base token history](https://basescan.org/tokentxns?a=0xBeA94bAA9B17De76a1dA7B9070aa2A86c4706117). Both displayed pages of token history were inspected on each chain. The rows below include the CCTP and NEAR USDC transfers that were matched to Stellar USDC receipts.
+Recorded EVM wallet: [`0xBeA94bAA9B17De76a1dA7B9070aa2A86c4706117`](https://etherscan.io/address/0xBeA94bAA9B17De76a1dA7B9070aa2A86c4706117) — [Ethereum token history](https://etherscan.io/tokentxns?a=0xBeA94bAA9B17De76a1dA7B9070aa2A86c4706117) · [Base token history](https://basescan.org/tokentxns?a=0xBeA94bAA9B17De76a1dA7B9070aa2A86c4706117). Both displayed pages of token history were inspected on Ethereum and Base. The first table covers transfers matched to Stellar USDC receipts; the additional Ethereum → Base, Polygon → Base and Stellar → Base receipts appear below.
 
-### Mainnet CCTP and NEAR transfers
+### Mainnet transfers into Stellar
 
 | ID | Source time (UTC) | Provider | Source chain | USDC sent | Expected Stellar USDC | Received Stellar USDC | Difference | Source transaction | Stellar transaction |
 | --- | --- | --- | --- | ---: | ---: | ---: | ---: | --- | --- |
@@ -37,7 +37,69 @@ Expected receipt is the burn amount minus Circle's executed fee for CCTP, or 1Cl
 | NEAR: Ethereum → Stellar mainnet | 4 | 15.027879 | 14.9387169 |
 | CCTP: Base → Stellar mainnet | 2 | 4.000000 | 3.9996100 |
 | NEAR: Base → Stellar mainnet | 3 | 7.996439 | 7.9254817 |
-| **Selected mainnet transfers** | **12** | **40.024318** | **39.8631086** |
+| **Stellar-bound mainnet transfers** | **12** | **40.024318** | **39.8631086** |
+
+### Ethereum to Base receipts
+
+All six transfers were paid from `0xBeA94bAA9B17De76a1dA7B9070aa2A86c4706117` on Ethereum and received as canonical USDC at the same address on Base. The CCTP source payments used USDC; the NEAR source payments used USDT.
+
+Checked on 28 October 2026 at 22:02:41 UTC (23:02:41 WAT).
+
+| ID | Route | Source time (UTC) | Source payment | Expected Base USDC | Received Base USDC | Difference | Ethereum source receipt | Base receiving receipt |
+| --- | --- | --- | ---: | ---: | ---: | ---: | --- | --- |
+| [E01](docs/evidence/ethereum-base-2026-10-28/proofs/E01.json) | CCTP v2 | 2026-09-20 13:57:47 | 2.000000 USDC | 1.944862 | 1.944862 | 0.000000 | [0x86f7758100…d0167570](https://etherscan.io/tx/0x86f77581007f9dfc9f083bf51a4d3431c900f15ecd3f6f806d9f0279d0167570) | [0xcd30d31b3b…f24d88ec](https://basescan.org/tx/0xcd30d31b3bbd514da48d35139affae4e83d82b50f77eb264143cdbddf24d88ec) |
+| [E02](docs/evidence/ethereum-base-2026-10-28/proofs/E02.json) | Allbridge CCTP v1 | 2026-09-20 13:58:23 | 2.000000 USDC | 1.694931 | 1.694931 | 0.000000 | [0x01ec3f4fe7…a36ea205](https://etherscan.io/tx/0x01ec3f4fe797778b6f78636ed5285c8c48c5a943d62fef9d10232fa6a36ea205) | [0x4af3643deb…dc17d801](https://basescan.org/tx/0x4af3643deb22287af200c08df7eebccfd193720f8c346df08cc1a14edc17d801) |
+| [E03](docs/evidence/ethereum-base-2026-10-28/proofs/E03.json) | NEAR 1Click | 2026-09-25 20:13:47 | 5.000000 USDT | 4.996439 | 4.996439 | 0.000000 | [0xabe194d7ee…a8e033e5](https://etherscan.io/tx/0xabe194d7eeb1843f2a2fc3dda908a3a83ae389f5b55f5ca33c85b0caa8e033e5) | [0xb84b07d97c…0803c3b4](https://basescan.org/tx/0xb84b07d97cf4adadc7c95cf2de9ac6d82df1e60b20ad470b0ad1c26a0803c3b4) |
+| [E04](docs/evidence/ethereum-base-2026-10-28/proofs/E04.json) | NEAR 1Click | 2026-09-25 20:23:23 | 10.000000 USDT | 9.995315 | 9.995315 | 0.000000 | [0x9a9b244cdc…d09b285d](https://etherscan.io/tx/0x9a9b244cdc5996a961fb04cccea55fa2e847afc2173666cfd7130b2ed09b285d) | [0x25018c558d…12b9eeb2](https://basescan.org/tx/0x25018c558d070a4b0e97b23576e563de12f84db534546970d587969212b9eeb2) |
+| [E05](docs/evidence/ethereum-base-2026-10-28/proofs/E05.json) | Allbridge CCTP v1 | 2026-09-30 12:40:35 | 2.000000 USDC | 1.664623 | 1.664623 | 0.000000 | [0xdd386633e8…f7b088e9](https://etherscan.io/tx/0xdd386633e80732594ea9924edbad1d4ebb72efa3ace3707f2f13580af7b088e9) | [0xee4d53763d…6884a916](https://basescan.org/tx/0xee4d53763dacdd76cf10ec898a1153548658eef52ed2626b9ffcb8a16884a916) |
+| [E06](docs/evidence/ethereum-base-2026-10-28/proofs/E06.json) | NEAR 1Click | 2026-09-30 13:30:35 | 5.000000 USDT | 4.994970 | 4.994970 | 0.000000 | [0x8667783021…80dbb6b2](https://etherscan.io/tx/0x8667783021840a6137b6a0bc5bd2dc67a392631e31f8c0fe097cc35d80dbb6b2) | [0x4eacfa93de…29e0cdd1](https://basescan.org/tx/0x4eacfa93ded8ae737b1654d5c0476e20a31f974594ca781e6e8f860929e0cdd1) |
+
+For Allbridge CCTP v1, expected Base USDC equals the amount in Circle's attested burn message: **1.694931 USDC** and **1.664623 USDC**, following source payments of 2 USDC each. The reductions before the CCTP burns were **0.305069 USDC** and **0.335377 USDC**. For the direct CCTP v2 transfer, the 2 USDC burn executed a **0.055138 USDC** fee and delivered **1.944862 USDC**. For NEAR, expected Base USDC is the provider's reported settled output. Every destination amount was checked against its Base USDC transfer log.
+
+| Provider | Source asset | Transfers | Source amount | Base USDC received |
+| --- | --- | ---: | ---: | ---: |
+| CCTP | USDC | 3 | 6.000000 | 5.304416 |
+| NEAR | USDT | 3 | 20.000000 | 19.986724 |
+| **Total receipts** | | **6** | | **25.291140** |
+
+The [Ethereum to Base evidence index](docs/evidence/ethereum-base-2026-10-28/transfers.json) retains full hashes and links to each proof. Each proof includes successful, finalized Ethereum and Base receipts, canonical token transfer logs and the Circle attestation or NEAR completion record linking the pair. File hashes are in [Ethereum to Base SHA256SUMS](docs/evidence/ethereum-base-2026-10-28/SHA256SUMS). These historical rows have no claimed backend ledger match.
+
+### Polygon → Base NEAR receipt
+
+This payment used native POL on Polygon and received canonical USDC on Base. The provider's completed record links the two transaction hashes.
+
+| ID | Source receipt | Source amount | Base receipt | Expected Base USDC | Received Base USDC | Difference |
+| --- | --- | ---: | --- | ---: | ---: | ---: |
+| [P01](docs/evidence/polygon-base-2026-10-28/transfer.json) | [Polygon: 0xd2682e51f0a8…387a1c70](https://polygonscan.com/tx/0xd2682e51f0a8b0810e27d3a75b622e45df472b66265ddd28013aaaf1387a1c70) | 8.2 POL | [Base: 0x48ee100cf25c…666d539e](https://basescan.org/tx/0x48ee100cf25c70266c9a941f93c960a904dd929aeac1b8b28c070bbb666d539e) | 0.977244 | 0.977244 | 0.000000 |
+
+- Source wallet and Base recipient: `0xBeA94bAA9B17De76a1dA7B9070aa2A86c4706117`.
+- Source confirmed: **30 September 2026, 13:22:57 UTC**; Base receipt confirmed: **13:23:21 UTC**.
+- Polygon chain ID: `137`; Base chain ID: `8453`. Both blocks were finalized when checked.
+- Base USDC contract: `0x833589fcd6edb6e08f4c7c32d4f71b54bda02913`; receipt transfer log index: `922`.
+- Provider: NEAR 1Click, status `SUCCESS`. This historical row has no claimed backend ledger match.
+
+### Stellar to Base receipts
+
+Source Stellar account: `GDQSTT6A6PDQR5JNHW34U5E4LCBFB3LE662YCJGBJDQ3QIS3EOHJTAF5`. All four transfers delivered canonical Base USDC to `0xBeA94bAA9B17De76a1dA7B9070aa2A86c4706117`.
+
+Checked on 28 October 2026 at 21:56:10 UTC (22:56:10 WAT).
+
+| ID | Provider | Source time (UTC) | Stellar USDC sent | Expected Base USDC | Received Base USDC | Difference | Stellar source receipt | Base receiving receipt |
+| --- | --- | --- | ---: | ---: | ---: | ---: | --- | --- |
+| [S01](docs/evidence/stellar-base-2026-10-28/proofs/S01.json) | CCTP | 2026-09-30 12:52:52 | 1.0000000 | 0.927086 | 0.927086 | 0.000000 | [d406fdf73d31…48415067](https://stellar.expert/explorer/public/tx/d406fdf73d310016813afa377f3409fdd9ba32a5bade114170e2fb1f48415067) | [0x5135a2141c…b194b632](https://basescan.org/tx/0x5135a2141c6b0420e239a404115db0e70c2c96d73183946ebc083b98b194b632) |
+| [S02](docs/evidence/stellar-base-2026-10-28/proofs/S02.json) | NEAR | 2026-09-30 13:10:37 | 1.0000000 | 0.997398 | 0.997398 | 0.000000 | [64c568968ef0…07badcc9](https://stellar.expert/explorer/public/tx/64c568968ef05f3b04b44a3428944f5861a77d10d82c9a544aa6703407badcc9) | [0x0c0bf9c21f…bef7b18f](https://basescan.org/tx/0x0c0bf9c21f826fa3be42a3d02c0afd2f48f23b2478bae7de92ca7b25bef7b18f) |
+| [S03](docs/evidence/stellar-base-2026-10-28/proofs/S03.json) | NEAR | 2026-09-30 18:52:27 | 5.0000000 | 4.996590 | 4.996590 | 0.000000 | [4f6031e4f343…b9cde392](https://stellar.expert/explorer/public/tx/4f6031e4f343b82d13a23a1b00e3cb38978fdea33d32f55c10287795b9cde392) | [0x496a04aedb…2504a3fd](https://basescan.org/tx/0x496a04aedbd0ca8ad2d6e93db7c52f3c3bb21e7f20437afdcfa09db42504a3fd) |
+| [S04](docs/evidence/stellar-base-2026-10-28/proofs/S04.json) | CCTP | 2026-10-20 14:32:58 | 4.0000000 | 3.940448 | 3.940448 | 0.000000 | [72e65a7953cb…07341ae8](https://stellar.expert/explorer/public/tx/72e65a7953cbe4296dc04dfb62795285abc5252b8fd349c60227ba9207341ae8) | [0xf64032d060…5783092c](https://basescan.org/tx/0xf64032d0608fff21039bdad8b93058d34cd2225f69ea1033aaeb7eb15783092c) |
+
+For CCTP, expected Base USDC is the source burn minus Circle's executed fee. The fees were **0.072914 USDC** for S01 and **0.059552 USDC** for S04. For NEAR, expected Base USDC is the provider's reported settled output. Each received amount was checked against the canonical Base USDC transfer log.
+
+| Provider | Transfers | Stellar USDC sent | Base USDC received |
+| --- | ---: | ---: | ---: |
+| CCTP | 2 | 5.0000000 | 4.867534 |
+| NEAR | 2 | 6.0000000 | 5.993988 |
+| **Total** | **4** | **11.0000000** | **10.861522** |
+
+The [Stellar to Base evidence index](docs/evidence/stellar-base-2026-10-28/transfers.json) links each source transaction to its Base receipt. Each proof includes the successful Stellar transaction, provider linkage, finalized Base receipt and decoded USDC transfer. CCTP proofs also retain the Stellar burn and message events matched to Circle's attestation and the Base message nonce. File hashes are in [Stellar to Base SHA256SUMS](docs/evidence/stellar-base-2026-10-28/SHA256SUMS). These historical rows have no claimed backend ledger match.
 
 ### CCTP Arc-to-Stellar testnet transfer
 
@@ -58,9 +120,11 @@ The current backend completion and credit records match the two rows above. The 
 
 ### Public verification evidence
 
-The [live transfer index](docs/evidence/live-transfers-2026-10-28/transfers.json) contains full transaction hashes, recipients, canonical asset identifiers, source block finality, received amounts and backend matches. Each linked row retains its public RPC receipt, provider response, Horizon transaction and Stellar Expert transaction metadata. File hashes are listed in [SHA256SUMS](docs/evidence/live-transfers-2026-10-28/SHA256SUMS).
+The [Stellar-bound live transfer index](docs/evidence/live-transfers-2026-10-28/transfers.json) contains full transaction hashes, recipients, canonical asset identifiers, source block finality, received amounts and backend matches. Each linked row retains its public RPC receipt, provider response, Horizon transaction and Stellar Expert transaction metadata. File hashes are listed in [SHA256SUMS](docs/evidence/live-transfers-2026-10-28/SHA256SUMS).
 
-Verification checked successful source receipts on the expected chain, canonical USDC transfer logs from the recorded sender, source block finality, and the corresponding successful Stellar transaction. Stellar envelopes were hashed with the network passphrase, and received amounts were decoded from events emitted by the canonical USDC contract. CCTP source-message fields were matched to Circle's attested message and its nonce in the destination transaction; NEAR source/destination hashes and amounts were matched to 1Click status.
+The [Polygon → Base proof](docs/evidence/polygon-base-2026-10-28/transfer.json) additionally retains the finalized Polygon and Base receipts, the native POL transfer, the matching provider response and the decoded Base USDC transfer. Its checksum is in [Polygon → Base SHA256SUMS](docs/evidence/polygon-base-2026-10-28/SHA256SUMS).
+
+For the Stellar-bound records, verification checked successful source receipts on the expected chain, canonical USDC transfer logs from the recorded sender, source block finality, and the corresponding successful Stellar transaction. Stellar envelopes were hashed with the network passphrase, and received amounts were decoded from events emitted by the canonical USDC contract. CCTP source-message fields were matched to Circle's attested message and its nonce in the destination transaction; NEAR source/destination hashes and amounts were matched to 1Click status.
 
 ## Automated test run and evidence
 
