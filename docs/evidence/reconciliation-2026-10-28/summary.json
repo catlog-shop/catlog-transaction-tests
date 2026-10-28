@@ -1,0 +1,39 @@
+{
+  "runId": "catlog-2026-10-28T13-48-58.474Z-5e843f1b",
+  "startedAt": "2026-10-28T13:48:58.475Z",
+  "finishedAt": "2026-10-28T13:51:45.884Z",
+  "backendUrl": "https://catlog-backend.throbbing-cloud-0f8e.workers.dev",
+  "backendRevision": "43f3b3faa3e37641c7a1b4ce9170fe80410e92d9",
+  "environment": "cloudflare-http",
+  "providerMode": "controlled",
+  "onchainTransfers": false,
+  "selection": "full-71",
+  "fullSuiteValidated": true,
+  "result": "passed",
+  "collected": 71,
+  "passed": 71,
+  "failed": 0,
+  "skipped": 0,
+  "testInputs": [
+    {
+      "file": "tests/transactions.test.ts",
+      "sha256": "2010cfcb33546072a6158bd2e8fb1702059396bca32c2b988bfc2ffb7bc3745d"
+    },
+    {
+      "file": "tests/operations/retry-queue.test.ts",
+      "sha256": "18b5f9e62016cc644bc3e14ef4e82952dfd8e06aa042a47c58f2abc33e135c0a"
+    },
+    {
+      "file": "tests/operations/reconciliation.test.ts",
+      "sha256": "d65f7e875541a75ce7e6b29b340a46151f31a24e9cdebe90f4975c5dfd391ac8"
+    },
+    {
+      "file": "tests/operations/recovery-errors.test.ts",
+      "sha256": "19f85a9bd9fffbb3c256e14f728f4de29f915ff45f69d9d12e263601f549c090"
+    },
+    {
+      "file": "tests/operations/support-view.test.ts",
+      "sha256": "471d1ac3693a9101d6009e05d14e7715c24fc4aa3c90df174bcc86736c0859e2"
+    }
+  ]
+}

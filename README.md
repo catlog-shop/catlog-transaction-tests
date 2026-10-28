@@ -109,6 +109,11 @@ The runner loads the included `catlog/adapter.mjs` HTTP adapter automatically.
 The supplied API key and backend URL are enough to run the suite. Each run saves
 `summary.json`, `results.json` and `junit.xml` under `reports/catlog-.../`.
 
+The committed [reconciliation report](RECONCILIATION_REPORT.md) records the
+28 October 2026 GitHub Actions run: all 19 reconciliation cases passed within the
+71-case suite. It includes the original JSON evidence, source revisions and
+individual case results.
+
 The [binding guide](tests/operations/README.md) describes the optional integration
 contract for connecting a different backend. It is not required for the hosted
 API run. `npm run test:handoff` checks adapter-loading and reporting utilities
