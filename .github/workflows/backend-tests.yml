@@ -20,6 +20,7 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run typecheck
+      - run: npm run test:reporting
       - name: Test the private Catlog backend through Catlog API
         run: npm test
         env:

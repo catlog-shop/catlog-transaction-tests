@@ -1,4 +1,5 @@
 import { environment } from "./environment.mjs";
+import { expect } from "vitest";
 import {
   routes,
   RECIPIENT,
@@ -23,7 +24,7 @@ const operation = (t) => ({
   createdAtMs: t.createdAtMs,
 });
 export async function createOperationsHarness() {
-  const e = await environment();
+  const e = await environment({ test: expect.getState() });
   const actorToken = (actor) =>
     actor === "support"
       ? e.supportToken

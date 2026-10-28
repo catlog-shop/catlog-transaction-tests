@@ -1,7 +1,11 @@
 import { randomUUID } from "node:crypto";
+import { mkdirSync, writeFileSync } from "node:fs";
+import { join } from "node:path";
+import { routes } from "./fixtures.mjs";
+import { reconciliationEvidence } from "./reconciliation-evidence.mjs";
 const wire = (value) =>
   JSON.stringify(value, (_, v) => (typeof v === "bigint" ? v.toString() : v));
-export async function environment() {
+export async function environment({ test } = {}) {
   const supplied = process.env.CATLOG_BACKEND_URL,
     key = process.env.CATLOG_API_KEY;
   if (!supplied || !key)
@@ -178,7 +182,29 @@ export async function environment() {
         providerCall("lose-next", { executionId }),
     },
     close: async () => {
-      await call("/__controls/cleanup", "POST", {});
+      try {
+        const directory = process.env.CATLOG_REPORT_DIR;
+        if (directory && test?.testPath?.replaceAll("\\", "/").endsWith("/tests/operations/reconciliation.test.ts")) {
+          const state = await call("/__controls/snapshot");
+          const provider = await providerCall("snapshot");
+          const accounts = new Map(state.transactions.map(transaction => [
+            JSON.stringify([transaction.merchantId, transaction.destinationAsset]),
+            { merchantId: transaction.merchantId, asset: transaction.destinationAsset },
+          ]));
+          const balances = await Promise.all([...accounts.values()].map(async account => ({
+            ...account,
+            amountAtomic: (await call("/__controls/balance", "POST", account)).amountAtomic,
+          })));
+          const evidence = reconciliationEvidence({
+            sessionId: fixture.id, testName: test.currentTestName, routes, state, provider, balances,
+          });
+          const folder = join(directory, "reconciliation");
+          mkdirSync(folder, { recursive: true });
+          writeFileSync(join(folder, randomUUID() + ".json"), JSON.stringify(evidence, null, 2) + "\n");
+        }
+      } finally {
+        await call("/__controls/cleanup", "POST", {});
+      }
     },
   };
 }
