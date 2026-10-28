@@ -108,11 +108,17 @@ creates an isolated database session for each case. Its checks include:
 The runner loads the included `catlog/adapter.mjs` HTTP adapter automatically.
 The supplied API key and backend URL are enough to run the suite. Each run saves
 `summary.json`, `results.json` and `junit.xml` under `reports/catlog-.../`.
+The `reconciliation/` subfolder retains final transaction, ledger-credit, balance
+and provider-transfer records for each reconciliation case. Session credentials
+are excluded from these evidence files.
 
 The committed [reconciliation report](RECONCILIATION_REPORT.md) records the
 28 October 2026 GitHub Actions run: all 19 reconciliation cases passed within the
-71-case suite. It includes the original JSON evidence, source revisions and
-individual case results.
+71-case suite. It includes ledger and chain tables, balance comparisons, original
+JSON evidence, source revisions and individual case results.
+It also includes 12 verified mainnet CCTP and NEAR transfers from the supplied
+Ethereum/Base wallet and one completed Arc-to-Stellar testnet transfer, with
+block explorer links, received amounts and available backend record comparisons.
 
 The [binding guide](tests/operations/README.md) describes the optional integration
 contract for connecting a different backend. It is not required for the hosted

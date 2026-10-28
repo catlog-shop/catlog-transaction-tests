@@ -1,0 +1,1736 @@
+{
+  "schemaVersion": 1,
+  "runId": "catlog-2026-10-28T20-56-52.630Z-3e295b3e",
+  "workflowRunId": 40767715819,
+  "testRevision": "7b247339c1f776fb0a51b9047e575c85c65bde24",
+  "backendRevision": "43f3b3faa3e37641c7a1b4ce9170fe80410e92d9",
+  "providerMode": "controlled",
+  "onchainTransfers": false,
+  "cases": [
+    {
+      "caseId": "R01",
+      "sourceFile": "reconciliation/d876054e-4775-4247-bfa0-27fca1e43ed3.json",
+      "sha256": "2b0e794510bb8029208319d0ada2b35be3cda6ae63d032f4fdac6a3722caa2d5",
+      "records": {
+        "schemaVersion": 1,
+        "testFile": "tests/operations/reconciliation.test.ts",
+        "testName": "Catlog shared transaction layer reconciliation > cctp.arc-to-stellar > recovers an accepted transfer after a lost response and worker restart without another source transfer",
+        "sessionId": "ce1a66e0-d916-4b24-949a-f421f81c663f",
+        "providerMode": "controlled",
+        "onchainTransfers": false,
+        "routes": [
+          {
+            "id": "cctp.arc-to-stellar",
+            "provider": "CCTP",
+            "sourceNetwork": "arc-testnet",
+            "destinationNetwork": "stellar-testnet",
+            "sourceAsset": "arc-testnet:native-USDC",
+            "destinationAsset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5"
+          },
+          {
+            "id": "cctp.stellar-to-arc",
+            "provider": "CCTP",
+            "sourceNetwork": "stellar-testnet",
+            "destinationNetwork": "arc-testnet",
+            "sourceAsset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5",
+            "destinationAsset": "arc-testnet:native-USDC"
+          },
+          {
+            "id": "near.to-stellar",
+            "provider": "NEAR",
+            "sourceNetwork": "ethereum-sepolia",
+            "destinationNetwork": "stellar-testnet",
+            "sourceAsset": "ethereum-sepolia:WETH",
+            "destinationAsset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5"
+          }
+        ],
+        "transactions": [
+          {
+            "id": "90ef84c6-5350-4f10-8b42-712d9d3a4b94",
+            "merchantId": "merchant-one",
+            "idempotencyKey": "224aa2f9-44e5-40d3-9a75-27fd3bdf4689",
+            "routeId": "cctp.arc-to-stellar",
+            "sourceAsset": "arc-testnet:native-USDC",
+            "destinationAsset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5",
+            "recipient": "GAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWHF",
+            "amountAtomic": "100000000",
+            "feeAtomic": "1000000",
+            "creditedAtomic": "99000000",
+            "status": "COMPLETED",
+            "externalIds": {
+              "sourceTransactionId": "0x73d34d0443204c59964a892152fa26ed73d34d0443204c59964a892152fa26ed",
+              "providerExecutionId": "cctp-execution-73d34d0443204c59964a892152fa26ed",
+              "bridgeMessageId": "0x84d9b4ef66af4fe68f5ec405cedfbb1184d9b4ef66af4fe68f5ec405cedfbb11",
+              "destinationTransactionId": "3717555fec534571b9e18c3be565e97e3717555fec534571b9e18c3be565e97e",
+              "destinationEventId": "event-8222ea34-255e-4fa9-b147-934182be0236"
+            }
+          }
+        ],
+        "credits": [
+          {
+            "id": "548151a4-0861-4cfd-a45c-c049612e93fa",
+            "transactionId": "90ef84c6-5350-4f10-8b42-712d9d3a4b94",
+            "merchantId": "merchant-one",
+            "asset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5",
+            "amountAtomic": "99000000"
+          }
+        ],
+        "transfers": [
+          {
+            "key": {
+              "merchantId": "merchant-one",
+              "routeId": "cctp.arc-to-stellar",
+              "idempotencyKey": "224aa2f9-44e5-40d3-9a75-27fd3bdf4689"
+            },
+            "sourceTransfers": 1,
+            "destinationTransfers": 1
+          }
+        ],
+        "balances": [
+          {
+            "merchantId": "merchant-one",
+            "asset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5",
+            "amountAtomic": "99000000"
+          }
+        ]
+      }
+    },
+    {
+      "caseId": "R02",
+      "sourceFile": "reconciliation/fd4925ea-253a-43e8-a79d-2797143fcb46.json",
+      "sha256": "1569362bb9659c297220a33b2ae6ce5ef8df5c3bd5fc13b7736c90fa227d9d5f",
+      "records": {
+        "schemaVersion": 1,
+        "testFile": "tests/operations/reconciliation.test.ts",
+        "testName": "Catlog shared transaction layer reconciliation > cctp.arc-to-stellar > finds a completed transfer whose webhook was missed using only the global scanner",
+        "sessionId": "7f9c2fb0-a13b-4de5-a60f-bf3d0d8b6522",
+        "providerMode": "controlled",
+        "onchainTransfers": false,
+        "routes": [
+          {
+            "id": "cctp.arc-to-stellar",
+            "provider": "CCTP",
+            "sourceNetwork": "arc-testnet",
+            "destinationNetwork": "stellar-testnet",
+            "sourceAsset": "arc-testnet:native-USDC",
+            "destinationAsset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5"
+          },
+          {
+            "id": "cctp.stellar-to-arc",
+            "provider": "CCTP",
+            "sourceNetwork": "stellar-testnet",
+            "destinationNetwork": "arc-testnet",
+            "sourceAsset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5",
+            "destinationAsset": "arc-testnet:native-USDC"
+          },
+          {
+            "id": "near.to-stellar",
+            "provider": "NEAR",
+            "sourceNetwork": "ethereum-sepolia",
+            "destinationNetwork": "stellar-testnet",
+            "sourceAsset": "ethereum-sepolia:WETH",
+            "destinationAsset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5"
+          }
+        ],
+        "transactions": [
+          {
+            "id": "5712f340-900a-4910-8377-74edd8df7306",
+            "merchantId": "merchant-one",
+            "idempotencyKey": "16dbf3d5-cddc-4040-b92f-094446dee0fa",
+            "routeId": "cctp.arc-to-stellar",
+            "sourceAsset": "arc-testnet:native-USDC",
+            "destinationAsset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5",
+            "recipient": "GAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWHF",
+            "amountAtomic": "100000000",
+            "feeAtomic": "1000000",
+            "creditedAtomic": "99000000",
+            "status": "COMPLETED",
+            "externalIds": {
+              "sourceTransactionId": "0xc4ec0a34ce3c4ac489dc9676163eac70c4ec0a34ce3c4ac489dc9676163eac70",
+              "providerExecutionId": "cctp-execution-c4ec0a34ce3c4ac489dc9676163eac70",
+              "bridgeMessageId": "0x447b4bdb5b534cd1a08c61a9e0ad0185447b4bdb5b534cd1a08c61a9e0ad0185",
+              "destinationTransactionId": "3a0db8ef86324cfc9a85d2de4486e2973a0db8ef86324cfc9a85d2de4486e297",
+              "destinationEventId": "event-fce2c0f1-b5cc-4021-84ac-f5751aced78c"
+            }
+          }
+        ],
+        "credits": [
+          {
+            "id": "4b9596a7-6228-4eb8-99c3-a62ae23151cd",
+            "transactionId": "5712f340-900a-4910-8377-74edd8df7306",
+            "merchantId": "merchant-one",
+            "asset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5",
+            "amountAtomic": "99000000"
+          }
+        ],
+        "transfers": [
+          {
+            "key": {
+              "merchantId": "merchant-one",
+              "routeId": "cctp.arc-to-stellar",
+              "idempotencyKey": "16dbf3d5-cddc-4040-b92f-094446dee0fa"
+            },
+            "sourceTransfers": 1,
+            "destinationTransfers": 1
+          }
+        ],
+        "balances": [
+          {
+            "merchantId": "merchant-one",
+            "asset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5",
+            "amountAtomic": "99000000"
+          }
+        ]
+      }
+    },
+    {
+      "caseId": "R03",
+      "sourceFile": "reconciliation/184b815d-9331-4b98-9640-3651b4894c36.json",
+      "sha256": "067791072dac8ed972d38416b1a766fe0beb18c8568f6412450df84fba0c1923",
+      "records": {
+        "schemaVersion": 1,
+        "testFile": "tests/operations/reconciliation.test.ts",
+        "testName": "Catlog shared transaction layer reconciliation > cctp.arc-to-stellar > keeps an accepted source transfer pending until the destination completes without submitting another source transfer",
+        "sessionId": "3021c204-96bd-486c-819a-1b7b83a75383",
+        "providerMode": "controlled",
+        "onchainTransfers": false,
+        "routes": [
+          {
+            "id": "cctp.arc-to-stellar",
+            "provider": "CCTP",
+            "sourceNetwork": "arc-testnet",
+            "destinationNetwork": "stellar-testnet",
+            "sourceAsset": "arc-testnet:native-USDC",
+            "destinationAsset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5"
+          },
+          {
+            "id": "cctp.stellar-to-arc",
+            "provider": "CCTP",
+            "sourceNetwork": "stellar-testnet",
+            "destinationNetwork": "arc-testnet",
+            "sourceAsset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5",
+            "destinationAsset": "arc-testnet:native-USDC"
+          },
+          {
+            "id": "near.to-stellar",
+            "provider": "NEAR",
+            "sourceNetwork": "ethereum-sepolia",
+            "destinationNetwork": "stellar-testnet",
+            "sourceAsset": "ethereum-sepolia:WETH",
+            "destinationAsset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5"
+          }
+        ],
+        "transactions": [
+          {
+            "id": "3f0eca15-7f44-40d2-85b8-4a7a7a4eade6",
+            "merchantId": "merchant-one",
+            "idempotencyKey": "e71db225-bae1-4241-a8d9-0565db9b57c3",
+            "routeId": "cctp.arc-to-stellar",
+            "sourceAsset": "arc-testnet:native-USDC",
+            "destinationAsset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5",
+            "recipient": "GAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWHF",
+            "amountAtomic": "100000000",
+            "feeAtomic": "1000000",
+            "creditedAtomic": "99000000",
+            "status": "COMPLETED",
+            "externalIds": {
+              "sourceTransactionId": "0xf7d4e61767c340c3a4b20787c1c3ec40f7d4e61767c340c3a4b20787c1c3ec40",
+              "providerExecutionId": "cctp-execution-f7d4e61767c340c3a4b20787c1c3ec40",
+              "bridgeMessageId": "0x63014120a6ab4567a69269d1a09e535663014120a6ab4567a69269d1a09e5356",
+              "destinationTransactionId": "e48e6655e2fc48678c4d8895a368de74e48e6655e2fc48678c4d8895a368de74",
+              "destinationEventId": "event-2b236b0a-b525-46b2-87e2-76791882e9f1"
+            }
+          }
+        ],
+        "credits": [
+          {
+            "id": "977b5559-a373-474a-8bbc-19afe08a8925",
+            "transactionId": "3f0eca15-7f44-40d2-85b8-4a7a7a4eade6",
+            "merchantId": "merchant-one",
+            "asset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5",
+            "amountAtomic": "99000000"
+          }
+        ],
+        "transfers": [
+          {
+            "key": {
+              "merchantId": "merchant-one",
+              "routeId": "cctp.arc-to-stellar",
+              "idempotencyKey": "e71db225-bae1-4241-a8d9-0565db9b57c3"
+            },
+            "sourceTransfers": 1,
+            "destinationTransfers": 1
+          }
+        ],
+        "balances": [
+          {
+            "merchantId": "merchant-one",
+            "asset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5",
+            "amountAtomic": "99000000"
+          }
+        ]
+      }
+    },
+    {
+      "caseId": "R04",
+      "sourceFile": "reconciliation/b2da0fde-c47f-40a4-b8f0-8f3300a0cbfc.json",
+      "sha256": "614e081b89c6dbf3430f9fddb862a9f98c30879e8b3d0e8d7e6e0cd796e5b16b",
+      "records": {
+        "schemaVersion": 1,
+        "testFile": "tests/operations/reconciliation.test.ts",
+        "testName": "Catlog shared transaction layer reconciliation > cctp.arc-to-stellar > commits one settlement when duplicate completion webhooks race a reconciliation worker",
+        "sessionId": "32bf9cc0-9e45-4e3a-bef2-b7b4a210df1b",
+        "providerMode": "controlled",
+        "onchainTransfers": false,
+        "routes": [
+          {
+            "id": "cctp.arc-to-stellar",
+            "provider": "CCTP",
+            "sourceNetwork": "arc-testnet",
+            "destinationNetwork": "stellar-testnet",
+            "sourceAsset": "arc-testnet:native-USDC",
+            "destinationAsset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5"
+          },
+          {
+            "id": "cctp.stellar-to-arc",
+            "provider": "CCTP",
+            "sourceNetwork": "stellar-testnet",
+            "destinationNetwork": "arc-testnet",
+            "sourceAsset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5",
+            "destinationAsset": "arc-testnet:native-USDC"
+          },
+          {
+            "id": "near.to-stellar",
+            "provider": "NEAR",
+            "sourceNetwork": "ethereum-sepolia",
+            "destinationNetwork": "stellar-testnet",
+            "sourceAsset": "ethereum-sepolia:WETH",
+            "destinationAsset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5"
+          }
+        ],
+        "transactions": [
+          {
+            "id": "70db7af9-a0e7-4129-8e0f-0f0e4bf15291",
+            "merchantId": "merchant-one",
+            "idempotencyKey": "dc83aaf6-c9d3-40cc-91c5-c92e4b962dea",
+            "routeId": "cctp.arc-to-stellar",
+            "sourceAsset": "arc-testnet:native-USDC",
+            "destinationAsset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5",
+            "recipient": "GAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWHF",
+            "amountAtomic": "100000000",
+            "feeAtomic": "1000000",
+            "creditedAtomic": "99000000",
+            "status": "COMPLETED",
+            "externalIds": {
+              "sourceTransactionId": "0x810a98cb33734731b3f3633d19932d2b810a98cb33734731b3f3633d19932d2b",
+              "providerExecutionId": "cctp-execution-810a98cb33734731b3f3633d19932d2b",
+              "bridgeMessageId": "0xc185545be88e4b19821e307da87fb6ffc185545be88e4b19821e307da87fb6ff",
+              "destinationTransactionId": "40e29375872e4902b057c6c0dcac803340e29375872e4902b057c6c0dcac8033",
+              "destinationEventId": "event-8bb07ceb-2054-4954-9463-86e990ccddc9"
+            }
+          }
+        ],
+        "credits": [
+          {
+            "id": "4ecd53db-eb21-49b9-b88c-7d8c609042ab",
+            "transactionId": "70db7af9-a0e7-4129-8e0f-0f0e4bf15291",
+            "merchantId": "merchant-one",
+            "asset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5",
+            "amountAtomic": "99000000"
+          }
+        ],
+        "transfers": [
+          {
+            "key": {
+              "merchantId": "merchant-one",
+              "routeId": "cctp.arc-to-stellar",
+              "idempotencyKey": "dc83aaf6-c9d3-40cc-91c5-c92e4b962dea"
+            },
+            "sourceTransfers": 1,
+            "destinationTransfers": 1
+          }
+        ],
+        "balances": [
+          {
+            "merchantId": "merchant-one",
+            "asset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5",
+            "amountAtomic": "99000000"
+          }
+        ]
+      }
+    },
+    {
+      "caseId": "R05",
+      "sourceFile": "reconciliation/eefe57bd-a51d-4d84-b992-e8d7297c6eb4.json",
+      "sha256": "91db15d3c892315fa84285763d42831583995735989f919126cf9d375a157b2c",
+      "records": {
+        "schemaVersion": 1,
+        "testFile": "tests/operations/reconciliation.test.ts",
+        "testName": "Catlog shared transaction layer reconciliation > cctp.arc-to-stellar > does not regress a confirmed terminal failure when a later lookup reports pending",
+        "sessionId": "9ed3ae3c-aacc-4c6b-9122-2bc7c2570de5",
+        "providerMode": "controlled",
+        "onchainTransfers": false,
+        "routes": [
+          {
+            "id": "cctp.arc-to-stellar",
+            "provider": "CCTP",
+            "sourceNetwork": "arc-testnet",
+            "destinationNetwork": "stellar-testnet",
+            "sourceAsset": "arc-testnet:native-USDC",
+            "destinationAsset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5"
+          },
+          {
+            "id": "cctp.stellar-to-arc",
+            "provider": "CCTP",
+            "sourceNetwork": "stellar-testnet",
+            "destinationNetwork": "arc-testnet",
+            "sourceAsset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5",
+            "destinationAsset": "arc-testnet:native-USDC"
+          },
+          {
+            "id": "near.to-stellar",
+            "provider": "NEAR",
+            "sourceNetwork": "ethereum-sepolia",
+            "destinationNetwork": "stellar-testnet",
+            "sourceAsset": "ethereum-sepolia:WETH",
+            "destinationAsset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5"
+          }
+        ],
+        "transactions": [
+          {
+            "id": "ab35df90-d9c6-4fd7-8e81-a169f826beaf",
+            "merchantId": "merchant-one",
+            "idempotencyKey": "9dfd16a8-3cc6-42fc-a058-8030f2fc7a63",
+            "routeId": "cctp.arc-to-stellar",
+            "sourceAsset": "arc-testnet:native-USDC",
+            "destinationAsset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5",
+            "recipient": "GAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWHF",
+            "amountAtomic": "100000000",
+            "feeAtomic": null,
+            "creditedAtomic": null,
+            "status": "FAILED",
+            "externalIds": {
+              "sourceTransactionId": "0xbfc1156c48c14d2fa74eb795edf91bb1bfc1156c48c14d2fa74eb795edf91bb1",
+              "providerExecutionId": "cctp-execution-bfc1156c48c14d2fa74eb795edf91bb1",
+              "bridgeMessageId": "0x43d39590940743ea908772099e48f5b543d39590940743ea908772099e48f5b5",
+              "destinationTransactionId": null,
+              "destinationEventId": null
+            }
+          }
+        ],
+        "credits": [],
+        "transfers": [
+          {
+            "key": {
+              "merchantId": "merchant-one",
+              "routeId": "cctp.arc-to-stellar",
+              "idempotencyKey": "9dfd16a8-3cc6-42fc-a058-8030f2fc7a63"
+            },
+            "sourceTransfers": 1,
+            "destinationTransfers": 0
+          }
+        ],
+        "balances": [
+          {
+            "merchantId": "merchant-one",
+            "asset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5",
+            "amountAtomic": "0"
+          }
+        ]
+      }
+    },
+    {
+      "caseId": "R06",
+      "sourceFile": "reconciliation/b78d1bc1-c74d-42e8-a683-03da08ef0ca6.json",
+      "sha256": "ff8f6c6e046e2441abe6f09210d55291d7d7a15aecdf2f16645fe4c73654955a",
+      "records": {
+        "schemaVersion": 1,
+        "testFile": "tests/operations/reconciliation.test.ts",
+        "testName": "Catlog shared transaction layer reconciliation > cctp.arc-to-stellar > preserves completed status, destination identifiers and the ledger settlement after a later pending observation",
+        "sessionId": "a04b7929-88db-4c3b-b0e3-7f20d2ac43b3",
+        "providerMode": "controlled",
+        "onchainTransfers": false,
+        "routes": [
+          {
+            "id": "cctp.arc-to-stellar",
+            "provider": "CCTP",
+            "sourceNetwork": "arc-testnet",
+            "destinationNetwork": "stellar-testnet",
+            "sourceAsset": "arc-testnet:native-USDC",
+            "destinationAsset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5"
+          },
+          {
+            "id": "cctp.stellar-to-arc",
+            "provider": "CCTP",
+            "sourceNetwork": "stellar-testnet",
+            "destinationNetwork": "arc-testnet",
+            "sourceAsset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5",
+            "destinationAsset": "arc-testnet:native-USDC"
+          },
+          {
+            "id": "near.to-stellar",
+            "provider": "NEAR",
+            "sourceNetwork": "ethereum-sepolia",
+            "destinationNetwork": "stellar-testnet",
+            "sourceAsset": "ethereum-sepolia:WETH",
+            "destinationAsset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5"
+          }
+        ],
+        "transactions": [
+          {
+            "id": "af79ab8e-ea81-4991-8952-a7872fa0422b",
+            "merchantId": "merchant-one",
+            "idempotencyKey": "89968956-1f7f-4202-912b-b3e1319cffd3",
+            "routeId": "cctp.arc-to-stellar",
+            "sourceAsset": "arc-testnet:native-USDC",
+            "destinationAsset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5",
+            "recipient": "GAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWHF",
+            "amountAtomic": "100000000",
+            "feeAtomic": "1000000",
+            "creditedAtomic": "99000000",
+            "status": "COMPLETED",
+            "externalIds": {
+              "sourceTransactionId": "0xd67b135993f64111833cac75a92a2806d67b135993f64111833cac75a92a2806",
+              "providerExecutionId": "cctp-execution-d67b135993f64111833cac75a92a2806",
+              "bridgeMessageId": "0x9cbac91b09724c54b2f18de58ed77ebc9cbac91b09724c54b2f18de58ed77ebc",
+              "destinationTransactionId": "6bef09992dff43d9b484c4d12f75af6f6bef09992dff43d9b484c4d12f75af6f",
+              "destinationEventId": "event-f83058fb-2206-4e9d-a942-dc50c099212d"
+            }
+          }
+        ],
+        "credits": [
+          {
+            "id": "99419e28-d8f7-4355-948a-cbfddf083b70",
+            "transactionId": "af79ab8e-ea81-4991-8952-a7872fa0422b",
+            "merchantId": "merchant-one",
+            "asset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5",
+            "amountAtomic": "99000000"
+          }
+        ],
+        "transfers": [
+          {
+            "key": {
+              "merchantId": "merchant-one",
+              "routeId": "cctp.arc-to-stellar",
+              "idempotencyKey": "89968956-1f7f-4202-912b-b3e1319cffd3"
+            },
+            "sourceTransfers": 1,
+            "destinationTransfers": 1
+          }
+        ],
+        "balances": [
+          {
+            "merchantId": "merchant-one",
+            "asset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5",
+            "amountAtomic": "99000000"
+          }
+        ]
+      }
+    },
+    {
+      "caseId": "R07",
+      "sourceFile": "reconciliation/f72d009a-ee84-44fe-9590-6ac3f49bf8f8.json",
+      "sha256": "19def50185b16e50adf2b9f49adad2690063b349cb8a768b4f32627e9b08171d",
+      "records": {
+        "schemaVersion": 1,
+        "testFile": "tests/operations/reconciliation.test.ts",
+        "testName": "Catlog shared transaction layer reconciliation > cctp.stellar-to-arc > recovers an accepted transfer after a lost response and worker restart without another source transfer",
+        "sessionId": "37fa2129-308d-42e0-b499-2c56928abf98",
+        "providerMode": "controlled",
+        "onchainTransfers": false,
+        "routes": [
+          {
+            "id": "cctp.arc-to-stellar",
+            "provider": "CCTP",
+            "sourceNetwork": "arc-testnet",
+            "destinationNetwork": "stellar-testnet",
+            "sourceAsset": "arc-testnet:native-USDC",
+            "destinationAsset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5"
+          },
+          {
+            "id": "cctp.stellar-to-arc",
+            "provider": "CCTP",
+            "sourceNetwork": "stellar-testnet",
+            "destinationNetwork": "arc-testnet",
+            "sourceAsset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5",
+            "destinationAsset": "arc-testnet:native-USDC"
+          },
+          {
+            "id": "near.to-stellar",
+            "provider": "NEAR",
+            "sourceNetwork": "ethereum-sepolia",
+            "destinationNetwork": "stellar-testnet",
+            "sourceAsset": "ethereum-sepolia:WETH",
+            "destinationAsset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5"
+          }
+        ],
+        "transactions": [
+          {
+            "id": "3450808c-f80a-4856-a116-e815c661bd4e",
+            "merchantId": "merchant-one",
+            "idempotencyKey": "4057b843-1070-442e-833d-6db886881e34",
+            "routeId": "cctp.stellar-to-arc",
+            "sourceAsset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5",
+            "destinationAsset": "arc-testnet:native-USDC",
+            "recipient": "0x0000000000000000000000000000000000000001",
+            "amountAtomic": "100000000",
+            "feeAtomic": "1000000",
+            "creditedAtomic": "99000000",
+            "status": "COMPLETED",
+            "externalIds": {
+              "sourceTransactionId": "943de20ffacf4f1695d3fc3f46028eab943de20ffacf4f1695d3fc3f46028eab",
+              "providerExecutionId": "cctp-execution-943de20ffacf4f1695d3fc3f46028eab",
+              "bridgeMessageId": "0x2aa9196765d34447be0ee8e47a53d9182aa9196765d34447be0ee8e47a53d918",
+              "destinationTransactionId": "0x9ad2901daf604fddbdc0aba5def868c59ad2901daf604fddbdc0aba5def868c5",
+              "destinationEventId": "event-e027cc3b-d74a-4230-aff5-eee2080a034c"
+            }
+          }
+        ],
+        "credits": [
+          {
+            "id": "a9988419-5b31-4703-9982-97bc30271619",
+            "transactionId": "3450808c-f80a-4856-a116-e815c661bd4e",
+            "merchantId": "merchant-one",
+            "asset": "arc-testnet:native-USDC",
+            "amountAtomic": "99000000"
+          }
+        ],
+        "transfers": [
+          {
+            "key": {
+              "merchantId": "merchant-one",
+              "routeId": "cctp.stellar-to-arc",
+              "idempotencyKey": "4057b843-1070-442e-833d-6db886881e34"
+            },
+            "sourceTransfers": 1,
+            "destinationTransfers": 1
+          }
+        ],
+        "balances": [
+          {
+            "merchantId": "merchant-one",
+            "asset": "arc-testnet:native-USDC",
+            "amountAtomic": "99000000"
+          }
+        ]
+      }
+    },
+    {
+      "caseId": "R08",
+      "sourceFile": "reconciliation/97ded85c-9ce8-4d58-bc81-d1a58a303927.json",
+      "sha256": "e23b34e82dcf05f81762108e0cf8951d0b3ea3159c31725d78cd45e1736ab0c6",
+      "records": {
+        "schemaVersion": 1,
+        "testFile": "tests/operations/reconciliation.test.ts",
+        "testName": "Catlog shared transaction layer reconciliation > cctp.stellar-to-arc > finds a completed transfer whose webhook was missed using only the global scanner",
+        "sessionId": "5c120f84-dc20-4a98-83ed-26032d51f490",
+        "providerMode": "controlled",
+        "onchainTransfers": false,
+        "routes": [
+          {
+            "id": "cctp.arc-to-stellar",
+            "provider": "CCTP",
+            "sourceNetwork": "arc-testnet",
+            "destinationNetwork": "stellar-testnet",
+            "sourceAsset": "arc-testnet:native-USDC",
+            "destinationAsset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5"
+          },
+          {
+            "id": "cctp.stellar-to-arc",
+            "provider": "CCTP",
+            "sourceNetwork": "stellar-testnet",
+            "destinationNetwork": "arc-testnet",
+            "sourceAsset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5",
+            "destinationAsset": "arc-testnet:native-USDC"
+          },
+          {
+            "id": "near.to-stellar",
+            "provider": "NEAR",
+            "sourceNetwork": "ethereum-sepolia",
+            "destinationNetwork": "stellar-testnet",
+            "sourceAsset": "ethereum-sepolia:WETH",
+            "destinationAsset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5"
+          }
+        ],
+        "transactions": [
+          {
+            "id": "4c105b6c-27cb-45cc-99ad-b8c9b210c4d4",
+            "merchantId": "merchant-one",
+            "idempotencyKey": "30cda22c-a6fb-40ed-b439-cb1662be355f",
+            "routeId": "cctp.stellar-to-arc",
+            "sourceAsset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5",
+            "destinationAsset": "arc-testnet:native-USDC",
+            "recipient": "0x0000000000000000000000000000000000000001",
+            "amountAtomic": "100000000",
+            "feeAtomic": "1000000",
+            "creditedAtomic": "99000000",
+            "status": "COMPLETED",
+            "externalIds": {
+              "sourceTransactionId": "154eb34162b94c4ea827f7b914b9c335154eb34162b94c4ea827f7b914b9c335",
+              "providerExecutionId": "cctp-execution-154eb34162b94c4ea827f7b914b9c335",
+              "bridgeMessageId": "0x400fd64ab4ff4ecaae863d1819ac8825400fd64ab4ff4ecaae863d1819ac8825",
+              "destinationTransactionId": "0x5ab92bf6b27a467db0263be496ba5d555ab92bf6b27a467db0263be496ba5d55",
+              "destinationEventId": "event-0fce5bcc-135e-450f-9535-99fcde55685b"
+            }
+          }
+        ],
+        "credits": [
+          {
+            "id": "a9b8ed2b-ec3f-4800-a4fa-fba6dcf1af0f",
+            "transactionId": "4c105b6c-27cb-45cc-99ad-b8c9b210c4d4",
+            "merchantId": "merchant-one",
+            "asset": "arc-testnet:native-USDC",
+            "amountAtomic": "99000000"
+          }
+        ],
+        "transfers": [
+          {
+            "key": {
+              "merchantId": "merchant-one",
+              "routeId": "cctp.stellar-to-arc",
+              "idempotencyKey": "30cda22c-a6fb-40ed-b439-cb1662be355f"
+            },
+            "sourceTransfers": 1,
+            "destinationTransfers": 1
+          }
+        ],
+        "balances": [
+          {
+            "merchantId": "merchant-one",
+            "asset": "arc-testnet:native-USDC",
+            "amountAtomic": "99000000"
+          }
+        ]
+      }
+    },
+    {
+      "caseId": "R09",
+      "sourceFile": "reconciliation/eacd6dc8-dee7-435a-8e40-16180b57086d.json",
+      "sha256": "0962457027546aed9b3c3d0bad9e3533efb1cca45a583c9dbd7eabcc417f1122",
+      "records": {
+        "schemaVersion": 1,
+        "testFile": "tests/operations/reconciliation.test.ts",
+        "testName": "Catlog shared transaction layer reconciliation > cctp.stellar-to-arc > keeps an accepted source transfer pending until the destination completes without submitting another source transfer",
+        "sessionId": "573fe0c6-53cd-4e03-b848-caa26e4f3ac4",
+        "providerMode": "controlled",
+        "onchainTransfers": false,
+        "routes": [
+          {
+            "id": "cctp.arc-to-stellar",
+            "provider": "CCTP",
+            "sourceNetwork": "arc-testnet",
+            "destinationNetwork": "stellar-testnet",
+            "sourceAsset": "arc-testnet:native-USDC",
+            "destinationAsset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5"
+          },
+          {
+            "id": "cctp.stellar-to-arc",
+            "provider": "CCTP",
+            "sourceNetwork": "stellar-testnet",
+            "destinationNetwork": "arc-testnet",
+            "sourceAsset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5",
+            "destinationAsset": "arc-testnet:native-USDC"
+          },
+          {
+            "id": "near.to-stellar",
+            "provider": "NEAR",
+            "sourceNetwork": "ethereum-sepolia",
+            "destinationNetwork": "stellar-testnet",
+            "sourceAsset": "ethereum-sepolia:WETH",
+            "destinationAsset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5"
+          }
+        ],
+        "transactions": [
+          {
+            "id": "8856ab65-5476-45eb-8ced-3875794c9909",
+            "merchantId": "merchant-one",
+            "idempotencyKey": "7b9876df-338a-4cb5-8895-c40d45da471e",
+            "routeId": "cctp.stellar-to-arc",
+            "sourceAsset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5",
+            "destinationAsset": "arc-testnet:native-USDC",
+            "recipient": "0x0000000000000000000000000000000000000001",
+            "amountAtomic": "100000000",
+            "feeAtomic": "1000000",
+            "creditedAtomic": "99000000",
+            "status": "COMPLETED",
+            "externalIds": {
+              "sourceTransactionId": "a2600c820f9f43988207d1ffb66a980ba2600c820f9f43988207d1ffb66a980b",
+              "providerExecutionId": "cctp-execution-a2600c820f9f43988207d1ffb66a980b",
+              "bridgeMessageId": "0xb8562ca768d840b1b2df01fef3800248b8562ca768d840b1b2df01fef3800248",
+              "destinationTransactionId": "0x5b61da15336b47f19b993aeb6fedd3025b61da15336b47f19b993aeb6fedd302",
+              "destinationEventId": "event-7d8c9618-ea3f-4da0-af34-076d4a9c7096"
+            }
+          }
+        ],
+        "credits": [
+          {
+            "id": "b0ef352a-f542-4978-83f8-2fc212eda075",
+            "transactionId": "8856ab65-5476-45eb-8ced-3875794c9909",
+            "merchantId": "merchant-one",
+            "asset": "arc-testnet:native-USDC",
+            "amountAtomic": "99000000"
+          }
+        ],
+        "transfers": [
+          {
+            "key": {
+              "merchantId": "merchant-one",
+              "routeId": "cctp.stellar-to-arc",
+              "idempotencyKey": "7b9876df-338a-4cb5-8895-c40d45da471e"
+            },
+            "sourceTransfers": 1,
+            "destinationTransfers": 1
+          }
+        ],
+        "balances": [
+          {
+            "merchantId": "merchant-one",
+            "asset": "arc-testnet:native-USDC",
+            "amountAtomic": "99000000"
+          }
+        ]
+      }
+    },
+    {
+      "caseId": "R10",
+      "sourceFile": "reconciliation/5d45429a-dea1-4199-8957-a735ae7467a5.json",
+      "sha256": "18302f4f1b5fb4642d5388aefa41b886422d3c3a0da8a01d060eda309055dedf",
+      "records": {
+        "schemaVersion": 1,
+        "testFile": "tests/operations/reconciliation.test.ts",
+        "testName": "Catlog shared transaction layer reconciliation > cctp.stellar-to-arc > commits one settlement when duplicate completion webhooks race a reconciliation worker",
+        "sessionId": "4b14c614-d13b-4eeb-a3bd-df6eee46b4a3",
+        "providerMode": "controlled",
+        "onchainTransfers": false,
+        "routes": [
+          {
+            "id": "cctp.arc-to-stellar",
+            "provider": "CCTP",
+            "sourceNetwork": "arc-testnet",
+            "destinationNetwork": "stellar-testnet",
+            "sourceAsset": "arc-testnet:native-USDC",
+            "destinationAsset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5"
+          },
+          {
+            "id": "cctp.stellar-to-arc",
+            "provider": "CCTP",
+            "sourceNetwork": "stellar-testnet",
+            "destinationNetwork": "arc-testnet",
+            "sourceAsset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5",
+            "destinationAsset": "arc-testnet:native-USDC"
+          },
+          {
+            "id": "near.to-stellar",
+            "provider": "NEAR",
+            "sourceNetwork": "ethereum-sepolia",
+            "destinationNetwork": "stellar-testnet",
+            "sourceAsset": "ethereum-sepolia:WETH",
+            "destinationAsset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5"
+          }
+        ],
+        "transactions": [
+          {
+            "id": "5c33d277-cbb6-449a-bd35-a40205806a73",
+            "merchantId": "merchant-one",
+            "idempotencyKey": "93982816-dd14-4152-b3bd-a413d6803fa9",
+            "routeId": "cctp.stellar-to-arc",
+            "sourceAsset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5",
+            "destinationAsset": "arc-testnet:native-USDC",
+            "recipient": "0x0000000000000000000000000000000000000001",
+            "amountAtomic": "100000000",
+            "feeAtomic": "1000000",
+            "creditedAtomic": "99000000",
+            "status": "COMPLETED",
+            "externalIds": {
+              "sourceTransactionId": "53efbbca2caa473f9933edbb85fd8d7653efbbca2caa473f9933edbb85fd8d76",
+              "providerExecutionId": "cctp-execution-53efbbca2caa473f9933edbb85fd8d76",
+              "bridgeMessageId": "0x54d8506c00d1491e849053704e8c783d54d8506c00d1491e849053704e8c783d",
+              "destinationTransactionId": "0x3714d77ab80b4312bdbaae0615024bd93714d77ab80b4312bdbaae0615024bd9",
+              "destinationEventId": "event-c911b6fc-2a7c-448e-bbe5-fd50f2877f3f"
+            }
+          }
+        ],
+        "credits": [
+          {
+            "id": "db8b30c1-18e1-4c19-b442-6de1ba9e573e",
+            "transactionId": "5c33d277-cbb6-449a-bd35-a40205806a73",
+            "merchantId": "merchant-one",
+            "asset": "arc-testnet:native-USDC",
+            "amountAtomic": "99000000"
+          }
+        ],
+        "transfers": [
+          {
+            "key": {
+              "merchantId": "merchant-one",
+              "routeId": "cctp.stellar-to-arc",
+              "idempotencyKey": "93982816-dd14-4152-b3bd-a413d6803fa9"
+            },
+            "sourceTransfers": 1,
+            "destinationTransfers": 1
+          }
+        ],
+        "balances": [
+          {
+            "merchantId": "merchant-one",
+            "asset": "arc-testnet:native-USDC",
+            "amountAtomic": "99000000"
+          }
+        ]
+      }
+    },
+    {
+      "caseId": "R11",
+      "sourceFile": "reconciliation/715cb22f-8dce-4dab-8bff-d6e507e3e2e7.json",
+      "sha256": "d97603c8fb96fa55c7681356f5b7a119d4b9eb42c27ca9d6670d632e19fbf4b1",
+      "records": {
+        "schemaVersion": 1,
+        "testFile": "tests/operations/reconciliation.test.ts",
+        "testName": "Catlog shared transaction layer reconciliation > cctp.stellar-to-arc > does not regress a confirmed terminal failure when a later lookup reports pending",
+        "sessionId": "cff9f85f-4909-422d-89c6-c56bedf2f017",
+        "providerMode": "controlled",
+        "onchainTransfers": false,
+        "routes": [
+          {
+            "id": "cctp.arc-to-stellar",
+            "provider": "CCTP",
+            "sourceNetwork": "arc-testnet",
+            "destinationNetwork": "stellar-testnet",
+            "sourceAsset": "arc-testnet:native-USDC",
+            "destinationAsset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5"
+          },
+          {
+            "id": "cctp.stellar-to-arc",
+            "provider": "CCTP",
+            "sourceNetwork": "stellar-testnet",
+            "destinationNetwork": "arc-testnet",
+            "sourceAsset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5",
+            "destinationAsset": "arc-testnet:native-USDC"
+          },
+          {
+            "id": "near.to-stellar",
+            "provider": "NEAR",
+            "sourceNetwork": "ethereum-sepolia",
+            "destinationNetwork": "stellar-testnet",
+            "sourceAsset": "ethereum-sepolia:WETH",
+            "destinationAsset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5"
+          }
+        ],
+        "transactions": [
+          {
+            "id": "5e9c9bd9-9821-4588-8be5-33b57d9b8721",
+            "merchantId": "merchant-one",
+            "idempotencyKey": "70dff424-2707-46e4-8074-40195f41902b",
+            "routeId": "cctp.stellar-to-arc",
+            "sourceAsset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5",
+            "destinationAsset": "arc-testnet:native-USDC",
+            "recipient": "0x0000000000000000000000000000000000000001",
+            "amountAtomic": "100000000",
+            "feeAtomic": null,
+            "creditedAtomic": null,
+            "status": "FAILED",
+            "externalIds": {
+              "sourceTransactionId": "b07b11050cab472b93cde9bf6b3ce8acb07b11050cab472b93cde9bf6b3ce8ac",
+              "providerExecutionId": "cctp-execution-b07b11050cab472b93cde9bf6b3ce8ac",
+              "bridgeMessageId": "0x32927b8f441d4fbda5df31cd7f07dee732927b8f441d4fbda5df31cd7f07dee7",
+              "destinationTransactionId": null,
+              "destinationEventId": null
+            }
+          }
+        ],
+        "credits": [],
+        "transfers": [
+          {
+            "key": {
+              "merchantId": "merchant-one",
+              "routeId": "cctp.stellar-to-arc",
+              "idempotencyKey": "70dff424-2707-46e4-8074-40195f41902b"
+            },
+            "sourceTransfers": 1,
+            "destinationTransfers": 0
+          }
+        ],
+        "balances": [
+          {
+            "merchantId": "merchant-one",
+            "asset": "arc-testnet:native-USDC",
+            "amountAtomic": "0"
+          }
+        ]
+      }
+    },
+    {
+      "caseId": "R12",
+      "sourceFile": "reconciliation/21d05580-0450-444f-9a6b-0a609533f877.json",
+      "sha256": "1c55a8bd050cdeb81a60839ff4933e022e72f5dcf4dfce3ad55768b1626d57e6",
+      "records": {
+        "schemaVersion": 1,
+        "testFile": "tests/operations/reconciliation.test.ts",
+        "testName": "Catlog shared transaction layer reconciliation > cctp.stellar-to-arc > preserves completed status, destination identifiers and the ledger settlement after a later pending observation",
+        "sessionId": "1864fc2f-390b-4b53-a4f4-57b644a08aec",
+        "providerMode": "controlled",
+        "onchainTransfers": false,
+        "routes": [
+          {
+            "id": "cctp.arc-to-stellar",
+            "provider": "CCTP",
+            "sourceNetwork": "arc-testnet",
+            "destinationNetwork": "stellar-testnet",
+            "sourceAsset": "arc-testnet:native-USDC",
+            "destinationAsset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5"
+          },
+          {
+            "id": "cctp.stellar-to-arc",
+            "provider": "CCTP",
+            "sourceNetwork": "stellar-testnet",
+            "destinationNetwork": "arc-testnet",
+            "sourceAsset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5",
+            "destinationAsset": "arc-testnet:native-USDC"
+          },
+          {
+            "id": "near.to-stellar",
+            "provider": "NEAR",
+            "sourceNetwork": "ethereum-sepolia",
+            "destinationNetwork": "stellar-testnet",
+            "sourceAsset": "ethereum-sepolia:WETH",
+            "destinationAsset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5"
+          }
+        ],
+        "transactions": [
+          {
+            "id": "62a27267-1c91-45df-9c6e-75b57a3fa703",
+            "merchantId": "merchant-one",
+            "idempotencyKey": "3aa9cf5b-619e-4062-bf81-3e155363f18a",
+            "routeId": "cctp.stellar-to-arc",
+            "sourceAsset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5",
+            "destinationAsset": "arc-testnet:native-USDC",
+            "recipient": "0x0000000000000000000000000000000000000001",
+            "amountAtomic": "100000000",
+            "feeAtomic": "1000000",
+            "creditedAtomic": "99000000",
+            "status": "COMPLETED",
+            "externalIds": {
+              "sourceTransactionId": "e39836ba5868487d854d22b12ddc1a9ce39836ba5868487d854d22b12ddc1a9c",
+              "providerExecutionId": "cctp-execution-e39836ba5868487d854d22b12ddc1a9c",
+              "bridgeMessageId": "0x61d8c34a93b04fdfa30fd51da70b41c161d8c34a93b04fdfa30fd51da70b41c1",
+              "destinationTransactionId": "0x74c95bd3ee8d40ae8607dd8886ca04e374c95bd3ee8d40ae8607dd8886ca04e3",
+              "destinationEventId": "event-6bde2290-8376-45c7-8d92-7408ed4e9e44"
+            }
+          }
+        ],
+        "credits": [
+          {
+            "id": "f838c74f-a577-44da-b5e6-e9201ad784d3",
+            "transactionId": "62a27267-1c91-45df-9c6e-75b57a3fa703",
+            "merchantId": "merchant-one",
+            "asset": "arc-testnet:native-USDC",
+            "amountAtomic": "99000000"
+          }
+        ],
+        "transfers": [
+          {
+            "key": {
+              "merchantId": "merchant-one",
+              "routeId": "cctp.stellar-to-arc",
+              "idempotencyKey": "3aa9cf5b-619e-4062-bf81-3e155363f18a"
+            },
+            "sourceTransfers": 1,
+            "destinationTransfers": 1
+          }
+        ],
+        "balances": [
+          {
+            "merchantId": "merchant-one",
+            "asset": "arc-testnet:native-USDC",
+            "amountAtomic": "99000000"
+          }
+        ]
+      }
+    },
+    {
+      "caseId": "R13",
+      "sourceFile": "reconciliation/d8b06f83-afa3-4d81-8cfb-c0f8a512a9e4.json",
+      "sha256": "772fe5c5380213b6730245c40c4e1312dcaf965c6e7fc2e03492a887e145987c",
+      "records": {
+        "schemaVersion": 1,
+        "testFile": "tests/operations/reconciliation.test.ts",
+        "testName": "Catlog shared transaction layer reconciliation > near.to-stellar > recovers an accepted transfer after a lost response and worker restart without another source transfer",
+        "sessionId": "f0bf5781-eb0a-4736-b981-14e7aa16b9a5",
+        "providerMode": "controlled",
+        "onchainTransfers": false,
+        "routes": [
+          {
+            "id": "cctp.arc-to-stellar",
+            "provider": "CCTP",
+            "sourceNetwork": "arc-testnet",
+            "destinationNetwork": "stellar-testnet",
+            "sourceAsset": "arc-testnet:native-USDC",
+            "destinationAsset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5"
+          },
+          {
+            "id": "cctp.stellar-to-arc",
+            "provider": "CCTP",
+            "sourceNetwork": "stellar-testnet",
+            "destinationNetwork": "arc-testnet",
+            "sourceAsset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5",
+            "destinationAsset": "arc-testnet:native-USDC"
+          },
+          {
+            "id": "near.to-stellar",
+            "provider": "NEAR",
+            "sourceNetwork": "ethereum-sepolia",
+            "destinationNetwork": "stellar-testnet",
+            "sourceAsset": "ethereum-sepolia:WETH",
+            "destinationAsset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5"
+          }
+        ],
+        "transactions": [
+          {
+            "id": "019429c7-5b95-4b36-b9f0-9663d070dcbf",
+            "merchantId": "merchant-one",
+            "idempotencyKey": "ce32fc1a-1954-4378-bd8b-ac53c0875f9d",
+            "routeId": "near.to-stellar",
+            "sourceAsset": "ethereum-sepolia:WETH",
+            "destinationAsset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5",
+            "recipient": "GAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWHF",
+            "amountAtomic": "100000000",
+            "feeAtomic": "1000000",
+            "creditedAtomic": "99000000",
+            "status": "COMPLETED",
+            "externalIds": {
+              "sourceTransactionId": "93f889143fd84f439788fd525800029c93f889143fd84f439788fd525800029c",
+              "providerExecutionId": "near-execution-93f889143fd84f439788fd525800029c",
+              "bridgeMessageId": null,
+              "destinationTransactionId": "22b2787c705a45cea676f02dd5732f3d22b2787c705a45cea676f02dd5732f3d",
+              "destinationEventId": "event-78267040-c29d-4dd7-b8f1-e47a0369c684"
+            }
+          }
+        ],
+        "credits": [
+          {
+            "id": "742ad1d9-d2c2-4087-81f4-e318d0cfa614",
+            "transactionId": "019429c7-5b95-4b36-b9f0-9663d070dcbf",
+            "merchantId": "merchant-one",
+            "asset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5",
+            "amountAtomic": "99000000"
+          }
+        ],
+        "transfers": [
+          {
+            "key": {
+              "merchantId": "merchant-one",
+              "routeId": "near.to-stellar",
+              "idempotencyKey": "ce32fc1a-1954-4378-bd8b-ac53c0875f9d"
+            },
+            "sourceTransfers": 1,
+            "destinationTransfers": 1
+          }
+        ],
+        "balances": [
+          {
+            "merchantId": "merchant-one",
+            "asset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5",
+            "amountAtomic": "99000000"
+          }
+        ]
+      }
+    },
+    {
+      "caseId": "R14",
+      "sourceFile": "reconciliation/be65f6ec-8c9f-4977-8b76-e34440185a73.json",
+      "sha256": "3c66a3fa6d99671170cdaaefb182c10e7f809fad78b3a78601d8619852e4ad36",
+      "records": {
+        "schemaVersion": 1,
+        "testFile": "tests/operations/reconciliation.test.ts",
+        "testName": "Catlog shared transaction layer reconciliation > near.to-stellar > finds a completed transfer whose webhook was missed using only the global scanner",
+        "sessionId": "d1e306b8-4b57-47e5-b5e8-c5fdc7a48c01",
+        "providerMode": "controlled",
+        "onchainTransfers": false,
+        "routes": [
+          {
+            "id": "cctp.arc-to-stellar",
+            "provider": "CCTP",
+            "sourceNetwork": "arc-testnet",
+            "destinationNetwork": "stellar-testnet",
+            "sourceAsset": "arc-testnet:native-USDC",
+            "destinationAsset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5"
+          },
+          {
+            "id": "cctp.stellar-to-arc",
+            "provider": "CCTP",
+            "sourceNetwork": "stellar-testnet",
+            "destinationNetwork": "arc-testnet",
+            "sourceAsset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5",
+            "destinationAsset": "arc-testnet:native-USDC"
+          },
+          {
+            "id": "near.to-stellar",
+            "provider": "NEAR",
+            "sourceNetwork": "ethereum-sepolia",
+            "destinationNetwork": "stellar-testnet",
+            "sourceAsset": "ethereum-sepolia:WETH",
+            "destinationAsset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5"
+          }
+        ],
+        "transactions": [
+          {
+            "id": "46f3a352-193e-454c-a2d8-3541d782154f",
+            "merchantId": "merchant-one",
+            "idempotencyKey": "13e7a692-fe0a-4351-be92-ad91102bc7de",
+            "routeId": "near.to-stellar",
+            "sourceAsset": "ethereum-sepolia:WETH",
+            "destinationAsset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5",
+            "recipient": "GAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWHF",
+            "amountAtomic": "100000000",
+            "feeAtomic": "1000000",
+            "creditedAtomic": "99000000",
+            "status": "COMPLETED",
+            "externalIds": {
+              "sourceTransactionId": "b3d399c3e8d14d5b99253e78eaf13741b3d399c3e8d14d5b99253e78eaf13741",
+              "providerExecutionId": "near-execution-b3d399c3e8d14d5b99253e78eaf13741",
+              "bridgeMessageId": null,
+              "destinationTransactionId": "374b2cd9b608471d8d14dabc9d7d71fb374b2cd9b608471d8d14dabc9d7d71fb",
+              "destinationEventId": "event-ba01a735-94fd-4fe3-a0b8-3159dc6a52d6"
+            }
+          }
+        ],
+        "credits": [
+          {
+            "id": "2e0c4dad-d077-4157-9c73-5a5e428c2831",
+            "transactionId": "46f3a352-193e-454c-a2d8-3541d782154f",
+            "merchantId": "merchant-one",
+            "asset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5",
+            "amountAtomic": "99000000"
+          }
+        ],
+        "transfers": [
+          {
+            "key": {
+              "merchantId": "merchant-one",
+              "routeId": "near.to-stellar",
+              "idempotencyKey": "13e7a692-fe0a-4351-be92-ad91102bc7de"
+            },
+            "sourceTransfers": 1,
+            "destinationTransfers": 1
+          }
+        ],
+        "balances": [
+          {
+            "merchantId": "merchant-one",
+            "asset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5",
+            "amountAtomic": "99000000"
+          }
+        ]
+      }
+    },
+    {
+      "caseId": "R15",
+      "sourceFile": "reconciliation/34e3918b-c22f-4515-95d8-e2f23e52cc2b.json",
+      "sha256": "f44155099b1da69bf21c68a3f0303605844cd6cf4b163c271941ae59797d4577",
+      "records": {
+        "schemaVersion": 1,
+        "testFile": "tests/operations/reconciliation.test.ts",
+        "testName": "Catlog shared transaction layer reconciliation > near.to-stellar > keeps an accepted source transfer pending until the destination completes without submitting another source transfer",
+        "sessionId": "9f72f855-5ddc-4a89-b1dd-bc79eadba1eb",
+        "providerMode": "controlled",
+        "onchainTransfers": false,
+        "routes": [
+          {
+            "id": "cctp.arc-to-stellar",
+            "provider": "CCTP",
+            "sourceNetwork": "arc-testnet",
+            "destinationNetwork": "stellar-testnet",
+            "sourceAsset": "arc-testnet:native-USDC",
+            "destinationAsset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5"
+          },
+          {
+            "id": "cctp.stellar-to-arc",
+            "provider": "CCTP",
+            "sourceNetwork": "stellar-testnet",
+            "destinationNetwork": "arc-testnet",
+            "sourceAsset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5",
+            "destinationAsset": "arc-testnet:native-USDC"
+          },
+          {
+            "id": "near.to-stellar",
+            "provider": "NEAR",
+            "sourceNetwork": "ethereum-sepolia",
+            "destinationNetwork": "stellar-testnet",
+            "sourceAsset": "ethereum-sepolia:WETH",
+            "destinationAsset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5"
+          }
+        ],
+        "transactions": [
+          {
+            "id": "d7084be6-9a4c-4a24-a930-1680d7fe21ca",
+            "merchantId": "merchant-one",
+            "idempotencyKey": "bcb86108-b4ab-4c02-aafb-ff448100952f",
+            "routeId": "near.to-stellar",
+            "sourceAsset": "ethereum-sepolia:WETH",
+            "destinationAsset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5",
+            "recipient": "GAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWHF",
+            "amountAtomic": "100000000",
+            "feeAtomic": "1000000",
+            "creditedAtomic": "99000000",
+            "status": "COMPLETED",
+            "externalIds": {
+              "sourceTransactionId": "7b8095b914a64fada19a707e558099387b8095b914a64fada19a707e55809938",
+              "providerExecutionId": "near-execution-7b8095b914a64fada19a707e55809938",
+              "bridgeMessageId": null,
+              "destinationTransactionId": "35b7d5214d4349f4a7ea9fe7e92bbd9a35b7d5214d4349f4a7ea9fe7e92bbd9a",
+              "destinationEventId": "event-d87745d9-bfd5-4e67-8585-8cbc607d6833"
+            }
+          }
+        ],
+        "credits": [
+          {
+            "id": "33815973-8a87-493c-a35e-ee74b5bf6644",
+            "transactionId": "d7084be6-9a4c-4a24-a930-1680d7fe21ca",
+            "merchantId": "merchant-one",
+            "asset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5",
+            "amountAtomic": "99000000"
+          }
+        ],
+        "transfers": [
+          {
+            "key": {
+              "merchantId": "merchant-one",
+              "routeId": "near.to-stellar",
+              "idempotencyKey": "bcb86108-b4ab-4c02-aafb-ff448100952f"
+            },
+            "sourceTransfers": 1,
+            "destinationTransfers": 1
+          }
+        ],
+        "balances": [
+          {
+            "merchantId": "merchant-one",
+            "asset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5",
+            "amountAtomic": "99000000"
+          }
+        ]
+      }
+    },
+    {
+      "caseId": "R16",
+      "sourceFile": "reconciliation/aad8cab3-6648-4f3d-99f7-da4e73c49e4e.json",
+      "sha256": "88cff8e13d5b684ba56d23c6c7bba406b35fb4d925acbf85e1c6e9607e0d04af",
+      "records": {
+        "schemaVersion": 1,
+        "testFile": "tests/operations/reconciliation.test.ts",
+        "testName": "Catlog shared transaction layer reconciliation > near.to-stellar > commits one settlement when duplicate completion webhooks race a reconciliation worker",
+        "sessionId": "ed50e303-4a64-45f1-9337-e2899f483bc2",
+        "providerMode": "controlled",
+        "onchainTransfers": false,
+        "routes": [
+          {
+            "id": "cctp.arc-to-stellar",
+            "provider": "CCTP",
+            "sourceNetwork": "arc-testnet",
+            "destinationNetwork": "stellar-testnet",
+            "sourceAsset": "arc-testnet:native-USDC",
+            "destinationAsset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5"
+          },
+          {
+            "id": "cctp.stellar-to-arc",
+            "provider": "CCTP",
+            "sourceNetwork": "stellar-testnet",
+            "destinationNetwork": "arc-testnet",
+            "sourceAsset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5",
+            "destinationAsset": "arc-testnet:native-USDC"
+          },
+          {
+            "id": "near.to-stellar",
+            "provider": "NEAR",
+            "sourceNetwork": "ethereum-sepolia",
+            "destinationNetwork": "stellar-testnet",
+            "sourceAsset": "ethereum-sepolia:WETH",
+            "destinationAsset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5"
+          }
+        ],
+        "transactions": [
+          {
+            "id": "d7ff5621-0802-4082-927d-4a01cd36e375",
+            "merchantId": "merchant-one",
+            "idempotencyKey": "9998bf99-27c6-4c98-9e3c-3700b75cf5c5",
+            "routeId": "near.to-stellar",
+            "sourceAsset": "ethereum-sepolia:WETH",
+            "destinationAsset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5",
+            "recipient": "GAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWHF",
+            "amountAtomic": "100000000",
+            "feeAtomic": "1000000",
+            "creditedAtomic": "99000000",
+            "status": "COMPLETED",
+            "externalIds": {
+              "sourceTransactionId": "dd81ca2bc610444bb98455b292a33b46dd81ca2bc610444bb98455b292a33b46",
+              "providerExecutionId": "near-execution-dd81ca2bc610444bb98455b292a33b46",
+              "bridgeMessageId": null,
+              "destinationTransactionId": "16ba178c05da4466bd04e45cbbdb931716ba178c05da4466bd04e45cbbdb9317",
+              "destinationEventId": "event-531c4ac2-7499-4233-acc4-e53716e91a12"
+            }
+          }
+        ],
+        "credits": [
+          {
+            "id": "fa490bf9-b3b7-48fe-88a2-9efd8e4a4951",
+            "transactionId": "d7ff5621-0802-4082-927d-4a01cd36e375",
+            "merchantId": "merchant-one",
+            "asset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5",
+            "amountAtomic": "99000000"
+          }
+        ],
+        "transfers": [
+          {
+            "key": {
+              "merchantId": "merchant-one",
+              "routeId": "near.to-stellar",
+              "idempotencyKey": "9998bf99-27c6-4c98-9e3c-3700b75cf5c5"
+            },
+            "sourceTransfers": 1,
+            "destinationTransfers": 1
+          }
+        ],
+        "balances": [
+          {
+            "merchantId": "merchant-one",
+            "asset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5",
+            "amountAtomic": "99000000"
+          }
+        ]
+      }
+    },
+    {
+      "caseId": "R17",
+      "sourceFile": "reconciliation/e49fc689-7f86-4ae7-aeef-37010958920d.json",
+      "sha256": "006aa2277e0f56d991e0acbe292cd9ab1c9d7def27fd0d436258abdd26890743",
+      "records": {
+        "schemaVersion": 1,
+        "testFile": "tests/operations/reconciliation.test.ts",
+        "testName": "Catlog shared transaction layer reconciliation > near.to-stellar > does not regress a confirmed terminal failure when a later lookup reports pending",
+        "sessionId": "960165ba-4e50-4899-a27c-f1adcd60b448",
+        "providerMode": "controlled",
+        "onchainTransfers": false,
+        "routes": [
+          {
+            "id": "cctp.arc-to-stellar",
+            "provider": "CCTP",
+            "sourceNetwork": "arc-testnet",
+            "destinationNetwork": "stellar-testnet",
+            "sourceAsset": "arc-testnet:native-USDC",
+            "destinationAsset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5"
+          },
+          {
+            "id": "cctp.stellar-to-arc",
+            "provider": "CCTP",
+            "sourceNetwork": "stellar-testnet",
+            "destinationNetwork": "arc-testnet",
+            "sourceAsset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5",
+            "destinationAsset": "arc-testnet:native-USDC"
+          },
+          {
+            "id": "near.to-stellar",
+            "provider": "NEAR",
+            "sourceNetwork": "ethereum-sepolia",
+            "destinationNetwork": "stellar-testnet",
+            "sourceAsset": "ethereum-sepolia:WETH",
+            "destinationAsset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5"
+          }
+        ],
+        "transactions": [
+          {
+            "id": "aaf5e16b-3bec-446c-aeb7-bf450b365593",
+            "merchantId": "merchant-one",
+            "idempotencyKey": "d08850dc-b4c4-46a4-b620-01a4288b89e6",
+            "routeId": "near.to-stellar",
+            "sourceAsset": "ethereum-sepolia:WETH",
+            "destinationAsset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5",
+            "recipient": "GAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWHF",
+            "amountAtomic": "100000000",
+            "feeAtomic": null,
+            "creditedAtomic": null,
+            "status": "FAILED",
+            "externalIds": {
+              "sourceTransactionId": "4fa476b4db3f4935b81987c0800d0cdc4fa476b4db3f4935b81987c0800d0cdc",
+              "providerExecutionId": "near-execution-4fa476b4db3f4935b81987c0800d0cdc",
+              "bridgeMessageId": null,
+              "destinationTransactionId": null,
+              "destinationEventId": null
+            }
+          }
+        ],
+        "credits": [],
+        "transfers": [
+          {
+            "key": {
+              "merchantId": "merchant-one",
+              "routeId": "near.to-stellar",
+              "idempotencyKey": "d08850dc-b4c4-46a4-b620-01a4288b89e6"
+            },
+            "sourceTransfers": 1,
+            "destinationTransfers": 0
+          }
+        ],
+        "balances": [
+          {
+            "merchantId": "merchant-one",
+            "asset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5",
+            "amountAtomic": "0"
+          }
+        ]
+      }
+    },
+    {
+      "caseId": "R18",
+      "sourceFile": "reconciliation/bdc21d6a-aa9c-4c01-b299-e52b42605d78.json",
+      "sha256": "f34780bf797a66f33d9c37b6f8ff9937a6a0ccd22f1b0d11afe5c4ea1bfa7970",
+      "records": {
+        "schemaVersion": 1,
+        "testFile": "tests/operations/reconciliation.test.ts",
+        "testName": "Catlog shared transaction layer reconciliation > near.to-stellar > preserves completed status, destination identifiers and the ledger settlement after a later pending observation",
+        "sessionId": "dc97de54-b03f-4f4b-90ba-b1453f9bfe28",
+        "providerMode": "controlled",
+        "onchainTransfers": false,
+        "routes": [
+          {
+            "id": "cctp.arc-to-stellar",
+            "provider": "CCTP",
+            "sourceNetwork": "arc-testnet",
+            "destinationNetwork": "stellar-testnet",
+            "sourceAsset": "arc-testnet:native-USDC",
+            "destinationAsset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5"
+          },
+          {
+            "id": "cctp.stellar-to-arc",
+            "provider": "CCTP",
+            "sourceNetwork": "stellar-testnet",
+            "destinationNetwork": "arc-testnet",
+            "sourceAsset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5",
+            "destinationAsset": "arc-testnet:native-USDC"
+          },
+          {
+            "id": "near.to-stellar",
+            "provider": "NEAR",
+            "sourceNetwork": "ethereum-sepolia",
+            "destinationNetwork": "stellar-testnet",
+            "sourceAsset": "ethereum-sepolia:WETH",
+            "destinationAsset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5"
+          }
+        ],
+        "transactions": [
+          {
+            "id": "e5ca6b89-e1cc-426f-af6a-87cae638ab48",
+            "merchantId": "merchant-one",
+            "idempotencyKey": "64774a1a-a362-49c4-9225-84d665590c96",
+            "routeId": "near.to-stellar",
+            "sourceAsset": "ethereum-sepolia:WETH",
+            "destinationAsset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5",
+            "recipient": "GAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWHF",
+            "amountAtomic": "100000000",
+            "feeAtomic": "1000000",
+            "creditedAtomic": "99000000",
+            "status": "COMPLETED",
+            "externalIds": {
+              "sourceTransactionId": "d597d3aacca248d391b9cc6cb29e26e6d597d3aacca248d391b9cc6cb29e26e6",
+              "providerExecutionId": "near-execution-d597d3aacca248d391b9cc6cb29e26e6",
+              "bridgeMessageId": null,
+              "destinationTransactionId": "f3d022f4190845fd929df01e41faec25f3d022f4190845fd929df01e41faec25",
+              "destinationEventId": "event-5ddaf84b-3c1a-48ec-882e-67cef0d4b601"
+            }
+          }
+        ],
+        "credits": [
+          {
+            "id": "d0d2252f-39ae-4e1f-8847-1b74f2b93fc9",
+            "transactionId": "e5ca6b89-e1cc-426f-af6a-87cae638ab48",
+            "merchantId": "merchant-one",
+            "asset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5",
+            "amountAtomic": "99000000"
+          }
+        ],
+        "transfers": [
+          {
+            "key": {
+              "merchantId": "merchant-one",
+              "routeId": "near.to-stellar",
+              "idempotencyKey": "64774a1a-a362-49c4-9225-84d665590c96"
+            },
+            "sourceTransfers": 1,
+            "destinationTransfers": 1
+          }
+        ],
+        "balances": [
+          {
+            "merchantId": "merchant-one",
+            "asset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5",
+            "amountAtomic": "99000000"
+          }
+        ]
+      }
+    },
+    {
+      "caseId": "R19",
+      "sourceFile": "reconciliation/3ddde8a8-5df8-4a88-bc97-ab24ef0b3603.json",
+      "sha256": "a0bcf645af487a3144b5d8a730d22bb168248778d305f4907e7953dfcd852a8f",
+      "records": {
+        "schemaVersion": 1,
+        "testFile": "tests/operations/reconciliation.test.ts",
+        "testName": "Catlog shared transaction layer reconciliation > one global scanner pass discovers and settles missed completions across every required route",
+        "sessionId": "fee5c486-09a4-4e28-b861-c33f6b1cd68f",
+        "providerMode": "controlled",
+        "onchainTransfers": false,
+        "routes": [
+          {
+            "id": "cctp.arc-to-stellar",
+            "provider": "CCTP",
+            "sourceNetwork": "arc-testnet",
+            "destinationNetwork": "stellar-testnet",
+            "sourceAsset": "arc-testnet:native-USDC",
+            "destinationAsset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5"
+          },
+          {
+            "id": "cctp.stellar-to-arc",
+            "provider": "CCTP",
+            "sourceNetwork": "stellar-testnet",
+            "destinationNetwork": "arc-testnet",
+            "sourceAsset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5",
+            "destinationAsset": "arc-testnet:native-USDC"
+          },
+          {
+            "id": "near.to-stellar",
+            "provider": "NEAR",
+            "sourceNetwork": "ethereum-sepolia",
+            "destinationNetwork": "stellar-testnet",
+            "sourceAsset": "ethereum-sepolia:WETH",
+            "destinationAsset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5"
+          }
+        ],
+        "transactions": [
+          {
+            "id": "54b316e1-53b0-4b0f-9f1b-78e07a815915",
+            "merchantId": "merchant-one",
+            "idempotencyKey": "44c67a9c-b9ec-46dc-a74b-62b3c9d2ca4e",
+            "routeId": "cctp.stellar-to-arc",
+            "sourceAsset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5",
+            "destinationAsset": "arc-testnet:native-USDC",
+            "recipient": "0x0000000000000000000000000000000000000001",
+            "amountAtomic": "100000000",
+            "feeAtomic": "1000000",
+            "creditedAtomic": "99000000",
+            "status": "COMPLETED",
+            "externalIds": {
+              "sourceTransactionId": "143b587dd9034a40827a9d68adcf393d143b587dd9034a40827a9d68adcf393d",
+              "providerExecutionId": "cctp-execution-143b587dd9034a40827a9d68adcf393d",
+              "bridgeMessageId": "0x430f7ccbfa0a47fdad953d01614db3df430f7ccbfa0a47fdad953d01614db3df",
+              "destinationTransactionId": "0x9a91641f63c142ae9b954353621a1e4c9a91641f63c142ae9b954353621a1e4c",
+              "destinationEventId": "event-27cd8133-1b9b-44ed-8974-63039456e50a"
+            }
+          },
+          {
+            "id": "7e6292db-62ae-46a9-af78-e37a1bae6634",
+            "merchantId": "merchant-one",
+            "idempotencyKey": "8f97c57a-ea5b-4876-9a63-ff90153103c4",
+            "routeId": "near.to-stellar",
+            "sourceAsset": "ethereum-sepolia:WETH",
+            "destinationAsset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5",
+            "recipient": "GAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWHF",
+            "amountAtomic": "100000000",
+            "feeAtomic": "1000000",
+            "creditedAtomic": "99000000",
+            "status": "COMPLETED",
+            "externalIds": {
+              "sourceTransactionId": "23507703f1684d0891058a3ab3d36a3223507703f1684d0891058a3ab3d36a32",
+              "providerExecutionId": "near-execution-23507703f1684d0891058a3ab3d36a32",
+              "bridgeMessageId": null,
+              "destinationTransactionId": "67f95203444f4033a96fa4fc2b68191167f95203444f4033a96fa4fc2b681911",
+              "destinationEventId": "event-01038fa4-be2f-4f88-a610-4d0a3eb0a41f"
+            }
+          },
+          {
+            "id": "d9c49c4f-4e24-4de8-8c30-cd108732ad9a",
+            "merchantId": "merchant-one",
+            "idempotencyKey": "fc8795f4-1ee0-4459-b97f-cc01ae81a31a",
+            "routeId": "cctp.arc-to-stellar",
+            "sourceAsset": "arc-testnet:native-USDC",
+            "destinationAsset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5",
+            "recipient": "GAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWHF",
+            "amountAtomic": "100000000",
+            "feeAtomic": "1000000",
+            "creditedAtomic": "99000000",
+            "status": "COMPLETED",
+            "externalIds": {
+              "sourceTransactionId": "0x2207602d554942d89e201e86497c6d992207602d554942d89e201e86497c6d99",
+              "providerExecutionId": "cctp-execution-2207602d554942d89e201e86497c6d99",
+              "bridgeMessageId": "0xa14d0163dcc748af8b41dc3c2ed2970ea14d0163dcc748af8b41dc3c2ed2970e",
+              "destinationTransactionId": "46907de56ce542529f1a72a1e130387046907de56ce542529f1a72a1e1303870",
+              "destinationEventId": "event-d68d85fe-47d1-4660-9be2-2e8b49e0ceeb"
+            }
+          }
+        ],
+        "credits": [
+          {
+            "id": "261d328a-d39e-4ada-a3d5-0c0b76614f1d",
+            "transactionId": "54b316e1-53b0-4b0f-9f1b-78e07a815915",
+            "merchantId": "merchant-one",
+            "asset": "arc-testnet:native-USDC",
+            "amountAtomic": "99000000"
+          },
+          {
+            "id": "2f48444b-0ec7-4d10-ad27-4361704b6760",
+            "transactionId": "7e6292db-62ae-46a9-af78-e37a1bae6634",
+            "merchantId": "merchant-one",
+            "asset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5",
+            "amountAtomic": "99000000"
+          },
+          {
+            "id": "467a382f-fa0b-409a-8d90-ec203630734e",
+            "transactionId": "d9c49c4f-4e24-4de8-8c30-cd108732ad9a",
+            "merchantId": "merchant-one",
+            "asset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5",
+            "amountAtomic": "99000000"
+          }
+        ],
+        "transfers": [
+          {
+            "key": {
+              "merchantId": "merchant-one",
+              "routeId": "cctp.arc-to-stellar",
+              "idempotencyKey": "fc8795f4-1ee0-4459-b97f-cc01ae81a31a"
+            },
+            "sourceTransfers": 1,
+            "destinationTransfers": 1
+          },
+          {
+            "key": {
+              "merchantId": "merchant-one",
+              "routeId": "cctp.stellar-to-arc",
+              "idempotencyKey": "44c67a9c-b9ec-46dc-a74b-62b3c9d2ca4e"
+            },
+            "sourceTransfers": 1,
+            "destinationTransfers": 1
+          },
+          {
+            "key": {
+              "merchantId": "merchant-one",
+              "routeId": "near.to-stellar",
+              "idempotencyKey": "8f97c57a-ea5b-4876-9a63-ff90153103c4"
+            },
+            "sourceTransfers": 1,
+            "destinationTransfers": 1
+          }
+        ],
+        "balances": [
+          {
+            "merchantId": "merchant-one",
+            "asset": "arc-testnet:native-USDC",
+            "amountAtomic": "99000000"
+          },
+          {
+            "merchantId": "merchant-one",
+            "asset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5",
+            "amountAtomic": "198000000"
+          }
+        ]
+      }
+    }
+  ]
+}
