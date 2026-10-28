@@ -1,0 +1,7 @@
+[
+  { "file": "tests/transactions.test.ts", "cases": 17 },
+  { "file": "tests/operations/retry-queue.test.ts", "cases": 18 },
+  { "file": "tests/operations/reconciliation.test.ts", "cases": 19 },
+  { "file": "tests/operations/recovery-errors.test.ts", "cases": 3 },
+  { "file": "tests/operations/support-view.test.ts", "cases": 14 }
+]

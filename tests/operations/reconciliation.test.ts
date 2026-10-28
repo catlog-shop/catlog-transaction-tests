@@ -87,7 +87,7 @@ describe("Catlog shared transaction layer reconciliation", () => {
       const receipt = settlement(value, transaction.ids);
       const callOffset = (await h.provider.snapshot()).calls.length;
 
-      // Only the simulated remote state changes. Catlog receives no webhook.
+      // Only the controlled remote state changes. Catlog receives no webhook.
       await h.provider.observe(key(value), { status: "COMPLETED", settlement: receipt });
       const beforeScan = await h.snapshot();
       expect(record(beforeScan, transaction.id).status).toBe("PENDING");
@@ -120,7 +120,7 @@ describe("Catlog shared transaction layer reconciliation", () => {
       const receipt = settlement(value, transaction.ids);
       const resumeOffset = (await h.provider.snapshot()).calls.length;
       if (route.provider === "CCTP") {
-        // The simulator only completes this transfer after Catlog actually
+        // The provider fixture only completes this transfer after Catlog actually
         // submits the destination execution; a LOOKUP alone cannot complete it.
         await h.provider.readyToResume(key(value), receipt);
         expect((await h.provider.snapshot()).transfers.find(item =>

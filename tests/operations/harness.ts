@@ -140,7 +140,7 @@ export interface OperationsHarness {
   workers: {
     /** Run jobs eligible now, at most once per job per call; do not advance time. */
     runDue(options?: { concurrency?: number }): Promise<void>;
-    /** Restart actual workers; keep the database, queued jobs and simulated provider. */
+    /** Restart actual workers; keep the database, queued jobs and controlled provider. */
     restart(): Promise<void>;
     /** Fault-inject a real worker exit after a durable claim, before provider submission. */
     claimAndCrash(): Promise<{ jobId: string }>;
@@ -152,7 +152,7 @@ export interface OperationsHarness {
     enqueue(transactionId: string): Promise<void>;
   };
   provider: {
-    /** Simulate only the external boundary. Transient errors here are pre-acceptance. */
+    /** Control only the external boundary. Transient errors here are pre-acceptance. */
     plan(key: TransferKey, steps: SubmitStep[]): Promise<void>;
     /** Fail the next count LOOKUP calls before returning their existing remote state. */
     failLookups(key: TransferKey, count: number, code: string): Promise<void>;

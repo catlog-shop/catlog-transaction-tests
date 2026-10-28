@@ -2,50 +2,67 @@
 
 TypeScript tests for Catlog's shared transaction layer, built with Vitest.
 
-## What's tested
+## Quick start
 
-- Idempotency for repeated and concurrent deposit requests.
-- Conflicts when an idempotency key is reused with different payment details.
-- Transaction status transitions and handling of stale provider updates.
-- Merchant isolation, ledger credits, balances and Stellar transaction references.
-- Duplicate settlement events and recovery after a lost provider response.
-- Deposit feature-flag enforcement.
-- Durable retry queues, bounded backoff, worker restarts and lease recovery.
-- Reconciliation across both CCTP directions and the NEAR-to-Stellar route.
-- Internal support view data, status filters, external IDs and access controls.
-
-## Setup
-
-Use Node.js 24 and an isolated test database.
+Use Node.js 24. Copy the privately supplied `.env.reviewer` file into the
+repository root, then run:
 
 ```sh
 npm ci
-```
-
-Implement `createHarness()` in `tests/catlog.integration.ts` using the interface in
-`tests/harness.ts`. Connect it to Catlog's transaction services, workers and database
-queries. Create a fresh fixture for each test and simulate only the external provider.
-
-The operations suite has a separate connection in
-`tests/operations/catlog.integration.ts` for the durable queue, reconciliation services
-and authenticated support endpoints. Both suites require real backend connections;
-unconfigured suites fail with an explicit setup error. The live Stellar and CCTP
-tests below run separately.
-
-## Run tests
-
-```sh
-npm run typecheck
 npm test
 ```
 
-To save a JUnit report:
+The default command connects to
+[backend staging API](https://catlog-transaction-test.throbbing-cloud-0f8e.workers.dev/)
+and runs 30 backend API tests. A reviewer API key is required; no local backend
+checkout or Cloudflare account is needed. Internet access and an available Worker
+are required. The `.env.reviewer` file contains `CATLOG_TEST_API_KEY=<provided-key>`
+and is ignored by Git. You can also set that environment variable directly.
+
+The reviewer key creates isolated sessions; each test receives its own temporary
+session credential automatically. The reviewer key cannot read or change other
+sessions. Share it privately and keep it out of commits and reports.
+The suite covers synthetic success, failure, retry, expiry and duplicate-event
+paths for the Arc-to-Stellar, Stellar-to-Arc and NEAR-to-Stellar route labels.
+It also checks idempotency, ledger credits, input validation and session isolation.
+These results validate the hosted Worker backend, not live transfers.
+
+Runs print transaction status changes, retries and external IDs. JSON results,
+JUnit and a summary are saved under a new `reports/base-.../` directory.
+`npm run test:report` and `npm run test:base` run the same hosted suite.
+
+The URL is configured in [config/base.json](config/base.json).
+Set `BASE_URL` only when targeting another compatible backend. Sessions
+expire after 24 hours and are deleted by the tests when they finish. A busy API
+can return a rate-limit error; retry the run after a minute.
+
+## Backend acceptance suite
+
+The separate 71-case suite requires Catlog's actual backend and an isolated test
+database. Its checks include:
+
+- Merchant-scoped idempotency and conflicting payment details.
+- Transaction status transitions and stale provider updates.
+- Merchant isolation, ledger credits, balances and Stellar references.
+- Duplicate settlement events and recovery after a lost provider response.
+- Deposit feature flags.
+- Durable retries, backoff, worker restarts and lease recovery.
+- Reconciliation across both CCTP directions and the NEAR route.
+- Support endpoint filters, external IDs and access controls.
+
+Supply `createHarness()` and `createOperationsHarness()` through
+`CATLOG_BACKEND_ADAPTER`. Both factories must connect to the real application
+services, workers and database. These commands fail with an explicit setup error
+until that connection exists:
 
 ```sh
-npm run test:report
+npm run test:backend
+npm run test:backend:report
 ```
 
-The report is written to `reports/junit.xml`.
+The backend JUnit report is written to `reports/junit.xml`. For the full private
+run with backend revision metadata and a shareable summary, use
+`npm run test:private`. `npm run test:handoff` checks packaging utilities only.
 
 ## Retry queues, reconciliation and support view
 
@@ -53,7 +70,7 @@ The report is written to `reports/junit.xml`.
 npm run test:operations
 ```
 
-This focused suite contains 54 acceptance cases. It is also included in `npm test`.
+This focused suite contains 54 acceptance cases. It is also included in `npm run test:backend`.
 It checks durable retries and backoff, exhaustion without incorrectly failing a
 payment, worker restart and lease recovery, missed webhooks, concurrent settlement,
 and recovery of accepted transfers without a second source payment.
@@ -74,8 +91,8 @@ restrictions. Recoverable transactions remain financially pending. A confirmed f
 failure cannot be retried as if it were a temporary error.
 
 See [the binding guide](tests/operations/README.md) for the required backend contract.
-Results are written to `reports/operations-junit.xml`. These tests simulate only the
-external provider. They do not implement a queue or support screen in this repository,
+Results are written to `reports/operations-junit.xml`. These tests use controlled
+external-provider fixtures. They do not implement a queue or support screen in this repository,
 test browser rendering, or prove a live NEAR transfer. They cannot pass until Catlog's
 backend is connected.
 
@@ -138,8 +155,8 @@ attestations, amounts and results:
 These are direct CCTP integration tests. They do not connect to Catlog's backend or
 prove its merchant ledger or application idempotency. The tests depend on available
 testnet funding, Circle attestation, and network services. They are run explicitly,
-separate from the default Catlog service suite. Keep the wallet file outside shared
-artifacts; the reports contain no private keys.
+separate from the hosted Worker backend and private acceptance suites. Keep the wallet
+file outside shared artifacts; the reports contain no private keys.
 
 If a run stops after its Arc burn is recorded but before a Stellar mint hash is
 recorded, resume that burn instead of creating another one:
@@ -162,15 +179,22 @@ without other transactions from the same wallets during a run.
   Recovery is tracked separately and can appear as `RECOVERABLE` in the support view.
 - Catlog service amounts use integer `bigint` values at seven decimal places.
   CCTP messages use six decimals; the live tests convert explicitly for Stellar.
-- The Catlog service tests use simulated provider results and transaction hashes.
+- The Catlog service tests use controlled provider results and test transaction hashes.
   The separate `test:testnet` command makes a real Stellar testnet payment;
   the `test:cctp` commands bridge real test USDC through CCTP.
 
 ## Continuous integration
 
-The GitHub Actions workflow runs on pushes, pull requests and manual requests, and
-uploads test reports. Configure the test database, migrations and application services
-required by the harness before the test step.
+The **Catlog base tests** workflow runs type checks, logging checks and
+`npm test` on pushes, pull requests and manual requests. Configure the repository
+secret `CATLOG_TEST_API_KEY` with the reviewer key. The workflow uploads a summary
+identified as backend results. Forks and other checkouts do not inherit this
+secret; testers must obtain the key privately.
 
-The separate **Stellar testnet payment** workflow runs manually from the Actions tab.
-It runs the live test and uploads its public transaction details and test report.
+The **Catlog backend acceptance tests (private adapter required)** workflow runs
+only on manual request. Configure the private adapter, test database, migrations
+and services before its backend test step. It cannot pass without those bindings.
+Its standard JUnit upload is opt-in; private-run reports stay local.
+
+The **Stellar testnet payment** workflow runs manually and uploads its public
+transaction details and test report.

@@ -1,10 +1,11 @@
 # Queue, reconciliation and support view tests
 
-These are acceptance tests for Catlog's existing backend. Implement
-`createOperationsHarness()` in `catlog.integration.ts` using real services,
+These are acceptance tests for Catlog's existing backend. Export
+`createOperationsHarness()` from the private module selected by
+`CATLOG_BACKEND_ADAPTER` using real services,
 durable queue storage, the test database and the authenticated endpoints used by
 the internal support view. The repository does not include those services or a
-support screen. Unconnected tests fail with `CATLOG_OPERATIONS_SETUP_REQUIRED`.
+support screen. Unconfigured tests fail with `CATLOG_BACKEND_ADAPTER_REQUIRED`.
 
 ## Required routes
 
@@ -37,7 +38,7 @@ do not select routes dynamically from a provider's available-route response.
   `PENDING` with `MANUAL_REQUIRED`. The scanner must not reset an exhausted
   budget automatically; an authorized support action is required. A confirmed
   rejection is terminal `FAILED`.
-- Simulate only the provider boundary. `plan` controls submissions for one
+- Use a controlled provider only at the external boundary. `plan` controls submissions for one
   merchant/route/key. `observe` changes a remote lookup result without delivering
   a webhook. `failLookups` injects transient lookup errors without changing remote
   transfer state. `deliver` goes through the real verified webhook handler. A lost
@@ -45,9 +46,9 @@ do not select routes dynamically from a provider's available-route response.
   resumption must retain its identity and must not perform another source burn.
   Record the actual signed transaction/envelope identity on SUBMIT/RESUME calls.
   Do not deduplicate solely by Catlog's key unless the real provider guarantees
-  that behavior; otherwise a simulator could hide a duplicate burn.
+  that behavior; otherwise a provider fixture could hide a duplicate burn.
 - For CCTP, `readyToResume` makes lookup return pending with a ready destination
-  action. Only a real RESUME boundary call may produce the simulated destination
+  action. Only a real RESUME boundary call may produce the destination
   effect. This tests Catlog submitting the remaining mint. NEAR completion is
   observed through its execution provider, without inventing a NEAR mint API.
 - Read transaction, queue and settlement records from real storage. Settlement
@@ -75,7 +76,7 @@ view or request a retry. Retry actions are deduplicated and reconcile the existi
 transfer before any new submission is considered.
 
 These tests exercise the view's backing endpoints. They do not test browser
-rendering, and simulated provider observations are not live NEAR transfer evidence.
+rendering, and controlled provider observations are not live NEAR transfer evidence.
 
 ## Run
 
@@ -84,6 +85,6 @@ npm run typecheck
 npm run test:operations
 ```
 
-The focused command writes `reports/operations-junit.xml`. `npm test` and the
-standard CI job also include these tests. Passing requires the real backend
+The focused command writes `reports/operations-junit.xml`. `npm run test:backend` and
+the manual backend CI workflow also include these tests. Passing requires the real backend
 binding; a setup error is not a successful feature test.

@@ -91,7 +91,7 @@ export interface CatlogHarness {
   reconcile(transactionId: string): Promise<void>;
   provider: {
     /**
-     * Simulate external provider results, then deliver them through Catlog's
+     * Apply controlled external-provider results, then deliver them through Catlog's
      * actual verified webhook/polling and settlement path. Never write ledger
      * or status rows from this helper. Replay must reach the real deduplicator.
      * Ignore/reject stale outcomes without throwing; unexpected failures throw.

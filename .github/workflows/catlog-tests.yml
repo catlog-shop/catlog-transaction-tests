@@ -1,9 +1,12 @@
-name: Catlog shared transaction layer tests
+name: Catlog backend acceptance tests (private adapter required)
 
 on:
-  pull_request:
-  push:
   workflow_dispatch:
+    inputs:
+      upload_reports:
+        description: 'Upload inspected JUnit and run metadata to this repository'
+        type: boolean
+        default: false
 
 permissions:
   contents: read
@@ -21,16 +24,17 @@ jobs:
       - run: npm ci
       - run: npm run typecheck
       # Add the isolated database/service setup and migrations required by Catlog
-      # here. Implement tests/catlog.integration.ts and
-      # tests/operations/catlog.integration.ts before expecting a passing run.
+      # here. Set CATLOG_BACKEND_ADAPTER to developer-owned backend bindings.
       - name: Record run metadata
         run: |
           mkdir -p reports
-          node --input-type=module -e 'import { writeFileSync } from "node:fs"; writeFileSync("reports/run.json", JSON.stringify({ commit: process.env.GITHUB_SHA, runId: process.env.GITHUB_RUN_ID, utc: new Date().toISOString(), intendedScope: "Catlog transaction services and test database with a simulated provider. Live Stellar connectivity is tested separately." }, null, 2));'
-      - run: npm run test:report
+          node --input-type=module -e 'import { writeFileSync } from "node:fs"; writeFileSync("reports/run.json", JSON.stringify({ commit: process.env.GITHUB_SHA, runId: process.env.GITHUB_RUN_ID, utc: new Date().toISOString(), intendedScope: "Catlog transaction services and test database." }, null, 2));'
+      - run: npm run test:backend:report
       - uses: actions/upload-artifact@v4
-        if: always()
+        if: ${{ always() && github.event_name == 'workflow_dispatch' && inputs.upload_reports }}
         with:
           name: catlog-test-results
-          path: reports/
+          path: |
+            reports/junit.xml
+            reports/run.json
           if-no-files-found: warn
