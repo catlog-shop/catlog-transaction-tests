@@ -1,7 +1,8 @@
 import type { CatlogHarness } from "./harness";
+import { backendFactory } from "./backend-adapter";
 
 /**
- * IMPLEMENT THIS FUNCTION IN CATLOG'S BACKEND REPOSITORY.
+ * Implement createHarness in the private module selected by CATLOG_BACKEND_ADAPTER.
  *
  * 1. Start Catlog against an isolated database using its normal database engine.
  * 2. Create two isolated merchants, supported assets and valid recipients.
@@ -13,9 +14,5 @@ import type { CatlogHarness } from "./harness";
  * hard-coded balances would test that fake, not Catlog.
  */
 export async function createHarness(): Promise<CatlogHarness> {
-  throw new Error(
-    "CATLOG_SETUP_REQUIRED: Implement tests/catlog.integration.ts using " +
-    "Catlog's real backend and an isolated test database. " +
-    "Catlog tests cannot run until the backend connection is configured.",
-  );
+  return (await backendFactory("createHarness"))();
 }

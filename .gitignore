@@ -13,3 +13,19 @@ coverage/
 *.pfx
 credentials*.json
 secrets*.json
+.catlog-private/
+/DEVELOPER_HANDOFF.md
+.wrangler/
+.dev.vars
+.dev.vars.*
+
+# Private Worker source and generated artifacts
+/backend-worker/
+/validation/
+/VALIDATION.txt
+/outputs/
+/backups/
+*.zip
+*.tar
+*.tar.gz
+*.tgz

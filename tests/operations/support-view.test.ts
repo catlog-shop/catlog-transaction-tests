@@ -11,7 +11,7 @@ import {
 
 // Acceptance coverage for the authenticated API backing the support view.
 // A browser renderer is not exercised. All states originate in Catlog services
-// and workers; only the external provider boundary is simulated.
+// and workers; only the external provider boundary uses controlled test responses.
 describe("Catlog support view API", () => {
   let h: OperationsHarness | undefined;
 

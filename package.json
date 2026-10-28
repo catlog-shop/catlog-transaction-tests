@@ -8,19 +8,29 @@
   },
   "scripts": {
     "typecheck": "tsc --noEmit",
-    "test": "vitest run",
-    "test:report": "vitest run --reporter=verbose --reporter=junit --outputFile=./reports/junit.xml",
+    "test": "node --env-file-if-exists=.env.reviewer scripts/run-base.mjs --remote",
+    "test:report": "npm test",
+    "test:backend": "vitest run",
+    "test:backend:report": "vitest run --reporter=verbose --reporter=junit --outputFile=./reports/junit.xml",
     "test:testnet": "vitest run --config vitest.testnet.config.ts",
     "test:cctp": "vitest run --config vitest.cctp.config.ts",
     "test:cctp:return": "vitest run --config vitest.cctp-return.config.ts",
     "wallet:testnet": "node --experimental-strip-types tests/cctp/create-wallet.ts",
-    "test:operations": "vitest run --config vitest.operations.config.ts"
+    "test:operations": "vitest run --config vitest.operations.config.ts",
+    "test:private": "node scripts/run-private-tests.mjs",
+    "test:handoff": "node --test scripts/private-report.test.mjs && vitest run --config vitest.handoff.config.ts",
+    "test:base": "node --env-file-if-exists=.env.reviewer scripts/run-base.mjs --remote",
+    "test:base:logging": "node --experimental-strip-types --test scripts/transaction-log.test.mjs",
+    "test:base:remote": "node --env-file-if-exists=.env.reviewer scripts/run-base.mjs --remote"
   },
   "devDependencies": {
+    "@cloudflare/workers-types": "5.20261027.1",
     "@stellar/stellar-sdk": "17.2.1",
     "@types/node": "22.20.5",
     "ethers": "6.17.0",
+    "miniflare": "5.20261023.0-beta",
     "typescript": "5.9.3",
-    "vitest": "5.0.4"
+    "vitest": "5.0.4",
+    "wrangler": "4.153.0"
   }
 }

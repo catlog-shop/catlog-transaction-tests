@@ -38,7 +38,7 @@ export function externalIds(routeId: RouteId, completed = false): ExternalIds {
   const id = randomUUID().replaceAll("-", "");
   const hash = id.repeat(2);
   const destinationHash = randomUUID().replaceAll("-", "").repeat(2);
-  // Opaque simulated provider identifiers. These fixtures do not make live transfers.
+  // Opaque controlled-provider identifiers. These fixtures do not make live transfers.
   return { sourceTransactionId: routeId === "cctp.arc-to-stellar" ? `0x${hash}` : hash, providerExecutionId: `${routeId.startsWith("near") ? "near-execution" : "cctp-execution"}-${id}`,
     bridgeMessageId: routeId.startsWith("cctp") ? `0x${randomUUID().replaceAll("-", "").repeat(2)}` : null,
     destinationTransactionId: completed ? (routeId === "cctp.stellar-to-arc" ? `0x${destinationHash}` : destinationHash) : null,
