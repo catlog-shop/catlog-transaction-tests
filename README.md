@@ -119,6 +119,10 @@ JSON evidence, source revisions and individual case results.
 It also includes 23 verified mainnet CCTP and NEAR transfers across Ethereum,
 Base, Polygon and Stellar, plus one completed Arc-to-Stellar testnet transfer, with
 block explorer links, received amounts and available backend record comparisons.
+The two Catlog storefront checkout payments from the Tranche 2 submission
+(Tron → Stellar and Polygon → Stellar) are listed with their `CLGPAY` references
+and provider execution IDs; together with the Ethereum → Stellar transfer they
+cover the three required NEAR routes into Stellar USDC.
 
 The [binding guide](tests/operations/README.md) describes the optional integration
 contract for connecting a different backend. It is not required for the hosted

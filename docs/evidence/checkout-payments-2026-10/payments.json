@@ -1,0 +1,92 @@
+{
+  "description": "Catlog storefront checkout payments settled into Stellar USDC through the NEAR execution provider. Hashes, amounts and settlement times are from the provider's execution record for each deposit; payment status and paid-at time are from the Catlog payment record. Chain receipts were not re-fetched by RPC for this file.",
+  "recordedAt": "2026-10-28T23:00:00Z",
+  "network": "mainnet",
+  "payments": [
+    {
+      "id": "C01",
+      "catlogReference": "CLGPAY-46093824",
+      "catlogPayment": {
+        "status": "completed",
+        "amountDue": "172.7",
+        "amountReceived": "173",
+        "asset": "USDT",
+        "chain": "tron",
+        "createdAt": "2026-10-05T08:37:07Z",
+        "paidAt": "2026-10-05T08:57:01Z"
+      },
+      "provider": "NEAR",
+      "route": "near.tron-to-stellar",
+      "source": {
+        "chain": "tron",
+        "asset": "USDT",
+        "contract": "TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t",
+        "amount": "173",
+        "sender": "TWTZaZbZqNRSQQn9NaVtReggvB1sSBFjun",
+        "depositAddress": "TB4aTJ3S4pkBNftuYNqHGxrMkhMZAZs34K",
+        "transactionHash": "896edd8225e8ac9d4208daf9b5f833ce3dfca552cf12340a8e093178cc7b489f",
+        "explorerUrl": "https://tronscan.org/#/transaction/896edd8225e8ac9d4208daf9b5f833ce3dfca552cf12340a8e093178cc7b489f"
+      },
+      "destination": {
+        "chain": "stellar",
+        "asset": "USDC",
+        "amount": "172.81568",
+        "recipient": "GBOCW6AA2PAHAZJN6DTCMQTKWM3B5W6HM32SRATY5UUOB2IHGJJ6LCFH",
+        "transactionHash": "b74e4e27b4d9a46f7276869e1571637315ad32d3594966fb79be5502e8d71e5e",
+        "explorerUrl": "https://stellar.expert/explorer/public/tx/b74e4e27b4d9a46f7276869e1571637315ad32d3594966fb79be5502e8d71e5e"
+      },
+      "providerExecution": {
+        "intentHash": "EdjXUday9su2gsgvRvFayAqQci2hPCmiLWTuSSQBChCV",
+        "intentExplorerUrl": "https://pikespeak.ai/intents/EdjXUday9su2gsgvRvFayAqQci2hPCmiLWTuSSQBChCV",
+        "nearDepositTransaction": "EvedTJfn1ghdEdctfWQoA5iWzRSazR29Lw9V8X4sYN1V",
+        "nearSwapTransaction": "HGLTptBPtL94sC8WuAUKJkk8NFPWANCzURgsScyPvjoz",
+        "displayedFee": "0.0173 USDT",
+        "createdAt": "2026-10-07T12:00:21Z",
+        "status": "Deposit Completed → Processed → Withdrawn"
+      }
+    },
+    {
+      "id": "C02",
+      "catlogReference": "CLGPAY-57633157",
+      "catlogPayment": {
+        "status": "partial-payment",
+        "amountDue": "6.191",
+        "amountReceived": "6.071",
+        "asset": "USDC",
+        "chain": "polygon",
+        "createdAt": "2026-10-07T10:59:08Z",
+        "paidAt": "2026-10-07T11:00:06Z",
+        "note": "Under-paid by 0.12 USDC. The received amount was bridged."
+      },
+      "provider": "NEAR",
+      "route": "near.polygon-to-stellar",
+      "source": {
+        "chain": "polygon",
+        "asset": "USDC",
+        "contract": "0x3c499c542cEF5E3811e1192ce70d8cC03d5c3359",
+        "amount": "6.071",
+        "sender": "0x1Fb2ff5373DEe5A53D5B191D471c9830065f6D5a",
+        "depositAddress": "0xaf0af57ECAc410994a5ce035f8736f9c061C883d",
+        "transactionHash": "0xcfe9d94be31d262b408e64025327a21e0f9b7708db14e774b0fee041878c2b5e",
+        "explorerUrl": "https://polygonscan.com/tx/0xcfe9d94be31d262b408e64025327a21e0f9b7708db14e774b0fee041878c2b5e"
+      },
+      "destination": {
+        "chain": "stellar",
+        "asset": "USDC",
+        "amount": "6.0494948",
+        "recipient": "GBOCW6AA2PAHAZJN6DTCMQTKWM3B5W6HM32SRATY5UUOB2IHGJJ6LCFH",
+        "transactionHash": "06d9aae0bc370648ad621f64e8ef97fdf897af9c3f0fcc2bf791d94ecc1db5d3",
+        "explorerUrl": "https://stellar.expert/explorer/public/tx/06d9aae0bc370648ad621f64e8ef97fdf897af9c3f0fcc2bf791d94ecc1db5d3"
+      },
+      "providerExecution": {
+        "intentHash": "BdvC3XTLZ6fCbV6KM754tNXXrGabH2S9haQQqZrjpMCk",
+        "intentExplorerUrl": "https://pikespeak.ai/intents/BdvC3XTLZ6fCbV6KM754tNXXrGabH2S9haQQqZrjpMCk",
+        "nearDepositTransaction": "2MDySF3Z9PidPEZFYMstntLK2h7dWdMwK51UwZNJmRR3",
+        "nearSwapTransaction": "7QjZiUgpeoZg8hPbaihBkd7AwH3JkXqDpuWbNDjf42Q7",
+        "displayedFee": "0.000607 USDC",
+        "createdAt": "2026-10-08T12:10:04Z",
+        "status": "Deposit Completed → Processed → Withdrawn"
+      }
+    }
+  ]
+}
