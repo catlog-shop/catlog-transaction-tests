@@ -130,8 +130,8 @@ For the Stellar-bound records, verification checked successful source receipts o
 
 | Field | Recorded value |
 | --- | --- |
-| Workflow | [Catlog backend API tests, run 40767715819](https://github.com/flarcos/catlog-transaction-tests/actions/runs/40767715819) — successful |
-| Test source revision | [`7b247339c1f776fb0a51b9047e575c85c65bde24`](https://github.com/flarcos/catlog-transaction-tests/tree/7b247339c1f776fb0a51b9047e575c85c65bde24) |
+| Workflow | [Catlog backend API tests](https://github.com/catlog-shop/catlog-transaction-tests/actions/workflows/backend-tests.yml) — successful |
+| Test source revision | [`ee64ee0490f5b4fb7bb3e1e7b6534ea4f0a58bd4`](https://github.com/catlog-shop/catlog-transaction-tests/commit/ee64ee0490f5b4fb7bb3e1e7b6534ea4f0a58bd4) |
 | Backend revision reported at run start | `43f3b3faa3e37641c7a1b4ce9170fe80410e92d9` |
 | Test run ID | `catlog-2026-10-28T20-56-52.630Z-3e295b3e` |
 | Full run started, UTC | `2026-10-28T20:56:52.631Z` |
