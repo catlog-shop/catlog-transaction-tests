@@ -1,0 +1,283 @@
+{
+  "schemaVersion": 1,
+  "summary": {
+    "provider": "NEAR",
+    "network": "mainnet",
+    "checkedAt": "2026-10-28T21:56:09.343Z",
+    "sourceNetwork": "stellar-mainnet",
+    "sourceWallet": "GDQSTT6A6PDQR5JNHW34U5E4LCBFB3LE662YCJGBJDQ3QIS3EOHJTAF5",
+    "sourceAsset": "USDC:GA5ZSEJYB37JRC5AVCIA5MOP4RHTM335X2KGX3IHOJAPP5RE34K4KZVN",
+    "sourceTokenContract": "CCW67TSZV3SSS2HXMBQ5JFGCKJNXKZM7UQUWUZPUTHXSTZLEO7SJMI75",
+    "sourceDecimals": 7,
+    "sourceAmountAtomic7": "50000000",
+    "sourceTransactionId": "4f6031e4f343b82d13a23a1b00e3cb38978fdea33d32f55c10287795b9cde392",
+    "sourceLedger": 64701713,
+    "sourceTimestamp": "2026-09-30T18:52:27Z",
+    "sourceConfirmed": true,
+    "recipient": "0xbea94baa9b17de76a1da7b9070aa2a86c4706117",
+    "destinationNetwork": "base-mainnet",
+    "destinationChainId": 8453,
+    "destinationAsset": "USDC",
+    "destinationTokenContract": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+    "destinationDecimals": 6,
+    "bridgeFeeAtomic6": null,
+    "expectedDestinationAtomic6": "4996590",
+    "destinationReceivedAtomic6": "4996590",
+    "destinationDifferenceAtomic6": "0",
+    "destinationTransactionId": "0x496a04aedbd0ca8ad2d6e93db7c52f3c3bb21e7f20437afdcfa09db42504a3fd",
+    "destinationBlock": 52002637,
+    "destinationTimestamp": "2026-09-30T18:57:01.000Z",
+    "destinationFinalized": true,
+    "sourceExplorer": "https://stellar.expert/explorer/public/tx/4f6031e4f343b82d13a23a1b00e3cb38978fdea33d32f55c10287795b9cde392",
+    "destinationExplorer": "https://basescan.org/tx/0x496a04aedbd0ca8ad2d6e93db7c52f3c3bb21e7f20437afdcfa09db42504a3fd",
+    "backendRecord": null,
+    "id": "S03"
+  },
+  "source": {
+    "horizonUrl": "https://horizon.stellar.org/transactions/4f6031e4f343b82d13a23a1b00e3cb38978fdea33d32f55c10287795b9cde392",
+    "horizonResponse": {
+      "memo": "188949418",
+      "_links": {
+        "self": {
+          "href": "https://horizon.stellar.org/transactions/4f6031e4f343b82d13a23a1b00e3cb38978fdea33d32f55c10287795b9cde392"
+        },
+        "account": {
+          "href": "https://horizon.stellar.org/accounts/GDQSTT6A6PDQR5JNHW34U5E4LCBFB3LE662YCJGBJDQ3QIS3EOHJTAF5"
+        },
+        "ledger": {
+          "href": "https://horizon.stellar.org/ledgers/64701713"
+        },
+        "operations": {
+          "href": "https://horizon.stellar.org/transactions/4f6031e4f343b82d13a23a1b00e3cb38978fdea33d32f55c10287795b9cde392/operations{?cursor,limit,order}",
+          "templated": true
+        },
+        "effects": {
+          "href": "https://horizon.stellar.org/transactions/4f6031e4f343b82d13a23a1b00e3cb38978fdea33d32f55c10287795b9cde392/effects{?cursor,limit,order}",
+          "templated": true
+        },
+        "precedes": {
+          "href": "https://horizon.stellar.org/transactions?order=asc&cursor=277891741330530304"
+        },
+        "succeeds": {
+          "href": "https://horizon.stellar.org/transactions?order=desc&cursor=277891741330530304"
+        },
+        "transaction": {
+          "href": "https://horizon.stellar.org/transactions/4f6031e4f343b82d13a23a1b00e3cb38978fdea33d32f55c10287795b9cde392"
+        }
+      },
+      "id": "4f6031e4f343b82d13a23a1b00e3cb38978fdea33d32f55c10287795b9cde392",
+      "paging_token": "277891741330530304",
+      "successful": true,
+      "hash": "4f6031e4f343b82d13a23a1b00e3cb38978fdea33d32f55c10287795b9cde392",
+      "ledger": 64701713,
+      "created_at": "2026-09-30T18:52:27Z",
+      "source_account": "GDQSTT6A6PDQR5JNHW34U5E4LCBFB3LE662YCJGBJDQ3QIS3EOHJTAF5",
+      "source_account_sequence": "277134963797655561",
+      "fee_account": "GDQSTT6A6PDQR5JNHW34U5E4LCBFB3LE662YCJGBJDQ3QIS3EOHJTAF5",
+      "fee_charged": "100",
+      "max_fee": "25333",
+      "operation_count": 1,
+      "envelope_xdr": "AAAAAgAAAADhKc/A88cI9S09t8p0nFiCUO1k97WBJMFI4bgiWyOOmQAAYvUD2JTIAAAACQAAAAEAAAAAAAAAAAAAAABqvVsLAAAAAgAAAAALQyOqAAAAAQAAAAAAAAABAAAAANPE5vki8j/v7aldE/HylAdijzNVtgQNR8QNrebheMxoAAAAAVVTREMAAAAAO5kROA7+mIugqJAOsc/kTzZvfb6Ua+0HckD39iTfFcUAAAAAAvrwgAAAAAAAAAABWyOOmQAAAECmyeEVI+9c7u9e64SQ7rxSuKXG4iGPBeUcolsyIHGr2TXopL8TB33ff1Bif48k8Av+yTUriH/WeCcMaGa10FYL",
+      "result_xdr": "AAAAAAAAAGQAAAAAAAAAAQAAAAAAAAABAAAAAAAAAAA=",
+      "fee_meta_xdr": "AAAAAgAAAAMD2z+1AAAAAAAAAADhKc/A88cI9S09t8p0nFiCUO1k97WBJMFI4bgiWyOOmQAAAAAEJu49A9iUyAAAAAgAAAACAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAADAAAAAAPbP7UAAAAAar0/nwAAAAAAAAABA9tFEQAAAAAAAAAA4SnPwPPHCPUtPbfKdJxYglDtZPe1gSTBSOG4IlsjjpkAAAAABCbt2QPYlMgAAAAIAAAAAgAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAwAAAAAD2z+1AAAAAGq9P58AAAAA",
+      "memo_type": "id",
+      "signatures": [
+        "psnhFSPvXO7vXuuEkO68UrilxuIhjwXlHKJbMiBxq9k16KS/Ewd9339QYn+PJPAL/sk1K4h/1ngnDGhmtdBWCw=="
+      ],
+      "preconditions": {
+        "timebounds": {
+          "min_time": "0",
+          "max_time": "1790794507"
+        }
+      }
+    },
+    "verifiedPayment": {
+      "from": "GDQSTT6A6PDQR5JNHW34U5E4LCBFB3LE662YCJGBJDQ3QIS3EOHJTAF5",
+      "to": "GDJ4JZXZELZD737NVFORH4PSSQDWFDZTKW3AIDKHYQG23ZXBPDGGQBJK",
+      "asset": "USDC:GA5ZSEJYB37JRC5AVCIA5MOP4RHTM335X2KGX3IHOJAPP5RE34K4KZVN",
+      "amountAtomic7": "50000000",
+      "memo": "188949418",
+      "memoType": "id"
+    }
+  },
+  "provider": {
+    "name": "NEAR",
+    "url": "https://1click.chaindefuser.com/v0/status?depositAddress=GDJ4JZXZELZD737NVFORH4PSSQDWFDZTKW3AIDKHYQG23ZXBPDGGQBJK&depositMemo=188949418",
+    "response": {
+      "status": "SUCCESS",
+      "updatedAt": "2026-09-30T18:57:03.000Z",
+      "correlationId": "e80f8205-3abc-473d-872d-c97298fe7574",
+      "swapDetails": {
+        "depositedAmount": "50000000",
+        "depositedAmountUsd": "4.999777758933",
+        "depositedAmountFormatted": "5.0",
+        "intentHashes": [
+          "kokzdBrexGp22tmxCez8NiT7zHxYSaP4ptPjbD8ASxp"
+        ],
+        "nearTxHashes": [
+          "J1GkopCjaTKVh2wq9N2eBEwqnFwg7jWSBW9BkjBUB9bD",
+          "6JcNUBaCLMvZV2uud5NrGY88rWnkwyTfTNwADJAqKrd9"
+        ],
+        "amountIn": "50000000",
+        "amountInFormatted": "5.0",
+        "amountInUsd": "4.999777758933",
+        "amountOut": "4996590",
+        "amountOutFormatted": "4.99659",
+        "amountOutUsd": "4.996367910501",
+        "slippage": 0,
+        "refundedAmount": "0",
+        "refundedAmountFormatted": "0",
+        "refundedAmountUsd": "0",
+        "refundReason": null,
+        "refundFee": "227951",
+        "withdrawFee": "2400",
+        "originChainTxHashes": [
+          {
+            "hash": "4f6031e4f343b82d13a23a1b00e3cb38978fdea33d32f55c10287795b9cde392",
+            "explorerUrl": ""
+          }
+        ],
+        "destinationChainTxHashes": [
+          {
+            "hash": "0x496a04aedbd0ca8ad2d6e93db7c52f3c3bb21e7f20437afdcfa09db42504a3fd",
+            "explorerUrl": ""
+          }
+        ]
+      },
+      "quoteResponse": {
+        "timestamp": "2026-09-30T18:50:07.369Z",
+        "signature": "ed25519:RqCtTYxyhAgUtRmZEA3Pe4YRjnHwF5cenjvDvkKnM8VAKwkRRun5eaC3FHaA2J7RncDXVvGgr2eMPRZu7SxGWJu",
+        "quoteRequest": {
+          "dry": false,
+          "swapType": "EXACT_INPUT",
+          "depositMode": "MEMO",
+          "slippageTolerance": 100,
+          "originAsset": "nep245:v2_1.omni.hot.tg:1100_111bzQBB65GxAPAVoxqmMcgYo5oS3txhqs1Uh1cgahKQUeTUq1TJu",
+          "depositType": "ORIGIN_CHAIN",
+          "destinationAsset": "nep141:base-0x833589fcd6edb6e08f4c7c32d4f71b54bda02913.omft.near",
+          "amount": "50000000",
+          "refundTo": "GDQSTT6A6PDQR5JNHW34U5E4LCBFB3LE662YCJGBJDQ3QIS3EOHJTAF5",
+          "refundType": "ORIGIN_CHAIN",
+          "recipient": "0xbea94baa9b17de76a1da7b9070aa2a86c4706117",
+          "recipientType": "DESTINATION_CHAIN",
+          "deadline": "2026-09-30T19:50:03.036Z",
+          "appFees": [
+            {
+              "limitOrderId": null,
+              "recipient": "5880ad2b362620fadf759cbceb1cd5737ce8c6ed7fb8e9942881e6731f9247dd",
+              "fee": 1
+            }
+          ],
+          "virtualChainRecipient": null,
+          "virtualChainRefundRecipient": null,
+          "referral": null,
+          "confidentiality": "public"
+        },
+        "quote": {
+          "amountIn": "50000000",
+          "amountInFormatted": "5.0",
+          "amountInUsd": "4.999510899607",
+          "minAmountIn": "50000000",
+          "amountOut": "4996590",
+          "amountOutFormatted": "4.99659",
+          "amountOutUsd": "4.996101233174",
+          "minAmountOut": "4946624",
+          "timeWhenInactive": "2026-10-03T19:50:03.036Z",
+          "depositAddress": "GDJ4JZXZELZD737NVFORH4PSSQDWFDZTKW3AIDKHYQG23ZXBPDGGQBJK",
+          "deadline": "2026-10-03T19:50:03.036Z",
+          "timeEstimate": 27,
+          "depositMemo": "188949418",
+          "refundFee": "227951",
+          "withdrawFee": "2400"
+        }
+      }
+    }
+  },
+  "destination": {
+    "rpcEndpoint": "https://mainnet.base.org",
+    "chainId": "0x2105",
+    "transaction": {
+      "type": "0x2",
+      "chainId": "0x2105",
+      "nonce": "0x8c5b2",
+      "gas": "0x186a0",
+      "maxFeePerGas": "0x36d6160",
+      "maxPriorityFeePerGas": "0x16e360",
+      "to": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+      "value": "0x0",
+      "accessList": [],
+      "input": "0xa9059cbb000000000000000000000000bea94baa9b17de76a1da7b9070aa2a86c470611700000000000000000000000000000000000000000000000000000000004c3dee",
+      "r": "0x4b7144036fb9abe89192020b447368c79039871356acf99a1036eb0955d7d9a2",
+      "s": "0x3d08ace9e54ed554c759aac50ca9bdb95fcdd532c26e6b6eb32902c7579b9844",
+      "yParity": "0x0",
+      "v": "0x0",
+      "hash": "0x496a04aedbd0ca8ad2d6e93db7c52f3c3bb21e7f20437afdcfa09db42504a3fd",
+      "blockHash": "0x98266153b1ba0acd80c4f78e2fc19b7d6061c13c48ad801d6c500c63482dcc0e",
+      "blockNumber": "0x3197f4d",
+      "transactionIndex": "0x52",
+      "blockTimestamp": "0x6abd5b7d",
+      "from": "0x2cff890f0378a11913b6129b2e97417a2c302680",
+      "gasPrice": "0x632ea0"
+    },
+    "receipt": {
+      "type": "0x2",
+      "status": "0x1",
+      "cumulativeGasUsed": "0x16e7ac7",
+      "logs": [
+        {
+          "address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+          "topics": [
+            "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+            "0x0000000000000000000000002cff890f0378a11913b6129b2e97417a2c302680",
+            "0x000000000000000000000000bea94baa9b17de76a1da7b9070aa2a86c4706117"
+          ],
+          "data": "0x00000000000000000000000000000000000000000000000000000000004c3dee",
+          "blockHash": "0x98266153b1ba0acd80c4f78e2fc19b7d6061c13c48ad801d6c500c63482dcc0e",
+          "blockNumber": "0x3197f4d",
+          "blockTimestamp": "0x6abd5b7d",
+          "transactionHash": "0x496a04aedbd0ca8ad2d6e93db7c52f3c3bb21e7f20437afdcfa09db42504a3fd",
+          "transactionIndex": "0x52",
+          "logIndex": "0x204",
+          "removed": false
+        }
+      ],
+      "logsBloom": "0x00000000000000000000000001000000000000000000000000000000000000000000000000000000000000000001100000000000000000000000000000000000000000000000000000000008000001000000000000080000000000000000000000800000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000200000000000000000000002000000000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000080000000000000000000000000000000000000000000000000000000000000",
+      "transactionHash": "0x496a04aedbd0ca8ad2d6e93db7c52f3c3bb21e7f20437afdcfa09db42504a3fd",
+      "transactionIndex": "0x52",
+      "blockHash": "0x98266153b1ba0acd80c4f78e2fc19b7d6061c13c48ad801d6c500c63482dcc0e",
+      "blockNumber": "0x3197f4d",
+      "gasUsed": "0xb003",
+      "effectiveGasPrice": "0x632ea0",
+      "blobGasUsed": "0x39d0",
+      "from": "0x2cff890f0378a11913b6129b2e97417a2c302680",
+      "to": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+      "contractAddress": null,
+      "l1GasPrice": "0x1a37b830",
+      "l1GasUsed": "0x640",
+      "l1Fee": "0xf9291323",
+      "l1BaseFeeScalar": "0x8dd",
+      "l1BlobBaseFee": "0x1755e63",
+      "l1BlobBaseFeeScalar": "0x101c12",
+      "daFootprintGasScalar": "0x94"
+    },
+    "block": {
+      "number": "0x3197f4d",
+      "hash": "0x98266153b1ba0acd80c4f78e2fc19b7d6061c13c48ad801d6c500c63482dcc0e",
+      "timestamp": "0x6abd5b7d",
+      "stateRoot": "0x53851ca5403d5125dcdbae5fb67624e0b48ab4a08ba8aadeb0c0bab11e967efb",
+      "receiptsRoot": "0xd42d3c7acd1e9fce46b5848a7add136040c86e756291b8546f35a1e57a404a27",
+      "transactionsRoot": "0x9515910ce58beaa8cb768aa982213c1fa40929555705b016f2315055cd1e0aa6"
+    },
+    "finalizedBlock": {
+      "number": "0x32c06e6",
+      "hash": "0x361ed9282a351b4790051caf325b413ffadedd0d54268aeb87011e4a3d57a9a8",
+      "timestamp": "0x6ae26aaf"
+    },
+    "verifiedTransfer": {
+      "logIndex": "0x204",
+      "from": "0x2CfF890f0378a11913B6129B2E97417a2c302680",
+      "to": "0xBeA94bAA9B17De76a1dA7B9070aa2A86c4706117",
+      "amountAtomic6": "4996590"
+    }
+  }
+}
