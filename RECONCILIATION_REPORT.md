@@ -2,7 +2,7 @@
 
 **Result: 19 reconciliation cases passed, 0 failed, 0 skipped.** The complete backend acceptance run passed all 71 cases.
 
-This report combines the 28 October 2026 automated test results with blockchain transactions verified on 28 October 2026.
+This report combines the 6 November 2026 automated test results with blockchain transactions verified on 28 October 2026.
 
 ## Verified blockchain transactions
 
@@ -107,29 +107,29 @@ For the Stellar-bound records, verification checked successful source receipts o
 
 | Field | Recorded value |
 | --- | --- |
-| Workflow | [Catlog backend API tests](https://github.com/catlog-shop/catlog-transaction-tests/actions/workflows/backend-tests.yml) — successful |
-| Test source revision | [`ee64ee0490f5b4fb7bb3e1e7b6534ea4f0a58bd4`](https://github.com/catlog-shop/catlog-transaction-tests/commit/ee64ee0490f5b4fb7bb3e1e7b6534ea4f0a58bd4) |
-| Backend revision reported at run start | `43f3b3faa3e37641c7a1b4ce9170fe80410e92d9` |
-| Test run ID | `catlog-2026-10-28T20-56-52.630Z-3e295b3e` |
-| Full run started, UTC | `2026-10-28T20:56:52.631Z` |
-| Full run finished, UTC | `2026-10-28T21:00:02.613Z` |
-| Full run, WAT (UTC+1) | 28 October 2026, 21:56:52–22:00:02 |
-| Full run elapsed time | 189.982 seconds |
+| Workflow | [Catlog backend API tests, run 42198221579](https://github.com/catlog-shop/catlog-transaction-tests/actions/runs/42198221579) — successful |
+| Test source revision | [`bc5b3a8029c369364f44b14e9eb60759ecd540af`](https://github.com/catlog-shop/catlog-transaction-tests/commit/bc5b3a8029c369364f44b14e9eb60759ecd540af) |
+| Backend revision reported at run start | `c5d7a7d7d91b41fef28c9ae493d9a3eb0b76df7d` |
+| Test run ID | `catlog-2026-11-06T09-52-00.962Z-411ae538` |
+| Full run started, UTC | `2026-11-06T09:52:00.963Z` |
+| Full run finished, UTC | `2026-11-06T09:54:23.712Z` |
+| Full run, WAT (UTC+1) | 6 November 2026, 10:52:00–10:54:23 |
+| Full run elapsed time | 142.749 seconds |
 | Backend origin | https://catlog-backend.throbbing-cloud-0f8e.workers.dev |
 | Execution environment | Cloudflare backend accessed over HTTP |
 | Provider responses | Controlled fixtures |
 | On-chain transfers in this run | None (`onchainTransfers: false`) |
-| Source artifact | `catlog-test-reports`, GitHub artifact ID `12850643664` |
+| Source artifact | `catlog-test-reports`, GitHub artifact ID `13493082541` (retained by GitHub until 4 February 2027) |
 
-The [run summary](docs/evidence/reconciliation-2026-10-28/summary.json) and [complete Vitest results](docs/evidence/reconciliation-2026-10-28/results.json) are committed with this report. They are byte-for-byte copies downloaded from the workflow artifact, so the evidence remains available in the repository after that artifact expires. They contain no API keys, session credentials or wallet signing keys.
+The [run summary](docs/evidence/reconciliation-2026-11-06/summary.json) and [complete Vitest results](docs/evidence/reconciliation-2026-11-06/results.json) are committed with this report. They are byte-for-byte copies downloaded from the workflow artifact, so the evidence remains available in the repository after that artifact expires. They contain no API keys, session credentials or wallet signing keys.
 
 | Evidence file | SHA-256 |
 | --- | --- |
-| `summary.json` | `09d821eabc239bae11f962d55f32dffacf74283bfcb8de7153ec077b675e4a8f` |
-| `results.json` | `503676350440ac89b4bc5bacbb6c1082b85940b74383468de543ef6130daacb8` |
-| `reconciliation-records.json` | `bebaa50a4c6f6d02956765c26e2bb258d6372f46c0bdf628410dc06bc6ee5035` |
+| `summary.json` | `6004248a1c248ace7df92f96b8c754111aef8221915624a3111235cf6657f8ee` |
+| `results.json` | `c2726fc2cca89bc856bd4295a8463882606601154f0c66e20b6a243a9fb0b989` |
+| `reconciliation-records.json` | `5b5b41cabed376f91139ce1f242d057b7168733adf99853b52f341f66e4961d0` |
 
-The [reconciliation records](docs/evidence/reconciliation-2026-10-28/reconciliation-records.json) retain the captured final ledger, balance and provider records for all 19 cases. Each captured file is identified by its source filename and SHA-256. The tables below were checked against these records.
+The [reconciliation records](docs/evidence/reconciliation-2026-11-06/reconciliation-records.json) retain the captured final ledger, balance and provider records for all 19 cases. Each captured file is identified by its source filename and SHA-256. The tables below were checked against these records.
 
 All five test-file hashes recorded in `summary.json` matched the test sources used to prepare this report. The reconciliation source hash is `d65f7e875541a75ce7e6b29b340a46151f31a24e9cdebe90f4975c5dfd391ac8`.
 
@@ -164,27 +164,27 @@ Amounts below are destination USDC using the fixture convention of seven decimal
 
 | Case | Route | Transaction ID | Status | Gross | Fee | Expected net | Ledger credit | Difference | Ledger record ID |
 | --- | --- | --- | --- | ---: | ---: | ---: | ---: | ---: | --- |
-| R01 | `cctp.arc-to-stellar` | `90ef84c6-5350-4f10-8b42-712d9d3a4b94` | COMPLETED | 10.0000000 | 0.1000000 | 9.9000000 | 9.9000000 | 0.0000000 | `548151a4-0861-4cfd-a45c-c049612e93fa` |
-| R02 | `cctp.arc-to-stellar` | `5712f340-900a-4910-8377-74edd8df7306` | COMPLETED | 10.0000000 | 0.1000000 | 9.9000000 | 9.9000000 | 0.0000000 | `4b9596a7-6228-4eb8-99c3-a62ae23151cd` |
-| R03 | `cctp.arc-to-stellar` | `3f0eca15-7f44-40d2-85b8-4a7a7a4eade6` | COMPLETED | 10.0000000 | 0.1000000 | 9.9000000 | 9.9000000 | 0.0000000 | `977b5559-a373-474a-8bbc-19afe08a8925` |
-| R04 | `cctp.arc-to-stellar` | `70db7af9-a0e7-4129-8e0f-0f0e4bf15291` | COMPLETED | 10.0000000 | 0.1000000 | 9.9000000 | 9.9000000 | 0.0000000 | `4ecd53db-eb21-49b9-b88c-7d8c609042ab` |
-| R05 | `cctp.arc-to-stellar` | `ab35df90-d9c6-4fd7-8e81-a169f826beaf` | FAILED | 10.0000000 | — | 0.0000000 | 0.0000000 | 0.0000000 | — |
-| R06 | `cctp.arc-to-stellar` | `af79ab8e-ea81-4991-8952-a7872fa0422b` | COMPLETED | 10.0000000 | 0.1000000 | 9.9000000 | 9.9000000 | 0.0000000 | `99419e28-d8f7-4355-948a-cbfddf083b70` |
-| R07 | `cctp.stellar-to-arc` | `3450808c-f80a-4856-a116-e815c661bd4e` | COMPLETED | 10.0000000 | 0.1000000 | 9.9000000 | 9.9000000 | 0.0000000 | `a9988419-5b31-4703-9982-97bc30271619` |
-| R08 | `cctp.stellar-to-arc` | `4c105b6c-27cb-45cc-99ad-b8c9b210c4d4` | COMPLETED | 10.0000000 | 0.1000000 | 9.9000000 | 9.9000000 | 0.0000000 | `a9b8ed2b-ec3f-4800-a4fa-fba6dcf1af0f` |
-| R09 | `cctp.stellar-to-arc` | `8856ab65-5476-45eb-8ced-3875794c9909` | COMPLETED | 10.0000000 | 0.1000000 | 9.9000000 | 9.9000000 | 0.0000000 | `b0ef352a-f542-4978-83f8-2fc212eda075` |
-| R10 | `cctp.stellar-to-arc` | `5c33d277-cbb6-449a-bd35-a40205806a73` | COMPLETED | 10.0000000 | 0.1000000 | 9.9000000 | 9.9000000 | 0.0000000 | `db8b30c1-18e1-4c19-b442-6de1ba9e573e` |
-| R11 | `cctp.stellar-to-arc` | `5e9c9bd9-9821-4588-8be5-33b57d9b8721` | FAILED | 10.0000000 | — | 0.0000000 | 0.0000000 | 0.0000000 | — |
-| R12 | `cctp.stellar-to-arc` | `62a27267-1c91-45df-9c6e-75b57a3fa703` | COMPLETED | 10.0000000 | 0.1000000 | 9.9000000 | 9.9000000 | 0.0000000 | `f838c74f-a577-44da-b5e6-e9201ad784d3` |
-| R13 | `near.to-stellar` | `019429c7-5b95-4b36-b9f0-9663d070dcbf` | COMPLETED | 10.0000000 | 0.1000000 | 9.9000000 | 9.9000000 | 0.0000000 | `742ad1d9-d2c2-4087-81f4-e318d0cfa614` |
-| R14 | `near.to-stellar` | `46f3a352-193e-454c-a2d8-3541d782154f` | COMPLETED | 10.0000000 | 0.1000000 | 9.9000000 | 9.9000000 | 0.0000000 | `2e0c4dad-d077-4157-9c73-5a5e428c2831` |
-| R15 | `near.to-stellar` | `d7084be6-9a4c-4a24-a930-1680d7fe21ca` | COMPLETED | 10.0000000 | 0.1000000 | 9.9000000 | 9.9000000 | 0.0000000 | `33815973-8a87-493c-a35e-ee74b5bf6644` |
-| R16 | `near.to-stellar` | `d7ff5621-0802-4082-927d-4a01cd36e375` | COMPLETED | 10.0000000 | 0.1000000 | 9.9000000 | 9.9000000 | 0.0000000 | `fa490bf9-b3b7-48fe-88a2-9efd8e4a4951` |
-| R17 | `near.to-stellar` | `aaf5e16b-3bec-446c-aeb7-bf450b365593` | FAILED | 10.0000000 | — | 0.0000000 | 0.0000000 | 0.0000000 | — |
-| R18 | `near.to-stellar` | `e5ca6b89-e1cc-426f-af6a-87cae638ab48` | COMPLETED | 10.0000000 | 0.1000000 | 9.9000000 | 9.9000000 | 0.0000000 | `d0d2252f-39ae-4e1f-8847-1b74f2b93fc9` |
-| R19-1 | `cctp.stellar-to-arc` | `54b316e1-53b0-4b0f-9f1b-78e07a815915` | COMPLETED | 10.0000000 | 0.1000000 | 9.9000000 | 9.9000000 | 0.0000000 | `261d328a-d39e-4ada-a3d5-0c0b76614f1d` |
-| R19-2 | `near.to-stellar` | `7e6292db-62ae-46a9-af78-e37a1bae6634` | COMPLETED | 10.0000000 | 0.1000000 | 9.9000000 | 9.9000000 | 0.0000000 | `2f48444b-0ec7-4d10-ad27-4361704b6760` |
-| R19-3 | `cctp.arc-to-stellar` | `d9c49c4f-4e24-4de8-8c30-cd108732ad9a` | COMPLETED | 10.0000000 | 0.1000000 | 9.9000000 | 9.9000000 | 0.0000000 | `467a382f-fa0b-409a-8d90-ec203630734e` |
+| R01 | `cctp.arc-to-stellar` | `ed594d31-9753-4321-bc1f-6b49e978acf3` | COMPLETED | 10.0000000 | 0.1000000 | 9.9000000 | 9.9000000 | 0.0000000 | `7f88d0e2-e775-4996-93e5-5c1b21a1faff` |
+| R02 | `cctp.arc-to-stellar` | `5ca18eab-0142-42ff-9ef4-11607df62984` | COMPLETED | 10.0000000 | 0.1000000 | 9.9000000 | 9.9000000 | 0.0000000 | `297b9fcd-669b-4c44-bde8-8fe4f5468951` |
+| R03 | `cctp.arc-to-stellar` | `a65ffd49-56b5-4bc5-8f93-444bf4ca263e` | COMPLETED | 10.0000000 | 0.1000000 | 9.9000000 | 9.9000000 | 0.0000000 | `1e5325e4-a3aa-4407-b248-9f1e9d863b92` |
+| R04 | `cctp.arc-to-stellar` | `bf9aec11-77f7-4c1f-b64c-4046f9550d45` | COMPLETED | 10.0000000 | 0.1000000 | 9.9000000 | 9.9000000 | 0.0000000 | `4cf241f5-6505-47ca-9996-d359416a33f4` |
+| R05 | `cctp.arc-to-stellar` | `78c6ddbd-2845-4043-8e0c-83d30a58930a` | FAILED | 10.0000000 | — | 0.0000000 | 0.0000000 | 0.0000000 | — |
+| R06 | `cctp.arc-to-stellar` | `8b150211-17f7-4a73-8bf9-027da4040dc4` | COMPLETED | 10.0000000 | 0.1000000 | 9.9000000 | 9.9000000 | 0.0000000 | `f4ee2f04-479a-4722-bccc-24c89fc2850e` |
+| R07 | `cctp.stellar-to-arc` | `98f04e37-c425-40dc-9250-31931c410171` | COMPLETED | 10.0000000 | 0.1000000 | 9.9000000 | 9.9000000 | 0.0000000 | `6a34400e-7cfb-4342-9482-7223452ad768` |
+| R08 | `cctp.stellar-to-arc` | `b8150829-975c-424c-9b7c-18fbf7b11e14` | COMPLETED | 10.0000000 | 0.1000000 | 9.9000000 | 9.9000000 | 0.0000000 | `a19e4ac9-41dd-45ec-8edb-70021fbd5a0c` |
+| R09 | `cctp.stellar-to-arc` | `70e06092-f3bc-4650-81ba-7651e213dc0f` | COMPLETED | 10.0000000 | 0.1000000 | 9.9000000 | 9.9000000 | 0.0000000 | `5b646aa7-7550-4ac7-b143-281d6bac37ee` |
+| R10 | `cctp.stellar-to-arc` | `bcd49eb7-1fe8-447b-9f15-70c165c8a5f4` | COMPLETED | 10.0000000 | 0.1000000 | 9.9000000 | 9.9000000 | 0.0000000 | `3ecb654a-4a6a-4eef-8035-c90f47d6c6a7` |
+| R11 | `cctp.stellar-to-arc` | `e59be2a5-60c7-41b3-8ac5-d1e178c676ec` | FAILED | 10.0000000 | — | 0.0000000 | 0.0000000 | 0.0000000 | — |
+| R12 | `cctp.stellar-to-arc` | `1d0d49f1-00c3-432a-8964-137b3faffbde` | COMPLETED | 10.0000000 | 0.1000000 | 9.9000000 | 9.9000000 | 0.0000000 | `899d1bce-1fc2-48dd-8a83-b4c040e57e24` |
+| R13 | `near.to-stellar` | `8801bb04-c278-4d74-bde3-7b7e49ea60ef` | COMPLETED | 10.0000000 | 0.1000000 | 9.9000000 | 9.9000000 | 0.0000000 | `cc3dc8c5-a7b6-489a-8397-8b1af9e182b9` |
+| R14 | `near.to-stellar` | `512e3789-e1ad-4336-8524-306222b94279` | COMPLETED | 10.0000000 | 0.1000000 | 9.9000000 | 9.9000000 | 0.0000000 | `9a421069-dc63-46f9-8c10-8063173e323f` |
+| R15 | `near.to-stellar` | `c3ce2ba4-6a31-4d43-8aa2-4b614d33a14a` | COMPLETED | 10.0000000 | 0.1000000 | 9.9000000 | 9.9000000 | 0.0000000 | `4d356025-a18d-474b-a2f3-8ff0a4bed08a` |
+| R16 | `near.to-stellar` | `1b3d21d7-30d3-42b6-bd29-abc8f38830ec` | COMPLETED | 10.0000000 | 0.1000000 | 9.9000000 | 9.9000000 | 0.0000000 | `783ffe8b-178c-4e55-934e-519996aad1a0` |
+| R17 | `near.to-stellar` | `64413f7a-cbb0-4817-90a8-f0082adb024e` | FAILED | 10.0000000 | — | 0.0000000 | 0.0000000 | 0.0000000 | — |
+| R18 | `near.to-stellar` | `67249eba-fa5a-466c-8e4f-90fb09d4448c` | COMPLETED | 10.0000000 | 0.1000000 | 9.9000000 | 9.9000000 | 0.0000000 | `dac8549e-6ea5-4e71-a3e6-98217baa140e` |
+| R19-1 | `cctp.arc-to-stellar` | `29f2867e-54b7-47ab-8270-da79d3340ffb` | COMPLETED | 10.0000000 | 0.1000000 | 9.9000000 | 9.9000000 | 0.0000000 | `949dacb9-5f5f-4bc8-a594-6e60e217a71e` |
+| R19-2 | `cctp.stellar-to-arc` | `355cc8f4-fd3c-4ef0-ac65-74d0d77d5911` | COMPLETED | 10.0000000 | 0.1000000 | 9.9000000 | 9.9000000 | 0.0000000 | `2833f0da-f892-4820-8d27-587ab79274d6` |
+| R19-3 | `near.to-stellar` | `af5eadd8-def3-46d7-99a8-7fd7cf62b8d0` | COMPLETED | 10.0000000 | 0.1000000 | 9.9000000 | 9.9000000 | 0.0000000 | `10758fe2-5519-4d99-a0fe-13e610c66d40` |
 
 ### Ledger and balance totals by destination asset
 
@@ -209,27 +209,27 @@ References and effect counts come from the recorded controlled-provider transact
 
 | Case | Transaction ID | Source transaction reference | Destination transaction reference | Source effects | Destination effects |
 | --- | --- | --- | --- | ---: | ---: |
-| R01 | `90ef84c6-5350-4f10-8b42-712d9d3a4b94` | `0x73d34d0443204c59964a892152fa26ed73d34d0443204c59964a892152fa26ed` | `3717555fec534571b9e18c3be565e97e3717555fec534571b9e18c3be565e97e` | 1 | 1 |
-| R02 | `5712f340-900a-4910-8377-74edd8df7306` | `0xc4ec0a34ce3c4ac489dc9676163eac70c4ec0a34ce3c4ac489dc9676163eac70` | `3a0db8ef86324cfc9a85d2de4486e2973a0db8ef86324cfc9a85d2de4486e297` | 1 | 1 |
-| R03 | `3f0eca15-7f44-40d2-85b8-4a7a7a4eade6` | `0xf7d4e61767c340c3a4b20787c1c3ec40f7d4e61767c340c3a4b20787c1c3ec40` | `e48e6655e2fc48678c4d8895a368de74e48e6655e2fc48678c4d8895a368de74` | 1 | 1 |
-| R04 | `70db7af9-a0e7-4129-8e0f-0f0e4bf15291` | `0x810a98cb33734731b3f3633d19932d2b810a98cb33734731b3f3633d19932d2b` | `40e29375872e4902b057c6c0dcac803340e29375872e4902b057c6c0dcac8033` | 1 | 1 |
-| R05 | `ab35df90-d9c6-4fd7-8e81-a169f826beaf` | `0xbfc1156c48c14d2fa74eb795edf91bb1bfc1156c48c14d2fa74eb795edf91bb1` | — | 1 | 0 |
-| R06 | `af79ab8e-ea81-4991-8952-a7872fa0422b` | `0xd67b135993f64111833cac75a92a2806d67b135993f64111833cac75a92a2806` | `6bef09992dff43d9b484c4d12f75af6f6bef09992dff43d9b484c4d12f75af6f` | 1 | 1 |
-| R07 | `3450808c-f80a-4856-a116-e815c661bd4e` | `943de20ffacf4f1695d3fc3f46028eab943de20ffacf4f1695d3fc3f46028eab` | `0x9ad2901daf604fddbdc0aba5def868c59ad2901daf604fddbdc0aba5def868c5` | 1 | 1 |
-| R08 | `4c105b6c-27cb-45cc-99ad-b8c9b210c4d4` | `154eb34162b94c4ea827f7b914b9c335154eb34162b94c4ea827f7b914b9c335` | `0x5ab92bf6b27a467db0263be496ba5d555ab92bf6b27a467db0263be496ba5d55` | 1 | 1 |
-| R09 | `8856ab65-5476-45eb-8ced-3875794c9909` | `a2600c820f9f43988207d1ffb66a980ba2600c820f9f43988207d1ffb66a980b` | `0x5b61da15336b47f19b993aeb6fedd3025b61da15336b47f19b993aeb6fedd302` | 1 | 1 |
-| R10 | `5c33d277-cbb6-449a-bd35-a40205806a73` | `53efbbca2caa473f9933edbb85fd8d7653efbbca2caa473f9933edbb85fd8d76` | `0x3714d77ab80b4312bdbaae0615024bd93714d77ab80b4312bdbaae0615024bd9` | 1 | 1 |
-| R11 | `5e9c9bd9-9821-4588-8be5-33b57d9b8721` | `b07b11050cab472b93cde9bf6b3ce8acb07b11050cab472b93cde9bf6b3ce8ac` | — | 1 | 0 |
-| R12 | `62a27267-1c91-45df-9c6e-75b57a3fa703` | `e39836ba5868487d854d22b12ddc1a9ce39836ba5868487d854d22b12ddc1a9c` | `0x74c95bd3ee8d40ae8607dd8886ca04e374c95bd3ee8d40ae8607dd8886ca04e3` | 1 | 1 |
-| R13 | `019429c7-5b95-4b36-b9f0-9663d070dcbf` | `93f889143fd84f439788fd525800029c93f889143fd84f439788fd525800029c` | `22b2787c705a45cea676f02dd5732f3d22b2787c705a45cea676f02dd5732f3d` | 1 | 1 |
-| R14 | `46f3a352-193e-454c-a2d8-3541d782154f` | `b3d399c3e8d14d5b99253e78eaf13741b3d399c3e8d14d5b99253e78eaf13741` | `374b2cd9b608471d8d14dabc9d7d71fb374b2cd9b608471d8d14dabc9d7d71fb` | 1 | 1 |
-| R15 | `d7084be6-9a4c-4a24-a930-1680d7fe21ca` | `7b8095b914a64fada19a707e558099387b8095b914a64fada19a707e55809938` | `35b7d5214d4349f4a7ea9fe7e92bbd9a35b7d5214d4349f4a7ea9fe7e92bbd9a` | 1 | 1 |
-| R16 | `d7ff5621-0802-4082-927d-4a01cd36e375` | `dd81ca2bc610444bb98455b292a33b46dd81ca2bc610444bb98455b292a33b46` | `16ba178c05da4466bd04e45cbbdb931716ba178c05da4466bd04e45cbbdb9317` | 1 | 1 |
-| R17 | `aaf5e16b-3bec-446c-aeb7-bf450b365593` | `4fa476b4db3f4935b81987c0800d0cdc4fa476b4db3f4935b81987c0800d0cdc` | — | 1 | 0 |
-| R18 | `e5ca6b89-e1cc-426f-af6a-87cae638ab48` | `d597d3aacca248d391b9cc6cb29e26e6d597d3aacca248d391b9cc6cb29e26e6` | `f3d022f4190845fd929df01e41faec25f3d022f4190845fd929df01e41faec25` | 1 | 1 |
-| R19-1 | `54b316e1-53b0-4b0f-9f1b-78e07a815915` | `143b587dd9034a40827a9d68adcf393d143b587dd9034a40827a9d68adcf393d` | `0x9a91641f63c142ae9b954353621a1e4c9a91641f63c142ae9b954353621a1e4c` | 1 | 1 |
-| R19-2 | `7e6292db-62ae-46a9-af78-e37a1bae6634` | `23507703f1684d0891058a3ab3d36a3223507703f1684d0891058a3ab3d36a32` | `67f95203444f4033a96fa4fc2b68191167f95203444f4033a96fa4fc2b681911` | 1 | 1 |
-| R19-3 | `d9c49c4f-4e24-4de8-8c30-cd108732ad9a` | `0x2207602d554942d89e201e86497c6d992207602d554942d89e201e86497c6d99` | `46907de56ce542529f1a72a1e130387046907de56ce542529f1a72a1e1303870` | 1 | 1 |
+| R01 | `ed594d31-9753-4321-bc1f-6b49e978acf3` | `0x6e7a6f31b054427f82f188d3ffe4975c6e7a6f31b054427f82f188d3ffe4975c` | `f21a03c919b64536b5db091255f87f51f21a03c919b64536b5db091255f87f51` | 1 | 1 |
+| R02 | `5ca18eab-0142-42ff-9ef4-11607df62984` | `0xdfd7efd39fdd4f59af16dabd5af06525dfd7efd39fdd4f59af16dabd5af06525` | `6dd7f7b7f75b4a8caa5f15cd8a27ee606dd7f7b7f75b4a8caa5f15cd8a27ee60` | 1 | 1 |
+| R03 | `a65ffd49-56b5-4bc5-8f93-444bf4ca263e` | `0x192c8e3e8957499c870fc3399fe98441192c8e3e8957499c870fc3399fe98441` | `b96c174fb00641bd8cc2a2b54549d214b96c174fb00641bd8cc2a2b54549d214` | 1 | 1 |
+| R04 | `bf9aec11-77f7-4c1f-b64c-4046f9550d45` | `0x839d8441073945888a523fe3ddb5b9f2839d8441073945888a523fe3ddb5b9f2` | `1a160a7f224b48818398d4026ecaa2501a160a7f224b48818398d4026ecaa250` | 1 | 1 |
+| R05 | `78c6ddbd-2845-4043-8e0c-83d30a58930a` | `0x7b46c61ceb9a4a38bdcdf265f1bce1a27b46c61ceb9a4a38bdcdf265f1bce1a2` | — | 1 | 0 |
+| R06 | `8b150211-17f7-4a73-8bf9-027da4040dc4` | `0xad9fd18098034b61992cc6197828e55ead9fd18098034b61992cc6197828e55e` | `150d63a702764d7487029200590fda7a150d63a702764d7487029200590fda7a` | 1 | 1 |
+| R07 | `98f04e37-c425-40dc-9250-31931c410171` | `3c134c8e527e4916b5c897601b87c4be3c134c8e527e4916b5c897601b87c4be` | `0x0faad22d1b5045d5be4813f21c4f79ae0faad22d1b5045d5be4813f21c4f79ae` | 1 | 1 |
+| R08 | `b8150829-975c-424c-9b7c-18fbf7b11e14` | `aebc6c26d54f4b67b50ef4810b5e48a1aebc6c26d54f4b67b50ef4810b5e48a1` | `0x8635cfca09d14695b8e5ada2d6fe74638635cfca09d14695b8e5ada2d6fe7463` | 1 | 1 |
+| R09 | `70e06092-f3bc-4650-81ba-7651e213dc0f` | `be95d4b1d6794b138fb3d937d04c8dcebe95d4b1d6794b138fb3d937d04c8dce` | `0xd44bb2684135482188b3ce938b84b41ed44bb2684135482188b3ce938b84b41e` | 1 | 1 |
+| R10 | `bcd49eb7-1fe8-447b-9f15-70c165c8a5f4` | `5dea3e8b69b24370ac369ebfbc1339d65dea3e8b69b24370ac369ebfbc1339d6` | `0xbb6d948f8f1d486ea941366044840fc0bb6d948f8f1d486ea941366044840fc0` | 1 | 1 |
+| R11 | `e59be2a5-60c7-41b3-8ac5-d1e178c676ec` | `3537f222eeab4eb9a2e78d9b6a581f6e3537f222eeab4eb9a2e78d9b6a581f6e` | — | 1 | 0 |
+| R12 | `1d0d49f1-00c3-432a-8964-137b3faffbde` | `e713406206d64dcf85f291484780407de713406206d64dcf85f291484780407d` | `0xe5be79d11c3e47fb887103b6ee069046e5be79d11c3e47fb887103b6ee069046` | 1 | 1 |
+| R13 | `8801bb04-c278-4d74-bde3-7b7e49ea60ef` | `e4d069483536409f9cafa791af6c3b1fe4d069483536409f9cafa791af6c3b1f` | `733a921f95dc40afaae2b05c00cdb655733a921f95dc40afaae2b05c00cdb655` | 1 | 1 |
+| R14 | `512e3789-e1ad-4336-8524-306222b94279` | `07234cf6fa634381804a4f4ef16dab5407234cf6fa634381804a4f4ef16dab54` | `c10bc09af2414abdbf25d3f58823cf11c10bc09af2414abdbf25d3f58823cf11` | 1 | 1 |
+| R15 | `c3ce2ba4-6a31-4d43-8aa2-4b614d33a14a` | `963f8b2ab80a472585419a4e0503edd5963f8b2ab80a472585419a4e0503edd5` | `a3e67165af8b4f37906e83604e3395e7a3e67165af8b4f37906e83604e3395e7` | 1 | 1 |
+| R16 | `1b3d21d7-30d3-42b6-bd29-abc8f38830ec` | `f8e042b942384bceb9d55dbc5d653c16f8e042b942384bceb9d55dbc5d653c16` | `599965dfc9a54b2f8702cae26e1b0a9b599965dfc9a54b2f8702cae26e1b0a9b` | 1 | 1 |
+| R17 | `64413f7a-cbb0-4817-90a8-f0082adb024e` | `df1ef54287624c17b43ff873e7d71f94df1ef54287624c17b43ff873e7d71f94` | — | 1 | 0 |
+| R18 | `67249eba-fa5a-466c-8e4f-90fb09d4448c` | `206c6fbc66144e1eb622e86385ee4b5f206c6fbc66144e1eb622e86385ee4b5f` | `c765618164134865b1fe7d4c426bd433c765618164134865b1fe7d4c426bd433` | 1 | 1 |
+| R19-1 | `29f2867e-54b7-47ab-8270-da79d3340ffb` | `0xf746817b3c61431dacc6e80a7e4fda04f746817b3c61431dacc6e80a7e4fda04` | `0da0b9b89d704e028e9c4d787d1a5ac50da0b9b89d704e028e9c4d787d1a5ac5` | 1 | 1 |
+| R19-2 | `355cc8f4-fd3c-4ef0-ac65-74d0d77d5911` | `9ade50fa56b5485d8175f9846cd678e19ade50fa56b5485d8175f9846cd678e1` | `0x89cec2267b604f47983012807bd2901189cec2267b604f47983012807bd29011` | 1 | 1 |
+| R19-3 | `af5eadd8-def3-46d7-99a8-7fd7cf62b8d0` | `f3613c3b3b7f4f29a4c0c0ab1d1dac32f3613c3b3b7f4f29a4c0c0ab1d1dac32` | `795935f686844c149f61548a7d00cf5e795935f686844c149f61548a7d00cf5e` | 1 | 1 |
 
 R19-1, R19-2 and R19-3 are the three transfers in the single global scanner case. A failed transaction has no destination reference and no committed ledger credit.
 
@@ -251,25 +251,25 @@ Test names, routes, statuses and durations below come from `results.json`. Durat
 
 | Case | Fixture route | Recorded test name | Result | Duration (seconds) |
 | --- | --- | --- | --- | ---: |
-| R01 | `cctp.arc-to-stellar` | recovers an accepted transfer after a lost response and worker restart without another source transfer | PASS | 3.352 |
-| R02 | `cctp.arc-to-stellar` | finds a completed transfer whose webhook was missed using only the global scanner | PASS | 2.156 |
-| R03 | `cctp.arc-to-stellar` | keeps an accepted source transfer pending until the destination completes without submitting another source transfer | PASS | 2.991 |
-| R04 | `cctp.arc-to-stellar` | commits one settlement when duplicate completion webhooks race a reconciliation worker | PASS | 2.275 |
-| R05 | `cctp.arc-to-stellar` | does not regress a confirmed terminal failure when a later lookup reports pending | PASS | 2.468 |
-| R06 | `cctp.arc-to-stellar` | preserves completed status, destination identifiers and the ledger settlement after a later pending observation | PASS | 2.790 |
-| R07 | `cctp.stellar-to-arc` | recovers an accepted transfer after a lost response and worker restart without another source transfer | PASS | 2.952 |
-| R08 | `cctp.stellar-to-arc` | finds a completed transfer whose webhook was missed using only the global scanner | PASS | 2.314 |
-| R09 | `cctp.stellar-to-arc` | keeps an accepted source transfer pending until the destination completes without submitting another source transfer | PASS | 3.540 |
-| R10 | `cctp.stellar-to-arc` | commits one settlement when duplicate completion webhooks race a reconciliation worker | PASS | 2.530 |
-| R11 | `cctp.stellar-to-arc` | does not regress a confirmed terminal failure when a later lookup reports pending | PASS | 2.227 |
-| R12 | `cctp.stellar-to-arc` | preserves completed status, destination identifiers and the ledger settlement after a later pending observation | PASS | 2.308 |
-| R13 | `near.to-stellar` | recovers an accepted transfer after a lost response and worker restart without another source transfer | PASS | 3.894 |
-| R14 | `near.to-stellar` | finds a completed transfer whose webhook was missed using only the global scanner | PASS | 2.134 |
-| R15 | `near.to-stellar` | keeps an accepted source transfer pending until the destination completes without submitting another source transfer | PASS | 3.078 |
-| R16 | `near.to-stellar` | commits one settlement when duplicate completion webhooks race a reconciliation worker | PASS | 2.121 |
-| R17 | `near.to-stellar` | does not regress a confirmed terminal failure when a later lookup reports pending | PASS | 2.634 |
-| R18 | `near.to-stellar` | preserves completed status, destination identifiers and the ledger settlement after a later pending observation | PASS | 2.350 |
-| R19 | `all routes` | one global scanner pass discovers and settles missed completions across every required route | PASS | 3.372 |
+| R01 | `cctp.arc-to-stellar` | recovers an accepted transfer after a lost response and worker restart without another source transfer | PASS | 4.127 |
+| R02 | `cctp.arc-to-stellar` | finds a completed transfer whose webhook was missed using only the global scanner | PASS | 2.032 |
+| R03 | `cctp.arc-to-stellar` | keeps an accepted source transfer pending until the destination completes without submitting another source transfer | PASS | 2.020 |
+| R04 | `cctp.arc-to-stellar` | commits one settlement when duplicate completion webhooks race a reconciliation worker | PASS | 1.731 |
+| R05 | `cctp.arc-to-stellar` | does not regress a confirmed terminal failure when a later lookup reports pending | PASS | 2.041 |
+| R06 | `cctp.arc-to-stellar` | preserves completed status, destination identifiers and the ledger settlement after a later pending observation | PASS | 1.947 |
+| R07 | `cctp.stellar-to-arc` | recovers an accepted transfer after a lost response and worker restart without another source transfer | PASS | 2.277 |
+| R08 | `cctp.stellar-to-arc` | finds a completed transfer whose webhook was missed using only the global scanner | PASS | 1.910 |
+| R09 | `cctp.stellar-to-arc` | keeps an accepted source transfer pending until the destination completes without submitting another source transfer | PASS | 3.139 |
+| R10 | `cctp.stellar-to-arc` | commits one settlement when duplicate completion webhooks race a reconciliation worker | PASS | 1.653 |
+| R11 | `cctp.stellar-to-arc` | does not regress a confirmed terminal failure when a later lookup reports pending | PASS | 2.178 |
+| R12 | `cctp.stellar-to-arc` | preserves completed status, destination identifiers and the ledger settlement after a later pending observation | PASS | 2.081 |
+| R13 | `near.to-stellar` | recovers an accepted transfer after a lost response and worker restart without another source transfer | PASS | 1.986 |
+| R14 | `near.to-stellar` | finds a completed transfer whose webhook was missed using only the global scanner | PASS | 1.669 |
+| R15 | `near.to-stellar` | keeps an accepted source transfer pending until the destination completes without submitting another source transfer | PASS | 2.783 |
+| R16 | `near.to-stellar` | commits one settlement when duplicate completion webhooks race a reconciliation worker | PASS | 1.533 |
+| R17 | `near.to-stellar` | does not regress a confirmed terminal failure when a later lookup reports pending | PASS | 2.229 |
+| R18 | `near.to-stellar` | preserves completed status, destination identifiers and the ledger settlement after a later pending observation | PASS | 1.505 |
+| R19 | `all routes` | one global scanner pass discovers and settles missed completions across every required route | PASS | 2.493 |
 
 ## Findings
 
